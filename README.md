@@ -9,7 +9,6 @@ The application allows the user to describe their workout using fields such as:
  - Workout duration
  
  Additionally, the user will be able to describe the exercises done during the workout using fields such as:
- - Custom exercise names
  - Sets 
  - Repetitions 
  - Weight
@@ -26,3 +25,12 @@ The application is designed for weightlifters that want to systematically track 
 
 I enjoy exercising and I've read many times of the advantages of tracking you workout, especially when it comes to identifying weak points, overtraining, and undertraining different parts of the body. I want to make a project that aligns with my interests and is something useful.
 
+## User Stories
+
+- As a user, I want to be able to add a workout to my workout journal
+- As a user, I want to be able to delete a workout from my workout journal
+- As a user, I want to be able to add an exercise to a workout in my workout journal
+- As a user, I want to be able to delete an exercise from a workout in my workout journal
+- As a user, I want to be able to add a set to an exercise in a workout in my workout journal
+- As a user, I want to be able to delete a set of an exercise in a workout in my workout journal
+- As a user, I want to be able to edit a set of an exercise in a workout in my workout journal
