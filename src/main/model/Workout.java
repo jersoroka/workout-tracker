@@ -6,14 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 public class Workout {
-    private Date date;
+    private int year;
+    private int month;
+    private int day;
     private String name;
-    private String category;
     private List<Exercise> exercises;
 
     // REQUIRES: category has a non-zero length
-    // EFFECTS: makes a new workout with current date, name, category, and an empty list of exercises
-    public Workout(String category, String name) {
+    // EFFECTS: makes a new workout with year, month, day, name, and an empty list of exercises
+    public Workout(int year, int month, int day, String category, String name) {
     }
 
     // MODIFIES: this
@@ -26,11 +27,10 @@ public class Workout {
     public void removeExercise(Exercise exercise) {
     }
 
-    public Date getDate() {
-        return date;
+    // EFFECTS: returns the year, month, and day or the workout as a string in the format "year-month-day"
+    public String getDate() {
+        return null;
     }
-
-    public void setDate(int year, int month, int day) { }
 
     public String getName() {
         return name;
@@ -38,14 +38,6 @@ public class Workout {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public List<Exercise> getExercises() {

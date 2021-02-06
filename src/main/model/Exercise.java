@@ -5,7 +5,6 @@ import java.util.List;
 // Represents an exercise having a name and list of sets performed
 public class Exercise {
     private String name;
-    private String category;
     private List<Set> sets;
 
     // REQUIRES: name has a non-zero length
@@ -33,14 +32,6 @@ public class Exercise {
 
     public List<Set> getSets() {
         return sets;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
 }

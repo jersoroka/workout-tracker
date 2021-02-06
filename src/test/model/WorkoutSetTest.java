@@ -20,7 +20,7 @@ public class WorkoutSetTest {
         assertEquals(2, testWorkoutSet.size());
         assertEquals("pull",  testWorkoutSet.getWorkout(1).getName());
         assertEquals("2021-02-03", testWorkoutSet.getWorkout(1).getDate());
-        testWorkoutSet.addWorkout(2021, 2, 0, "arms");
+        testWorkoutSet.addWorkout(2021, 2, 4, "arms");
         assertEquals(3, testWorkoutSet.size());
         assertEquals("arms",  testWorkoutSet.getWorkout(1).getName());
         assertEquals("2021-02-04", testWorkoutSet.getWorkout(1).getDate());
@@ -35,5 +35,12 @@ public class WorkoutSetTest {
         testWorkoutSet.removeWorkout(0);
         assertEquals(0, testWorkoutSet.size());
         testWorkoutSet.addWorkout(2020, 12, 1, "pull");
+        testWorkoutSet.addWorkout(2021, 2, 3, "pull");
+        testWorkoutSet.addWorkout(2021, 2, 4, "arms");
+        testWorkoutSet.removeWorkout(1);
+        assertEquals(2, testWorkoutSet.size());
+        assertEquals("2020-12-01", testWorkoutSet.getWorkout(0).getDate());
+        assertEquals("2020-02-04", testWorkoutSet.getWorkout(1).getDate());
+
     }
 }
