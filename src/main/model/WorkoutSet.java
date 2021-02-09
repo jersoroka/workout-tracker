@@ -15,18 +15,21 @@ public class WorkoutSet {
     // MODIFIES: this
     // EFFECTS: adds a new workout to this.workouts with date, name, category, and empty list of exercises
     public void addWorkout(int year, int month, int day, String name) {
+        Workout workout = new Workout(year, month, day, name);
+        workouts.add(workout);
     }
 
     // REQUIRES: index must <= (workouts.size() - 1)
     // MODIFIES: this
     // EFFECTS: removes a workout at index from this.workouts
     public void removeWorkout(int index) {
+        workouts.remove(index);
     }
 
     // REQUIRES: index must be <= (workouts.size() - 1)
     // EFFECTS: returns the workout at the index
     public Workout getWorkout(int index) {
-        return null;
+        return workouts.get(index);
     }
 
     // EFFECTS: returns the number of items in the set

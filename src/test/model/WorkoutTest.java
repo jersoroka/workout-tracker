@@ -17,8 +17,18 @@ class WorkoutTest {
     }
 
     @Test
+    void testChangeDate() {
+        testWorkout.changeDate(2020, 3, 19);
+        assertEquals("2020-03-19", testWorkout.getDate());
+    }
+
+    @Test
     void testGetDate() {
         assertEquals("2021-02-05", testWorkout.getDate());
+        testWorkout.changeDate(2020, 1, 20);
+        assertEquals("2020-01-20", testWorkout.getDate());
+        testWorkout.changeDate(2000, 10,30);
+        assertEquals("2000-10-30", testWorkout.getDate());
     }
 
     @Test
@@ -31,7 +41,7 @@ class WorkoutTest {
         testWorkout.addExercise("Chin ups");
         assertEquals("Chin ups: no sets completed", testWorkout.getExercise(2).getExerciseInfo());
         assertEquals(3, testWorkout.size());
-        testWorkout.addExercise("Chin ups");
+        testWorkout.addExercise("Push ups");
         assertEquals("Push ups: no sets completed", testWorkout.getExercise(3).getExerciseInfo());
         assertEquals(4, testWorkout.size());
     }
@@ -40,13 +50,12 @@ class WorkoutTest {
     void testRemoveExercise() {
         testWorkout.removeExercise(0);
         assertEquals(1, testWorkout.size());
-        assertEquals("Deadlifts: no sets completed", testWorkout.getExercise(0).getExerciseInfo());
+        assertEquals("Front squats: no sets completed", testWorkout.getExercise(0).getExerciseInfo());
         testWorkout.getExercise(0).addSet(10, 225, "");
+
         testWorkout.addExercise("Deadlifts");
-        assertEquals("Deadlifts: Set 1: weight: 225, reps: 10",
-                testWorkout.getExercise(0).getExerciseInfo());
-        testWorkout.removeExercise(1);
-        assertEquals("Deadlifts: Set 1: weight: 225, reps: 10",
+        testWorkout.removeExercise(0);
+        assertEquals("Deadlifts: no sets completed",
                 testWorkout.getExercise(0).getExerciseInfo());
     }
 

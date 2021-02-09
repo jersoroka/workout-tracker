@@ -18,14 +18,14 @@ public class Exercise {
     // EFFECTS: returns the name of the exercise and list of sets completed as a string
     public String getExerciseInfo() {
         if (sets.size() == 0) {
-            return "no sets have been completed";
+            return this.name + ": no sets completed";
         } else {
             int setNumber = 0;
-            String setInfo = "";
+            StringBuilder setInfo = new StringBuilder();
             for (Set s : sets) {
                 setNumber += 1;
                 String stringSetNumber = Integer.toString(setNumber);
-                setInfo += "Set " + stringSetNumber + s.getSetInfo();
+                setInfo.append(": Set ").append(stringSetNumber).append(s.getSetInfo());
             }
             return this.name + setInfo;
         }
