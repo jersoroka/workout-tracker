@@ -44,6 +44,12 @@ public class WorkoutSetTest {
     }
 
     @Test
+    // TODO:
+    void testAddInvalidDateWorkout() {
+
+    }
+
+    @Test
     void testRemoveWorkoutMany() {
         testWorkoutSet.removeWorkout(0);
         assertEquals(0, testWorkoutSet.size());

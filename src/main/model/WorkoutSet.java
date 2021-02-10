@@ -1,5 +1,7 @@
 package model;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class WorkoutSet {
     // REQUIRES: 1 <= month <= 12, 1 <= day <= 31
     // MODIFIES: this
     // EFFECTS: adds a new workout to this.workouts with date, name, category, and empty list of exercises
+    // TODO: Add Date class
     public void addWorkout(int year, int month, int day, String name) {
         Workout workout = new Workout(year, month, day, name);
         workouts.add(workout);

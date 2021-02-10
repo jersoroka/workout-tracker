@@ -13,8 +13,8 @@ public class Workout {
     private String name;
     private List<Exercise> exercises;
 
-    // REQUIRES: category has a non-zero length
     // EFFECTS: makes a new workout with year, month, day, name, and an empty list of exercises
+    // TODO: change to date
     public Workout(int year, int month, int day, String name) {
         this.year = year;
         this.month = month;
@@ -46,6 +46,7 @@ public class Workout {
     }
 
     // EFFECTS: returns the year, month, and day or the workout as a string in the format "year-month-day"
+    // TODO: move to Date class
     public String getDate() {
         String year = Integer.toString(this.year);
         String month = Integer.toString(this.month);
@@ -64,6 +65,7 @@ public class Workout {
         }
     }
 
+    // TODO: Move to date class
     public void changeDate(int year, int month, int day) {
         this.year = year;
         this.month = month;
