@@ -10,25 +10,22 @@ class WorkoutTest {
 
     @BeforeEach
     void runBefore() {
-
-        testWorkout = new Workout(2021, 2, 5, "test");
+        Date testDate = new Date(2021, 2, 5);
+        testWorkout = new Workout(testDate, "test");
         testWorkout.addExercise("Deadlifts");
         testWorkout.addExercise("Front squats");
     }
 
     @Test
-    void testChangeDate() {
-        testWorkout.changeDate(2020, 3, 19);
-        assertEquals("2020-03-19", testWorkout.getDate());
-    }
-
-    @Test
     void testGetDate() {
-        assertEquals("2021-02-05", testWorkout.getDate());
-        testWorkout.changeDate(2020, 1, 20);
-        assertEquals("2020-01-20", testWorkout.getDate());
-        testWorkout.changeDate(2000, 10,30);
-        assertEquals("2000-10-30", testWorkout.getDate());
+        Date date = testWorkout.getDate();
+        assertEquals("2021-02-05", date.formatToString());
+
+        date.setYear(2020);
+        date.setMonth(1);
+        date.setDay(20);
+        assertEquals("2020-01-20", date.formatToString());
+
     }
 
     @Test

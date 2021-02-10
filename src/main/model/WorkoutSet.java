@@ -8,18 +8,25 @@ import java.util.List;
 public class WorkoutSet {
     private List<Workout> workouts;
 
-    // EFFECTS: workout set is empty
+    // EFFECTS: instantiates an empty workout set
+    // TODO: check language for the effects
+    // TODO: check if capital letters are needed for specifications
     public WorkoutSet() {
         workouts = new ArrayList<>();
     }
 
-    // REQUIRES: 1 <= month <= 12, 1 <= day <= 31
     // MODIFIES: this
-    // EFFECTS: adds a new workout to this.workouts with date, name, category, and empty list of exercises
-    // TODO: Add Date class
-    public void addWorkout(int year, int month, int day, String name) {
-        Workout workout = new Workout(year, month, day, name);
-        workouts.add(workout);
+    // EFFECTS: if date is valid, add workout with date constructed from year, month, and day, and name and return true.
+    // If date is invalid, return false and do not add a workout.
+    public boolean addWorkout(int year, int month, int day, String name) {
+        Date date = new Date(year, month, day);
+        if (date.isValidDate()) {
+            Workout workout = new Workout(date, name);
+            workouts.add(workout);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // REQUIRES: index must <= (workouts.size() - 1)
@@ -40,11 +47,4 @@ public class WorkoutSet {
         return workouts.size();
     }
 
-    public List<Workout> getWorkouts() {
-        return workouts;
-    }
-
-    public void setWorkouts(List<Workout> workouts) {
-        this.workouts = workouts;
-    }
 }

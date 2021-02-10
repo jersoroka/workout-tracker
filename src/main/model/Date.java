@@ -37,6 +37,25 @@ public class Date {
         return (month == 2) & (0 < day) & (day <= 28);
     }
 
+    // EFFECTS: returns the year, month, and day or the workout as a string in the format "year-month-day"
+    public String formatToString() {
+        String year = Integer.toString(this.year);
+        String month = Integer.toString(this.month);
+        String day = String.valueOf(this.day);
+
+        if (this.month <= 9 & this.day <= 9) {
+            return year + "-0" + month + "-0" + day;
+        }
+        if (this.month <= 9) {
+            return year + "-0" + month + "-" + day;
+        }
+        if (this.day <= 9) {
+            return year + "-" + month + "-0" + day;
+        } else {
+            return year + "-" + month + "-" + day;
+        }
+    }
+
     public int getYear() {
         return year;
     }

@@ -30,27 +30,27 @@ public class DateTest {
     }
 
     @Test
-    void testSetMonthValid() {
-        assertTrue(testDate.setMonth(12));
-        assertEquals(12, testDate.getMonth());
-    }
-
-    @Test
-    void testSetDayValid() {
-        assertTrue(testDate.setYear(31));
-        assertEquals(31, testDate.getYear());
-    }
-
-    @Test
     void testSetYearInvalid() {
         assertFalse(testDateLeapYear.setYear(2021));
         assertEquals(2020, testDateLeapYear.getYear());
     }
 
     @Test
+    void testSetMonthValid() {
+        assertTrue(testDate.setMonth(12));
+        assertEquals(12, testDate.getMonth());
+    }
+
+    @Test
     void testSetMonthInvalid() {
         assertFalse(testDateLeapYear.setMonth(13));
         assertEquals(2, testDateLeapYear.getMonth());
+    }
+
+    @Test
+    void testSetDayValid() {
+        assertTrue(testDate.setYear(31));
+        assertEquals(31, testDate.getYear());
     }
 
     @Test
@@ -167,6 +167,17 @@ public class DateTest {
         Date testDay30 = new Date(2021, 2, 30);
         assertFalse(testDay30.isValidDate());
 
+    }
+
+    @Test
+    void testGetFormattedDate() {
+        Date testDateSingleDigitMonthSingleDigitDay = new Date(2020, 7, 4);
+        Date testDateDoubleDigitMonthDoubleDigitDay = new Date(2020, 11, 11);
+
+        assertEquals("2021-11-09", testDate.formatToString());
+        assertEquals("2020-02-29", testDateLeapYear.formatToString());
+        assertEquals("2020-07-04", testDateSingleDigitMonthSingleDigitDay.formatToString());
+        assertEquals("2020-11-11", testDateDoubleDigitMonthDoubleDigitDay.formatToString());
     }
 
 
