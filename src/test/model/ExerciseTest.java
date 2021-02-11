@@ -50,8 +50,8 @@ public class ExerciseTest {
     }
 
     @Test
+    // TODO:
     void testGetExerciseInfo() {
-        // !!!
     }
 
     @Test

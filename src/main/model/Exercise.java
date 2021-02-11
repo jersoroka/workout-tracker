@@ -25,9 +25,9 @@ public class Exercise {
             for (Set s : sets) {
                 setNumber += 1;
                 String stringSetNumber = Integer.toString(setNumber);
-                setInfo.append(": Set ").append(stringSetNumber).append(s.getSetInfo());
+                setInfo.append("\nSet ").append(stringSetNumber).append(s.getSetInfo());
             }
-            return this.name + setInfo;
+            return this.name + ": " + setInfo;
         }
     }
 

@@ -17,9 +17,9 @@ public class Set {
     // If the comment is empty, the comment section is not included.
     public String getSetInfo() {
         if (comment.equals("")) {
-            return "weight: " + weight + ", reps: " + reps;
+            return " weight: " + weight + ", reps: " + reps;
         } else {
-            return "weight: " + weight + ", reps: " + reps + ", comment: " + this.comment;
+            return " weight: " + weight + ", reps: " + reps + ", comment: " + this.comment;
         }
     }
 

@@ -28,7 +28,7 @@ public class SetTest {
         testSet.setReps(0);
         testSet.setComment("");
         testSet.setWeight(0);
-        assertEquals("weight: 0, reps: 0", testSet.getSetInfo());
+        assertEquals(" weight: 0, reps: 0", testSet.getSetInfo());
     }
 
     @Test
