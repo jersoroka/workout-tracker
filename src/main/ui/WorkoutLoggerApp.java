@@ -111,6 +111,7 @@ public class WorkoutLoggerApp {
             addWorkoutNavigator();
         } else {
             System.out.println("Selection not valid...");
+            homeScreen();
         }
     }
 
@@ -156,8 +157,18 @@ public class WorkoutLoggerApp {
     private void processViewWorkoutsCommand(String command, List<Integer> workoutIndices) {
         if (command.equals("q")) {
             System.exit(0);
-        } else if (workoutIndices.contains(Integer.parseInt(command))) {
-            viewWorkout(workoutSet.getWorkout(Integer.parseInt(command)));
+        }
+
+        try {
+            Integer.parseInt(command);
+        } catch (NumberFormatException e) {
+            System.out.println("Please provide a valid input");
+            viewWorkouts();
+        }
+
+        int intCommand = Integer.parseInt(command);
+        if (workoutIndices.contains(intCommand)) {
+            viewWorkout(workoutSet.getWorkout(intCommand));
         } else {
             System.out.println("Please provide a valid input");
             viewWorkouts();
@@ -208,7 +219,7 @@ public class WorkoutLoggerApp {
             System.out.println("\n" + Integer.toString(i) + " -> edit " + workout.getExercise(i).getName());
         }
         for (int i = 0; i < workout.getExercises().size(); i++) {
-            int z = i + 2;
+            int z = i + workout.size();
             System.out.println("\n" + Integer.toString(z) + " -> remove " + workout.getExercise(i).getName());
         }
         System.out.println("\n" + Integer.toString((workout.size() * 2)) + " -> edit workout name");
@@ -219,26 +230,39 @@ public class WorkoutLoggerApp {
     // EFFECTS: processes user command in viewWorkout
     // Code attributed to TellerApp example
     private void processViewWorkoutCommand(String command, Workout workout) {
-        int intCommand = Integer.parseInt(command);
         if (command.equals("b")) {
             viewWorkouts();
         } else if (command.equals("q")) {
             System.exit(0);
-        } else if ((0 <= intCommand) & (intCommand < workout.size())) {
-            editExercise(workout.getExercise(intCommand), workout);
-        } else if ((workout.size() <= intCommand) | (intCommand < workout.size() * 2)) {
-            removeExercise(workout.getExercise(Integer.parseInt(command)), workout);
-        } else if (intCommand == (workout.size() * 2)) {
-            editWorkoutName(workout);
-        } else if (intCommand == (workout.size() * 2 + 1)) {
-            editWorkoutDate(workout);
-        } else if (intCommand == (workout.size() * 2 + 2)) {
-            removeWorkout(workout);
-        } else {
+        }
+
+        try {
+            Integer.parseInt(command);
+        } catch (NumberFormatException e) {
             System.out.println("Please provide a valid input");
-            viewWorkouts();
+            viewWorkout(workout);
+        }
+
+        int intCommand = Integer.parseInt(command);
+        processViewWorkoutCommandNumberedOptions(intCommand, workout);
+    }
+
+    // EFFECTS: process user command in viewWorkout with numbers as options
+    // Code attributed to TellerApp example
+    private void processViewWorkoutCommandNumberedOptions(int command, Workout workout) {
+        if ((0 <= command) & (command < workout.size())) {
+            editExercise(workout.getExercise(command), workout);
+        } else if ((workout.size() <= command) & (command < workout.size() * 2)) {
+            removeExercise(workout.getExercise(command - workout.size()), workout);
+        } else if (command == (workout.size() * 2)) {
+            editWorkoutName(workout);
+        } else if (command == ((workout.size() * 2) + 1)) {
+            editWorkoutDate(workout);
+        } else if (command == ((workout.size() * 2) + 2)) {
+            removeWorkout(workout);
         }
     }
+
 
     // MODIFIES: this
     // EFFECTS: changes workout name
@@ -247,10 +271,11 @@ public class WorkoutLoggerApp {
         String command = null;
 
         while (keepGoing) {
-            System.out.println("Enter the new name of the workout");
-            command = input.next();
+            input.nextLine();
+            System.out.println("\nEnter the new name of the workout");
+            command = input.nextLine();
             command = command.toLowerCase();
-            System.out.println("Workout name changed to " + workout.getName());
+            System.out.println("\nWorkout name changed to " + workout.getName());
             workout.setName(command);
             keepGoing = false;
             viewWorkout(workout);
@@ -273,9 +298,9 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("Enter the new year of the workout");
+            System.out.println("\nEnter the new year of the workout");
             int year = Integer.parseInt(input.next());
-            System.out.println("Enter the new month of the workout as a number."
+            System.out.println("\nEnter the new month of the workout as a number."
                     + "\nFor example, January would be 1 and July would be 7.");
             int month = Integer.parseInt(input.next());
             System.out.println("Enter the new day of the workout");
@@ -283,11 +308,11 @@ public class WorkoutLoggerApp {
 
             Date date = new Date(year, month, day);
             if (workout.setDate(date)) {
-                System.out.println("Date changed to " + date.formatToString());
+                System.out.println("\nDate changed to " + date.formatToString());
                 keepGoing = false;
                 viewWorkout(workout);
             } else {
-                System.out.println("That date is not valid. Please enter a a valid date");
+                System.out.println("\nThat date is not valid. Please enter a a valid date");
             }
         }
     }
@@ -298,7 +323,7 @@ public class WorkoutLoggerApp {
         int index = workoutSet.indexOf(workout);
         String workoutInfo = workout.getName() + " on " + workout.getDate().formatToString();
         workoutSet.removeWorkout(index);
-        System.out.println(workoutInfo + " successfully removed");
+        System.out.println("\n" + workoutInfo + " successfully removed");
         viewWorkouts();
     }
 
@@ -310,7 +335,7 @@ public class WorkoutLoggerApp {
         String command = null;
 
         while (keepGoing) {
-            System.out.println(exercise.getExerciseInfo());
+            System.out.println("\n" + exercise.getExerciseInfo());
             editExercisePrompts(exercise);
             displayExitPrompts();
             command = input.next();
@@ -336,15 +361,22 @@ public class WorkoutLoggerApp {
     // EFFECTS: processes user command in viewWorkout
     // Code attributed to TellerApp example
     private void processEditExerciseCommand(String command, Exercise exercise, Workout workout) {
-        int intCommand = Integer.parseInt(command);
         if (command.equals("b")) {
             viewWorkout(workout);
         } else if (command.equals("q")) {
             System.exit(0);
-        } else if ((0 <= intCommand) & (intCommand < exercise.size())) {
+        }
+        try {
+            Integer.parseInt(command);
+        } catch (NumberFormatException e) {
+            System.out.println("Please provide a valid input");
+            editExercise(exercise, workout);
+        }
+        int intCommand = Integer.parseInt(command);
+        if ((0 <= intCommand) & (intCommand < exercise.size())) {
             editSet(exercise.getSet(intCommand), exercise, workout);
         } else if ((exercise.size() <= intCommand) & (intCommand < exercise.size() * 2)) {
-            removeSet(exercise.getSet(intCommand), exercise, workout);
+            removeSet(exercise.getSet(intCommand - exercise.size()), exercise, workout);
         } else {
             System.out.println("Please provide a valid input");
             editExercise(exercise, workout);
@@ -358,7 +390,7 @@ public class WorkoutLoggerApp {
         String command = null;
 
         while (keepGoing) {
-            System.out.println(set.getSetInfo());
+            System.out.println("\nSet " + Integer.toString(exercise.indexOf(set) + 1) + ": " + set.getSetInfo());
             editSetPrompts();
             displayExitPrompts();
             command = input.next();
@@ -366,7 +398,6 @@ public class WorkoutLoggerApp {
 
             keepGoing = false;
             processEditSetCommand(set, command, exercise, workout);
-
         }
     }
 
@@ -375,35 +406,44 @@ public class WorkoutLoggerApp {
     private void removeSet(Set set, Exercise exercise, Workout workout) {
         int index = exercise.indexOf(set);
         exercise.removeSet(index);
-        System.out.println("Set successfully removed");
+        System.out.println("\nSet successfully removed");
         editExercise(exercise, workout);
     }
 
     //EFFECTS: displays prompts to select in editSet to the user
     private void editSetPrompts() {
         System.out.println("\nSelect one of the following options: ");
-        System.out.println("\n 0 -> edit reps");
-        System.out.println("\n 1 -> edit weight");
+        System.out.println("\n 0 -> edit weight");
+        System.out.println("\n 1 -> edit reps");
         System.out.println("\n 2 -> edit comment");
     }
 
     // EFFECTS: processes user command in editSet
     // Code attributed to TellerApp example
     private void processEditSetCommand(Set set, String command, Exercise exercise, Workout workout) {
-        int intCommand = Integer.parseInt(command);
         if (command.equals("b")) {
             editExercise(exercise, workout);
         } else if (command.equals("q")) {
             System.exit(0);
-        } else if (intCommand == 0) {
-            editSetReps(set, exercise, workout);
-        } else if (intCommand == 1) {
+        }
+
+        try {
+            Integer.parseInt(command);
+        } catch (NumberFormatException e) {
+            System.out.println("Please provide a valid input");
+            editSet(set, exercise, workout);
+        }
+
+        int intCommand = Integer.parseInt(command);
+        if (intCommand == 0) {
             editSetWeight(set, exercise, workout);
+        } else if (intCommand == 1) {
+            editSetReps(set, exercise, workout);
         } else if (intCommand == 2) {
             editSetComment(set, exercise, workout);
         } else {
             System.out.println("Please provide a valid input");
-            editExercise(exercise, workout);
+            editSet(set, exercise, workout);
         }
     }
 
@@ -414,10 +454,10 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("Enter the new reps of the set");
+            System.out.println("\nEnter the new reps of the set");
             int reps = Integer.parseInt(input.next());
             set.setReps(reps);
-            System.out.println("Reps changed to " + set.getReps());
+            System.out.println("\nReps changed to " + set.getReps());
             keepGoing = false;
             editSet(set, exercise, workout);
         }
@@ -430,10 +470,10 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("Enter the new weight of the set");
+            System.out.println("\nEnter the new weight of the set");
             int weight = Integer.parseInt(input.next());
             set.setWeight(weight);
-            System.out.println("Weight changed to " + set.getWeight());
+            System.out.println("\nWeight changed to " + set.getWeight());
             keepGoing = false;
             editSet(set, exercise, workout);
         }
@@ -446,10 +486,11 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("Enter the new comment in the set");
-            String comment = input.next();
+            input.nextLine();
+            System.out.println("\nEnter the new comment in the set");
+            String comment = input.nextLine();
             set.setComment(comment);
-            System.out.println("Comment changed to " + set.getComment());
+            System.out.println("\nComment changed to " + set.getComment());
             keepGoing = false;
             editSet(set, exercise, workout);
         }
