@@ -62,4 +62,11 @@ public class WorkoutSetTest {
         assertEquals("2021-02-04", testWorkoutSet.getWorkout(1).getDate().formatToString());
 
     }
+
+    @Test
+    void testIndexOf() {
+        testWorkoutSet.addWorkout(2021, 2,28, "chest");
+        Workout workout = testWorkoutSet.getWorkout(1);
+        assertEquals(1, testWorkoutSet.indexOf(workout));
+    }
 }

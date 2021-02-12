@@ -29,6 +29,7 @@ public class WorkoutSet {
         }
     }
 
+
     // REQUIRES: index must <= (workouts.size() - 1)
     // MODIFIES: this
     // EFFECTS: removes a workout at index from this.workouts
@@ -45,6 +46,11 @@ public class WorkoutSet {
     // EFFECTS: returns the number of items in the set
     public int size() {
         return workouts.size();
+    }
+
+    // EFFECTS: returns the index of the workout
+    public int indexOf(Workout workout) {
+        return workouts.indexOf(workout);
     }
 
 }
