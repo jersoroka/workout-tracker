@@ -30,6 +30,12 @@ public class Workout {
         exercises.remove(index);
     }
 
+    // TODO: add tests
+    // EFFECTS: returns the index of an exercise in exercises
+    public int indexOf(Exercise exercise) {
+        return exercises.indexOf(exercise);
+    }
+
     // EFFECTS: returns the exercise at the index
     public Exercise getExercise(int index) {
         return exercises.get(index);
@@ -43,6 +49,18 @@ public class Workout {
     // EFFECTS: returns the date of the workout
     public Date getDate() {
         return date;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: returns true if the new date is valid and sets this.date to date.
+    // Otherwise return false and do not change this.date.
+    public boolean setDate(Date date) {
+        if (date.isValidDate()) {
+            this.date = date;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getName() {

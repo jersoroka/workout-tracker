@@ -31,6 +31,12 @@ public class Exercise {
         }
     }
 
+    // TODO: add tests
+    // EFFECTS: returns the index of the set
+    public int indexOf(Set set) {
+        return sets.indexOf(set);
+    }
+
     // EFFECTS: returns the number of sets in this.sets
     public int size() {
         return this.sets.size();

@@ -1,8 +1,6 @@
 package ui;
 
-import model.Exercise;
-import model.Workout;
-import model.WorkoutSet;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,9 +85,9 @@ public class WorkoutLoggerApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
-                keepGoing = false;
                 System.exit(0);
             } else {
+                keepGoing = false;
                 processHomeScreenCommand(command);
             }
         }
@@ -135,7 +133,9 @@ public class WorkoutLoggerApp {
 
             if (command.equals("b")) {
                 keepGoing = false;
+                homeScreen();
             } else {
+                keepGoing = false;
                 processViewWorkoutsCommand(command, workoutIndices);
             }
         }
@@ -185,14 +185,8 @@ public class WorkoutLoggerApp {
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("b")) {
-                keepGoing = false;
-            } else if (Integer.parseInt(command) == (workout.size() * 2)) {
-                keepGoing = false;
-                removeWorkout(workout);
-            } else {
-                processViewWorkoutCommand(command, workout);
-            }
+            keepGoing = false;
+            processViewWorkoutCommand(command, workout);
         }
     }
 
@@ -217,22 +211,84 @@ public class WorkoutLoggerApp {
             int z = i + 2;
             System.out.println("\n" + Integer.toString(z) + " -> remove " + workout.getExercise(i).getName());
         }
-        System.out.println("\n" + Integer.toString(workout.size() * 2) + " -> remove workout");
+        System.out.println("\n" + Integer.toString((workout.size() * 2)) + " -> edit workout name");
+        System.out.println("\n" + Integer.toString((workout.size() * 2) + 1) + " -> edit workout date");
+        System.out.println("\n" + Integer.toString((workout.size() * 2) + 2) + " -> remove workout");
     }
 
     // EFFECTS: processes user command in viewWorkout
     // Code attributed to TellerApp example
     private void processViewWorkoutCommand(String command, Workout workout) {
-        System.out.println(Integer.toString(workout.size() * 2));
-        if (command.equals("q")) {
+        int intCommand = Integer.parseInt(command);
+        if (command.equals("b")) {
+            viewWorkouts();
+        } else if (command.equals("q")) {
             System.exit(0);
-        } else if (workout.getExercises().contains(Integer.parseInt(command))) {
-            editExercise(workout.getExercise(Integer.parseInt(command)));
-        } else if (workout.getExercises().contains(Integer.parseInt(command + workout.size()))) {
-            removeExercise(workout.getExercise(Integer.parseInt(command)));
+        } else if ((0 <= intCommand) & (intCommand < workout.size())) {
+            editExercise(workout.getExercise(intCommand), workout);
+        } else if ((workout.size() <= intCommand) | (intCommand < workout.size() * 2)) {
+            removeExercise(workout.getExercise(Integer.parseInt(command)), workout);
+        } else if (intCommand == (workout.size() * 2)) {
+            editWorkoutName(workout);
+        } else if (intCommand == (workout.size() * 2 + 1)) {
+            editWorkoutDate(workout);
+        } else if (intCommand == (workout.size() * 2 + 2)) {
+            removeWorkout(workout);
         } else {
             System.out.println("Please provide a valid input");
             viewWorkouts();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes workout name
+    private void editWorkoutName(Workout workout) {
+        boolean keepGoing = true;
+        String command = null;
+
+        while (keepGoing) {
+            System.out.println("Enter the new name of the workout");
+            command = input.next();
+            command = command.toLowerCase();
+            System.out.println("Workout name changed to " + workout.getName());
+            workout.setName(command);
+            keepGoing = false;
+            viewWorkout(workout);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes workout from workouts
+    private void removeExercise(Exercise exercise, Workout workout) {
+        int index = workout.indexOf(exercise);
+        String exerciseInfo = exercise.getName();
+        workout.removeExercise(index);
+        System.out.println(exerciseInfo + " successfully removed");
+        viewWorkout(workout);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes workout date
+    private void editWorkoutDate(Workout workout) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("Enter the new year of the workout");
+            int year = Integer.parseInt(input.next());
+            System.out.println("Enter the new month of the workout as a number."
+                    + "\nFor example, January would be 1 and July would be 7.");
+            int month = Integer.parseInt(input.next());
+            System.out.println("Enter the new day of the workout");
+            int day = Integer.parseInt(input.next());
+
+            Date date = new Date(year, month, day);
+            if (workout.setDate(date)) {
+                System.out.println("Date changed to " + date.formatToString());
+                keepGoing = false;
+                viewWorkout(workout);
+            } else {
+                System.out.println("That date is not valid. Please enter a a valid date");
+            }
         }
     }
 
@@ -243,18 +299,162 @@ public class WorkoutLoggerApp {
         String workoutInfo = workout.getName() + " on " + workout.getDate().formatToString();
         workoutSet.removeWorkout(index);
         System.out.println(workoutInfo + " successfully removed");
-        homeScreen();
+        viewWorkouts();
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user input
+    // Code attributed to TellerApp example
+    private void editExercise(Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+        String command = null;
 
-    private void viewExercise(Exercise exercise) {
-        System.out.println("\nSelect one of the following sets:");
-        for (int i = 0; i < workoutSet.size(); i++) {
-            String date = workoutSet.getWorkout(i).getDate().formatToString();
-            String name = workoutSet.getWorkout(i).getName();
-            System.out.println("\n" + Integer.toString(i) + " -> " + name + ": " + date);
+        while (keepGoing) {
+            System.out.println(exercise.getExerciseInfo());
+            editExercisePrompts(exercise);
+            displayExitPrompts();
+            command = input.next();
+            command = command.toLowerCase();
+
+            keepGoing = false;
+            processEditExerciseCommand(command, exercise, workout);
         }
     }
+
+    //EFFECTS: displays prompts to select in editExercise to the user
+    private void editExercisePrompts(Exercise exercise) {
+        System.out.println("\nSelect one of the following options: ");
+        for (int i = 0; i < exercise.size(); i++) {
+            System.out.println("\n" + Integer.toString(i) + " -> edit Set " + Integer.toString(i + 1));
+        }
+        for (int i = 0; i < exercise.size(); i++) {
+            System.out.println("\n" + Integer.toString(i + exercise.size())
+                    + " -> remove Set " + Integer.toString(i + 1));
+        }
+    }
+
+    // EFFECTS: processes user command in viewWorkout
+    // Code attributed to TellerApp example
+    private void processEditExerciseCommand(String command, Exercise exercise, Workout workout) {
+        int intCommand = Integer.parseInt(command);
+        if (command.equals("b")) {
+            viewWorkout(workout);
+        } else if (command.equals("q")) {
+            System.exit(0);
+        } else if ((0 <= intCommand) & (intCommand < exercise.size())) {
+            editSet(exercise.getSet(intCommand), exercise, workout);
+        } else if ((exercise.size() <= intCommand) & (intCommand < exercise.size() * 2)) {
+            removeSet(exercise.getSet(intCommand), exercise, workout);
+        } else {
+            System.out.println("Please provide a valid input");
+            editExercise(exercise, workout);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes workout name
+    private void editSet(Set set, Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+        String command = null;
+
+        while (keepGoing) {
+            System.out.println(set.getSetInfo());
+            editSetPrompts();
+            displayExitPrompts();
+            command = input.next();
+            command = command.toLowerCase();
+
+            keepGoing = false;
+            processEditSetCommand(set, command, exercise, workout);
+
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes workout from workouts
+    private void removeSet(Set set, Exercise exercise, Workout workout) {
+        int index = exercise.indexOf(set);
+        exercise.removeSet(index);
+        System.out.println("Set successfully removed");
+        editExercise(exercise, workout);
+    }
+
+    //EFFECTS: displays prompts to select in editSet to the user
+    private void editSetPrompts() {
+        System.out.println("\nSelect one of the following options: ");
+        System.out.println("\n 0 -> edit reps");
+        System.out.println("\n 1 -> edit weight");
+        System.out.println("\n 2 -> edit comment");
+    }
+
+    // EFFECTS: processes user command in editSet
+    // Code attributed to TellerApp example
+    private void processEditSetCommand(Set set, String command, Exercise exercise, Workout workout) {
+        int intCommand = Integer.parseInt(command);
+        if (command.equals("b")) {
+            editExercise(exercise, workout);
+        } else if (command.equals("q")) {
+            System.exit(0);
+        } else if (intCommand == 0) {
+            editSetReps(set, exercise, workout);
+        } else if (intCommand == 1) {
+            editSetWeight(set, exercise, workout);
+        } else if (intCommand == 2) {
+            editSetComment(set, exercise, workout);
+        } else {
+            System.out.println("Please provide a valid input");
+            editExercise(exercise, workout);
+        }
+    }
+
+    // REQUIRES: input must be a non-negative integer
+    // MODIFIES: this
+    // EFFECTS: changes set reps
+    private void editSetReps(Set set, Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("Enter the new reps of the set");
+            int reps = Integer.parseInt(input.next());
+            set.setReps(reps);
+            System.out.println("Reps changed to " + set.getReps());
+            keepGoing = false;
+            editSet(set, exercise, workout);
+        }
+    }
+
+    // REQUIRES: input must be a non-negative integer
+    // MODIFIES: this
+    // EFFECTS: changes set weight
+    private void editSetWeight(Set set, Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("Enter the new weight of the set");
+            int weight = Integer.parseInt(input.next());
+            set.setWeight(weight);
+            System.out.println("Weight changed to " + set.getWeight());
+            keepGoing = false;
+            editSet(set, exercise, workout);
+        }
+    }
+
+    // REQUIRES: input must be a non-negative integer
+    // MODIFIES: this
+    // EFFECTS: changes set weight
+    private void editSetComment(Set set, Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("Enter the new comment in the set");
+            String comment = input.next();
+            set.setComment(comment);
+            System.out.println("Comment changed to " + set.getComment());
+            keepGoing = false;
+            editSet(set, exercise, workout);
+        }
+    }
+
 
     private void addWorkoutNavigator() {
     }
@@ -265,40 +465,6 @@ public class WorkoutLoggerApp {
     // MODIFIES: this
     // EFFECTS: adds a workout the workouts
     private void addWorkout() {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: edits the date, name, or exercises in workout
-    private void editWorkout() {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: changes the date of the workout
-    private void changeDate() {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: changes the name of the workout
-    private void changeWorkoutName() {
-    }
-
-    // EFFECTS: displays the exercises in the workout
-    private void displayExercises() {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: removes exercise
-    private void removeExercise(Exercise exercise) {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: adds exercise
-    private void addExercise() {
-    }
-
-    // MODIFIES: this
-    // EFFECTS: edits exercise
-    private void editExercise(Exercise exercise) {
     }
 
 

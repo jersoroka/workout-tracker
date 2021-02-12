@@ -23,6 +23,17 @@ public class Set {
         }
     }
 
+    public int getReps() {
+        return reps;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getComment() {
+        return comment;
+    }
 
     // REQUIRES: reps >= 0
     public void setReps(int reps) {
