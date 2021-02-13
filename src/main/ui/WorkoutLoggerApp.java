@@ -300,6 +300,7 @@ public class WorkoutLoggerApp {
             editWorkoutName(workout);
         } else if (command == ((workout.size() * 2) + 2)) {
             editWorkoutDate(workout);
+            viewWorkout(workout);
         } else if (command == ((workout.size() * 2) + 3)) {
             removeWorkout(workout);
         }
@@ -340,25 +341,23 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("\nEnter the new year of the workout");
+            System.out.println("\nEnter the year the workout is set");
             String year = input.next();
-            System.out.println("\nEnter the new month of the workout as a number. For example, May is 5 and July is 7");
+            System.out.println("\nEnter the month of the workout as a number. For example, May is 5 and July is 7");
             String month = input.next();
-            System.out.println("Enter the new day of the workout");
+            System.out.println("Enter the day of the workout");
             String day = input.next();
 
             if (isNotOnlyIntegersInString(year) | isNotOnlyIntegersInString(month) | isNotOnlyIntegersInString(day)) {
-                System.out.println("Please only enter non-negative integers");
-                keepGoing = false;
-                editWorkoutDate(workout);
-            }
-            Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-            if (workout.setDate(date)) {
-                System.out.println("\nDate changed to " + date.formatToString());
-                keepGoing = false;
-                viewWorkout(workout);
+                System.out.println("Please only enter positive integers");
             } else {
-                System.out.println("\nThat date is not valid. Please enter a a valid date");
+                Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+                if (workout.setDate(date)) {
+                    System.out.println("\nDate changed to " + date.formatToString());
+                    keepGoing = false;
+                } else {
+                    System.out.println("\nThat date is not valid. Please enter a a valid date");
+                }
             }
         }
     }
@@ -592,7 +591,11 @@ public class WorkoutLoggerApp {
 
 
     private void addWorkout() {
-        input.nextLine();
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            input.nextLine();
+        }
     }
 
 
