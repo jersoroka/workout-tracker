@@ -203,7 +203,7 @@ public class WorkoutLoggerApp {
 
     // EFFECTS: produces information on the workout
     private void viewWorkoutSummary(Workout workout) {
-        System.out.println("\n Below is a summary of the selected workout: ");
+        System.out.println("\nBelow is a summary of the selected workout: ");
         System.out.println("Date of Workout: " + workout.getDate().formatToString());
         System.out.println("Workout Name: " + workout.getName());
         System.out.println("Exercises performed: ");
@@ -267,23 +267,28 @@ public class WorkoutLoggerApp {
             workout.addExercise(name);
             Exercise exercise = workout.getExercise(workout.size() - 1);
             System.out.println(name + " has been added to the workout");
-
-            System.out.println("Would you like to add sets to the exercise? Enter y for yes or n for no");
-            String command = input.next();
+            addSetToExercise(exercise, workout);
             keepGoing = false;
-            processAddExerciseCommands(command, exercise, workout);
+
         }
     }
 
-    // EFFECTS: processes user commands in addExercise
-    private void processAddExerciseCommands(String command, Exercise exercise, Workout workout) {
-        if (command.equals("y")) {
-            addSet(exercise, workout);
-        } else if (command.equals("n")) {
-            viewWorkout(workout);
-        } else {
-            System.out.println("Please provide a valid input");
-            processAddExerciseCommands(command, exercise, workout);
+    // EFFECTS: asks the user if they would like to add sets to an exercise and directs to the appropriate menu
+    private void addSetToExercise(Exercise exercise, Workout workout) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("\nWould you like to add a set to this exercise? Enter y for yes and n for no");
+            String command = input.next();
+            if (isInvalidYesNoCommand(command)) {
+                invalidInput();
+            } else {
+                if (processYesNoCommand(command)) {
+                    addSet(exercise, workout);
+                } else {
+                    keepGoing = false;
+                }
+            }
         }
     }
 
@@ -296,10 +301,12 @@ public class WorkoutLoggerApp {
             removeExercise(workout.getExercise(command - workout.size()), workout);
         } else if (command == (workout.size() * 2)) {
             addExercise(workout);
+            viewWorkout(workout);
         } else if (command == (workout.size() * 2 + 1)) {
-            editWorkoutName(workout);
+            setWorkoutName(workout);
+            viewWorkout(workout);
         } else if (command == ((workout.size() * 2) + 2)) {
-            editWorkoutDate(workout);
+            setWorkoutDate(workout);
             viewWorkout(workout);
         } else if (command == ((workout.size() * 2) + 3)) {
             removeWorkout(workout);
@@ -308,8 +315,8 @@ public class WorkoutLoggerApp {
 
 
     // MODIFIES: this
-    // EFFECTS: changes workout name
-    private void editWorkoutName(Workout workout) {
+    // EFFECTS: sets workout name
+    private void setWorkoutName(Workout workout) {
         boolean keepGoing = true;
         String command;
 
@@ -318,10 +325,10 @@ public class WorkoutLoggerApp {
             System.out.println("\nEnter the new name of the workout");
             command = input.nextLine();
             command = command.toLowerCase();
-            System.out.println("\nWorkout name changed to " + workout.getName());
+            workout.setName(command);
+            System.out.println("\nWorkout name set to " + workout.getName());
             workout.setName(command);
             keepGoing = false;
-            viewWorkout(workout);
         }
     }
 
@@ -337,13 +344,13 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: changes workout date
-    private void editWorkoutDate(Workout workout) {
+    private void setWorkoutDate(Workout workout) {
         boolean keepGoing = true;
 
         while (keepGoing) {
             System.out.println("\nEnter the year the workout is set");
             String year = input.next();
-            System.out.println("\nEnter the month of the workout as a number. For example, May is 5 and July is 7");
+            System.out.println("Enter the month of the workout as a number. For example, May is 5 and July is 7");
             String month = input.next();
             System.out.println("Enter the day of the workout");
             String day = input.next();
@@ -353,7 +360,7 @@ public class WorkoutLoggerApp {
             } else {
                 Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
                 if (workout.setDate(date)) {
-                    System.out.println("\nDate changed to " + date.formatToString());
+                    System.out.println("\nDate set to " + date.formatToString());
                     keepGoing = false;
                 } else {
                     System.out.println("\nThat date is not valid. Please enter a a valid date");
@@ -435,6 +442,7 @@ public class WorkoutLoggerApp {
             removeSet(exercise.getSet(intCommand - exercise.size()), exercise, workout);
         } else if (intCommand == (exercise.size() * 2)) {
             addSet(exercise, workout);
+            viewWorkout(workout);
         } else {
             System.out.println("Please provide a valid input");
             editExercise(exercise, workout);
@@ -454,7 +462,6 @@ public class WorkoutLoggerApp {
             String reps = input.next();
             if (isNotOnlyIntegersInString(weight) | isNotOnlyIntegersInString(reps)) {
                 System.out.println("Please enter only non-negative integers");
-                addSet(exercise, workout);
             }
 
             input.nextLine();
@@ -464,7 +471,6 @@ public class WorkoutLoggerApp {
             exercise.addSet(Integer.parseInt(reps), Integer.parseInt(weight), comment);
             System.out.println("Added new set to " + workout.getName());
             keepGoing = false;
-            viewWorkout(workout);
         }
     }
 
@@ -592,13 +598,31 @@ public class WorkoutLoggerApp {
 
     private void addWorkout() {
         boolean keepGoing = true;
+        Date date = new Date(2021, 1, 1);
+        Workout workout = new Workout(date, "default");
 
         while (keepGoing) {
-            input.nextLine();
+            setWorkoutName(workout);
+            setWorkoutDate(workout);
+            workoutSet.addWorkout(workout);
+            keepGoing = false;
+            System.out.println("\nWorkout name set to " + workout.getName());
+            viewWorkout(workout);
         }
     }
 
+    // EFFECTS: returns true if command equals "y", false otherwise.
+    private boolean processYesNoCommand(String command) {
+        return command.equals("y");
+    }
 
+    private void invalidInput() {
+        System.out.println("Please provide valid input");
+    }
+
+    private boolean isInvalidYesNoCommand(String command) {
+        return (!command.equals("y") & !command.equals("n"));
+    }
 
 
 }

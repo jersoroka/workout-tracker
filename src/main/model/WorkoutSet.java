@@ -29,6 +29,13 @@ public class WorkoutSet {
         }
     }
 
+    // REQUIRES: workout must have a valid date
+    // MODIFIES: this
+    // EFFECTS: adds workout to WorkoutSet
+    public void addWorkout(Workout workout) {
+        this.workouts.add(workout);
+    }
+
 
     // REQUIRES: index must <= (workouts.size() - 1)
     // MODIFIES: this
