@@ -112,12 +112,13 @@ public class WorkoutLoggerApp {
     // EFFECTS: processes user input
     private void viewWorkouts() {
         String command;
+        boolean keepGoing = true;
 
         List<Integer> workoutIndices = new ArrayList<>();
         for (int i = 0; i < workoutSet.size(); i++) {
             workoutIndices.add(i);
         }
-        while (true) {
+        while (keepGoing) {
             displayWorkoutsPrompts();
             displayExitAndBackPrompts();
             command = input.next();
@@ -125,7 +126,8 @@ public class WorkoutLoggerApp {
 
             processExitPrompt(command);
             if (processBackPrompt(command)) {
-                break;
+                keepGoing = false;
+                homeScreen();
             } else {
                 processViewWorkoutsCommand(command, workoutIndices);
             }
@@ -134,17 +136,22 @@ public class WorkoutLoggerApp {
 
     // EFFECTS: displays menu of workouts to user
     private void displayWorkoutsPrompts() {
-        System.out.println("\nSelect one of the following workouts:");
-        for (int i = 0; i < workoutSet.size(); i++) {
-            String date = workoutSet.getWorkout(i).getDate().formatToString();
-            String name = workoutSet.getWorkout(i).getName();
-            System.out.println(i + " -> " + name + ": " + date);
+        if (workoutSet.size() == 0) {
+            System.out.println("No workouts completed");
+        } else {
+            System.out.println("\nSelect one of the following workouts:");
+            for (int i = 0; i < workoutSet.size(); i++) {
+                String date = workoutSet.getWorkout(i).getDate().formatToString();
+                String name = workoutSet.getWorkout(i).getName();
+                System.out.println(i + " -> " + name + ": " + date);
+            }
         }
     }
 
     // EFFECTS: processes user command in viewWorkouts
     private void processViewWorkoutsCommand(String command, List<Integer> workoutIndices) {
-        if (isOnlyIntegers(command)) {
+        if (isOnlyIntegers(command) & (0 <= Integer.parseInt(command))
+                & Integer.parseInt(command) < workoutSet.size()) {
             int intCommand = Integer.parseInt(command);
             if (workoutIndices.contains(intCommand)) {
                 viewWorkout(workoutSet.getWorkout(intCommand));
@@ -158,8 +165,9 @@ public class WorkoutLoggerApp {
     // EFFECTS: processes user input
     private void viewWorkout(Workout workout) {
         String command;
+        boolean keepGoing = true;
 
-        while (true) {
+        while (keepGoing) {
             viewWorkoutSummary(workout);
             viewWorkoutPrompts(workout);
             displayExitAndBackPrompts();
@@ -168,10 +176,12 @@ public class WorkoutLoggerApp {
 
             processExitPrompt(command);
             if (processBackPrompt(command)) {
-                break;
+                keepGoing = false;
+                homeScreen();
             } else if (command.equals(Integer.toString((workout.size() * 2) + 3))) {
                 removeWorkout(workout);
-                break;
+                keepGoing = false;
+                viewWorkouts();
             } else {
                 processViewWorkoutCommand(command, workout);
             }
@@ -183,23 +193,29 @@ public class WorkoutLoggerApp {
         System.out.println("\nBelow is a summary of the selected workout: ");
         System.out.println("Date of Workout: " + workout.getDate().formatToString());
         System.out.println("Workout Name: " + workout.getName());
-        System.out.println("Exercises performed: ");
-        for (Exercise exercise : workout.getExercises()) {
-            System.out.println("\n" + exercise.getExerciseInfo());
+        if (workout.size() == 0) {
+            System.out.println("No exercises completed");
+        } else {
+            System.out.println("\nExercises performed: ");
+            for (Exercise exercise : workout.getExercises()) {
+                System.out.println("\n" + exercise.getExerciseInfo());
+            }
         }
     }
 
     //EFFECTS: displays prompts to select in viewWorkout to the user
     private void viewWorkoutPrompts(Workout workout) {
         System.out.println("\nSelect one of the following options: ");
-        System.out.println("\nEdit Exercises:");
-        for (int i = 0; i < workout.getExercises().size(); i++) {
-            System.out.println(i + " -> edit " + workout.getExercise(i).getName());
-        }
-        System.out.println("\nRemove Exercises:");
-        for (int i = 0; i < workout.getExercises().size(); i++) {
-            int z = i + workout.size();
-            System.out.println(z + " -> remove " + workout.getExercise(i).getName());
+        if (workout.size() > 0) {
+            System.out.println("\nEdit Exercises:");
+            for (int i = 0; i < workout.getExercises().size(); i++) {
+                System.out.println(i + " -> edit " + workout.getExercise(i).getName());
+            }
+            System.out.println("\nRemove Exercises:");
+            for (int i = 0; i < workout.getExercises().size(); i++) {
+                int z = i + workout.size();
+                System.out.println(z + " -> remove " + workout.getExercise(i).getName());
+            }
         }
         System.out.println("\nEdit Workout:");
         System.out.println(workout.size() * 2 + " -> add exercise");
@@ -375,7 +391,7 @@ public class WorkoutLoggerApp {
         if (isOnlyIntegers(command)) {
             int intCommand = Integer.parseInt(command);
             if ((0 <= intCommand) & (intCommand < exercise.size())) {
-                editSet(exercise.getSet(intCommand), exercise, workout);
+                editSet(exercise.getSet(intCommand), exercise);
             } else if ((exercise.size() <= intCommand) & (intCommand < exercise.size() * 2)) {
                 removeSet(exercise.getSet(intCommand - exercise.size()), exercise, workout);
             } else if (intCommand == (exercise.size() * 2)) {
@@ -396,9 +412,10 @@ public class WorkoutLoggerApp {
             System.out.println("\nWhat weight was used? Enter 0 if not applicable.");
             String weight = input.next();
 
-            System.out.println("\nHow many reps were performed? Enter 0 if not applicable.");
+            System.out.println("How many reps were performed? Enter 0 if not applicable.");
             String reps = input.next();
-            if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)) {
+            if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)
+                    | (Integer.parseInt(reps) < 0) | (Integer.parseInt(weight) < 0)) {
                 System.out.println("Please enter only non-negative integers");
             } else {
                 System.out.println("Enter a comment. Leave this field blank if there are no comments");
@@ -414,7 +431,7 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: workout
     // EFFECTS: changes workout name
-    private void editSet(Set set, Exercise exercise, Workout workout) {
+    private void editSet(Set set, Exercise exercise) {
         String command;
 
         while (true) {
@@ -428,7 +445,7 @@ public class WorkoutLoggerApp {
             if (processBackPrompt(command)) {
                 break;
             } else {
-                processEditSetCommand(set, command, exercise, workout);
+                processEditSetCommand(set, command);
             }
         }
     }
@@ -440,7 +457,6 @@ public class WorkoutLoggerApp {
         int index = exercise.indexOf(set);
         exercise.removeSet(index);
         System.out.println("\nSet successfully removed");
-        editExercise(exercise, workout);
     }
 
     //EFFECTS: displays prompts to select in editSet to the user
@@ -452,7 +468,7 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user command in editSet
-    private void processEditSetCommand(Set set, String command, Exercise exercise, Workout workout) {
+    private void processEditSetCommand(Set set, String command) {
         if (isOnlyIntegers(command)) {
             if (command.equals(Integer.toString(0))) {
                 setWeight(set);
@@ -545,7 +561,7 @@ public class WorkoutLoggerApp {
 
     // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
     private boolean isNotOnlyWhitespace(String command) {
-        return Pattern.matches("\\S+", command);
+        return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
     }
 
     // EFFECTS: displays prompts to either go back to the previous screen or quit to user
@@ -579,7 +595,7 @@ public class WorkoutLoggerApp {
 
     // EFFECTS: prints message to user that the input is invalid because it does not contain at least one character
     private void invalidMinimumCharacterInput() {
-        System.out.println("Please provide an input with at least one character");
+        System.out.println("Please provide an input with at least one letter or number");
     }
 
 

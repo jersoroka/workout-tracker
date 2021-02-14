@@ -146,6 +146,15 @@ public class DateTest {
 
     }
 
+    @Test
+    void testIsValidDateInvalidYear() {
+        Date testYear0 = new Date(0, 2, 1);
+        assertFalse(testYear0.isValidDate());
+
+        Date testYearNegative = new Date(-1, 2, 1);
+        assertFalse(testYearNegative.isValidDate());
+    }
+
 
     @Test
     void testGetFormattedDate() {
