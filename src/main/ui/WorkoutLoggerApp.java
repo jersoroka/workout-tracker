@@ -235,7 +235,6 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            input.nextLine();
             System.out.println("\nEnter the name of the new exercise");
             String name = input.useDelimiter("\\n").next();
             if (isNotOnlyWhitespace(name)) {
@@ -402,9 +401,8 @@ public class WorkoutLoggerApp {
             if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)) {
                 System.out.println("Please enter only non-negative integers");
             } else {
-                input.nextLine();
                 System.out.println("Enter a comment. Leave this field blank if there are no comments");
-                String comment = input.nextLine();
+                String comment = input.useDelimiter("\\n").next();
 
                 exercise.addSet(Integer.parseInt(reps), Integer.parseInt(weight), comment);
                 System.out.println("Added new set to " + workout.getName());
@@ -510,9 +508,8 @@ public class WorkoutLoggerApp {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            input.nextLine();
             System.out.println("\nEnter the new comment in the set");
-            String comment = input.nextLine();
+            String comment = input.useDelimiter("\\n").next();
             set.setComment(comment);
             System.out.println("\nComment changed to " + set.getComment());
             keepGoing = false;
