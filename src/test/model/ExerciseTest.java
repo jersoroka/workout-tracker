@@ -14,6 +14,13 @@ public class ExerciseTest {
     }
 
     @Test
+    void testExercise() {
+        Exercise testExercise = new Exercise("pull ups");
+        assertEquals("pull ups", testExercise.getName());
+        assertEquals(0, testExercise.size());
+    }
+
+    @Test
     void testGetExerciseInfoNoSets() {
         assertEquals(testExercise.getName() + ": no sets completed", testExercise.getExerciseInfo());
     }

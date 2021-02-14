@@ -14,6 +14,14 @@ public class SetTest {
     }
 
     @Test
+    void testSet() {
+        Set testSet = new Set(10, 225, "heavy");
+        assertEquals(10, testSet.getReps());
+        assertEquals(225, testSet.getWeight());
+        assertEquals("heavy", testSet.getComment());
+    }
+
+    @Test
     void testGetSetInfoNoRepsNoWeight() {
         testSet.setReps(0);
         assertEquals("weight: 135, reps: 0, comment: touch and go", testSet.getSetInfo());
