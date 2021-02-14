@@ -49,12 +49,6 @@ class WorkoutTest {
         assertEquals(1, testWorkout.indexOf(testExercise2));
     }
 
-    @Test
-    void testEmptyWorkoutSize() {
-        Date testDate = new Date(2021, 7, 4);
-        Workout testEmptyWorkout = new Workout(testDate, "test workout");
-        assertEquals(0, testEmptyWorkout.size());
-    }
 
     @Test
     void testSize() {

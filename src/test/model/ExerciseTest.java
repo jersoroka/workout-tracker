@@ -14,13 +14,6 @@ public class ExerciseTest {
     }
 
     @Test
-    void testExercise() {
-        Exercise testExercise = new Exercise("pull ups");
-        assertEquals("pull ups", testExercise.getName());
-        assertEquals(0, testExercise.size());
-    }
-
-    @Test
     void testGetExerciseInfoNoSets() {
         assertEquals(testExercise.getName() + ": no sets completed", testExercise.getExerciseInfo());
     }
@@ -38,8 +31,8 @@ public class ExerciseTest {
         testExercise.addSet(12, 185, "");
         testExercise.addSet(8, 225, "moves slow");
         assertEquals(testExercise.getName() + ": \nSet 1: " + testExercise.getSet(0).getSetInfo() +
-                "\nSet 2: " + testExercise.getSet(1).getSetInfo() +
-                "\nSet 3: " + testExercise.getSet(2).getSetInfo(),
+                        "\nSet 2: " + testExercise.getSet(1).getSetInfo() +
+                        "\nSet 3: " + testExercise.getSet(2).getSetInfo(),
                 testExercise.getExerciseInfo());
 
     }
@@ -79,11 +72,6 @@ public class ExerciseTest {
         Set testSet = testExercise.getSet(0);
         testExercise.addSet(10, 225, "");
         assertEquals(0, testExercise.indexOf(testSet));
-    }
-
-    @Test
-    void testEmptySetsSize() {
-        assertEquals(0, testExercise.size());
     }
 
     @Test

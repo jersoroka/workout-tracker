@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DateTest {
@@ -41,45 +44,63 @@ public class DateTest {
 
     }
 
-    @Test
-    void testIsValidDate31DayMonth() {
-        testDate.setMonth(10);
-
-        Date testDay0 = new Date(2020, 10, 0);
-        assertFalse(testDay0.isValidDate());
-
-        testDate.setDay(1);
-        assertTrue(testDate.isValidDate());
-
-        testDate.setDay(21);
-        assertTrue(testDate.isValidDate());
-
-        testDate.setDay(31);
-        assertTrue(testDate.isValidDate());
-
-        Date testDay32 = new Date(2020, 10, 32);
-        assertFalse(testDay32.isValidDate());
-
-    }
 
     @Test
     void testIsValidDate30DayMonth() {
-        Date testDay0 = new Date(2020, 11, 0);
-        assertFalse(testDay0.isValidDate());
+        List<Integer> thirtyDayMonths = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            if ((i == 4) | (i == 6) | (i == 9) | (i == 11))
+                thirtyDayMonths.add(i);
+        }
 
-        testDate.setDay(1);
-        assertTrue(testDate.isValidDate());
+        for (int month : thirtyDayMonths) {
+            testDate.setMonth(month);
 
-        testDate.setDay(11);
-        assertTrue(testDate.isValidDate());
+            Date testDay0 = new Date(2020, month, 0);
+            assertFalse(testDay0.isValidDate());
 
-        testDate.setDay(30);
-        assertTrue(testDate.isValidDate());
+            testDate.setDay(1);
+            assertTrue(testDate.isValidDate());
 
-        Date testDay31 = new Date(2020, 11, 31);
-        assertFalse(testDay31.isValidDate());
+            testDate.setDay(11);
+            assertTrue(testDate.isValidDate());
 
+            testDate.setDay(30);
+            assertTrue(testDate.isValidDate());
+
+            Date testDay31 = new Date(2020, month, 31);
+            assertFalse(testDay31.isValidDate());
+        }
     }
+
+    @Test
+    void testIsValidDate31DayMonth() {
+        List<Integer> thirtyOneDayMonths = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            if ((i == 1) | (i == 3) | (i == 5) | (i == 7) | (i == 8) | (i == 10) | (i == 12))
+                thirtyOneDayMonths.add(i);
+        }
+
+        for (int month : thirtyOneDayMonths) {
+            testDate.setMonth(month);
+
+            Date testDay0 = new Date(2020, month, 0);
+            assertFalse(testDay0.isValidDate());
+
+            testDate.setDay(1);
+            assertTrue(testDate.isValidDate());
+
+            testDate.setDay(11);
+            assertTrue(testDate.isValidDate());
+
+            testDate.setDay(31);
+            assertTrue(testDate.isValidDate());
+
+            Date testDay31 = new Date(2020, month, 32);
+            assertFalse(testDay31.isValidDate());
+        }
+    }
+
 
     @Test
     void testIsValidDateFebruaryLeapYear() {
@@ -125,23 +146,6 @@ public class DateTest {
 
     }
 
-    @Test
-    void testIsValidDateNonsenseMonths() {
-        Date testZeroMonth = new Date(2020, 0, 4);
-        assertFalse(testZeroMonth.isValidDate());
-
-        Date testNegativeMonth = new Date(2020, -1, 4);
-        assertFalse(testNegativeMonth.isValidDate());
-
-        Date testThirteenthMonth = new Date(2020, 13, 4);
-        assertFalse(testThirteenthMonth.isValidDate());
-    }
-
-    @Test
-    void testNegativeDay() {
-        Date testNegativeDay = new Date(2020,-7,4);
-        assertFalse(testNegativeDay.isValidDate());
-    }
 
     @Test
     void testGetFormattedDate() {

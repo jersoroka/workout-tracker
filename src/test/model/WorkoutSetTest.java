@@ -68,11 +68,6 @@ public class WorkoutSetTest {
         assertEquals(1, testWorkoutSet.indexOf(workout));
     }
 
-    @Test
-    void testEmptyWorkoutsSize() {
-        WorkoutSet testEmptyWorkouts = new WorkoutSet();
-        assertEquals(0, testEmptyWorkouts.size());
-    }
 
     @Test
     void testSize() {
