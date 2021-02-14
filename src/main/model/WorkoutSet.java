@@ -9,8 +9,6 @@ public class WorkoutSet {
     private List<Workout> workouts;
 
     // EFFECTS: instantiates an empty workout set
-    // TODO: check language for the effects
-    // TODO: check if capital letters are needed for specifications
     public WorkoutSet() {
         workouts = new ArrayList<>();
     }
