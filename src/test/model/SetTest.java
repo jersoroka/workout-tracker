@@ -9,7 +9,7 @@ public class SetTest {
     private Set testSet;
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         testSet = new Set(10, 135, "touch and go");
     }
 
@@ -37,7 +37,7 @@ public class SetTest {
     }
 
     @Test
-    void testGetSetInfoNoComment(){
+    void testGetSetInfoNoComment() {
         testSet.setComment("");
         assertEquals("weight: 135, reps: 10, comment: none", testSet.getSetInfo());
     }
@@ -59,7 +59,6 @@ public class SetTest {
         testSet.setComment("test comment");
         assertEquals("test comment", testSet.getComment());
     }
-
 
 
 }

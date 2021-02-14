@@ -23,7 +23,7 @@ public class Exercise {
         this.sets.add(set);
     }
 
-    // REQUIRES: 0 <= index <= (sets.size - 1)
+    // REQUIRES: 0 <= index < sets.size()
     // MODIFIES: this
     // EFFECTS: removes the set located at index in this.sets
     public void removeSet(int index) {
@@ -58,7 +58,7 @@ public class Exercise {
         return this.sets.size();
     }
 
-    // REQUIRES: 0 <= index <= (sets.size() - 1)
+    // REQUIRES: 0 <= index < sets.size()
     // EFFECTS: returns the set at the index
     public Set getSet(int index) {
         return this.sets.get(index);
