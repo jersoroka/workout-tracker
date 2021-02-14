@@ -1,5 +1,6 @@
 package model;
 
+// Represents a set with information about repetitions, weight, and comments from the user
 public class Set {
     private int reps;
     private int weight;
@@ -17,9 +18,9 @@ public class Set {
     // If the comment is empty, the comment is set to none
     public String getSetInfo() {
         if (comment.equals("")) {
-            return " weight: " + weight + ", reps: " + reps + ", comment: none";
+            return "weight: " + weight + ", reps: " + reps + ", comment: none";
         } else {
-            return " weight: " + weight + ", reps: " + reps + ", comment: " + this.comment;
+            return "weight: " + weight + ", reps: " + reps + ", comment: " + this.comment;
         }
     }
 

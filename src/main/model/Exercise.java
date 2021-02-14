@@ -15,6 +15,21 @@ public class Exercise {
         sets = new ArrayList<>();
     }
 
+    // REQUIRES: reps >= 0 and weight >= 0
+    // MODIFIES: this
+    // EFFECTS: adds a set to this.sets
+    public void addSet(int reps, int weight, String comment) {
+        Set set = new Set(reps, weight, comment);
+        this.sets.add(set);
+    }
+
+    // REQUIRES: 0 <= index <= (sets.size - 1)
+    // MODIFIES: this
+    // EFFECTS: removes the set located at index in this.sets
+    public void removeSet(int index) {
+        sets.remove(index);
+    }
+
     // EFFECTS: returns the name of the exercise and list of sets completed as a string
     public String getExerciseInfo() {
         if (sets.size() == 0) {
@@ -25,38 +40,28 @@ public class Exercise {
             for (Set s : sets) {
                 setNumber += 1;
                 String stringSetNumber = Integer.toString(setNumber);
-                setInfo.append("\nSet ").append(stringSetNumber).append(s.getSetInfo());
+                setInfo.append("\nSet ").append(stringSetNumber).append(": ").append(s.getSetInfo());
             }
             return this.name + ": " + setInfo;
         }
     }
 
-    // TODO: add tests
+    // REQUIRES: set must be in this.exercise.sets
     // EFFECTS: returns the index of the set
     public int indexOf(Set set) {
         return sets.indexOf(set);
     }
+
 
     // EFFECTS: returns the number of sets in this.sets
     public int size() {
         return this.sets.size();
     }
 
+    // REQUIRES: 0 <= index <= (sets.size() - 1)
     // EFFECTS: returns the set at the index
     public Set getSet(int index) {
         return this.sets.get(index);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: adds an empty set to this.sets
-    public void addSet(int reps, int weight, String comment) {
-        this.sets.add(new Set(reps, weight, comment));
-    }
-
-    // MODIFIES: this
-    // EFFECTS: removes the set at the index of this.sets
-    public void removeSet(int index) {
-        sets.remove(index);
     }
 
     public String getName() {
