@@ -69,6 +69,12 @@ public class WorkoutSetTest {
     }
 
     @Test
+    void testEmptyWorkoutsSize() {
+        WorkoutSet testEmptyWorkouts = new WorkoutSet();
+        assertEquals(0, testEmptyWorkouts.size());
+    }
+
+    @Test
     void testSize() {
         assertEquals(1, testWorkoutSet.size());
         testWorkoutSet.addWorkout(2020, 7, 4, "legs");

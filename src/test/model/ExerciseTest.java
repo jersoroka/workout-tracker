@@ -71,7 +71,6 @@ public class ExerciseTest {
         testExercise.addSet(5, 225, "RPE 9");
         Set testSet = testExercise.getSet(0);
         testExercise.addSet(10, 225, "");
-
         assertEquals(0, testExercise.indexOf(testSet));
     }
 

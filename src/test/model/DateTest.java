@@ -126,6 +126,24 @@ public class DateTest {
     }
 
     @Test
+    void testIsValidDateNonsenseMonths() {
+        Date testZeroMonth = new Date(2020, 0, 4);
+        assertFalse(testZeroMonth.isValidDate());
+
+        Date testNegativeMonth = new Date(2020, -1, 4);
+        assertFalse(testNegativeMonth.isValidDate());
+
+        Date testThirteenthMonth = new Date(2020, 13, 4);
+        assertFalse(testThirteenthMonth.isValidDate());
+    }
+
+    @Test
+    void testNegativeDay() {
+        Date testNegativeDay = new Date(2020,-7,4);
+        assertFalse(testNegativeDay.isValidDate());
+    }
+
+    @Test
     void testGetFormattedDate() {
         Date testDateSingleDigitMonthSingleDigitDay = new Date(2020, 7, 4);
         Date testDateDoubleDigitMonthDoubleDigitDay = new Date(2020, 11, 11);

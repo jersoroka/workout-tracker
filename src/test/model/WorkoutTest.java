@@ -50,6 +50,13 @@ class WorkoutTest {
     }
 
     @Test
+    void testEmptyWorkoutSize() {
+        Date testDate = new Date(2021, 7, 4);
+        Workout testEmptyWorkout = new Workout(testDate, "test workout");
+        assertEquals(0, testEmptyWorkout.size());
+    }
+
+    @Test
     void testSize() {
         assertEquals(2, testWorkout.size());
     }
