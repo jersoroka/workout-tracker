@@ -178,7 +178,7 @@ public class WorkoutLoggerApp {
             processExitPrompt(command);
             if (processBackPrompt(command)) {
                 keepGoing = false;
-                homeScreen();
+                viewWorkouts();
             } else if (command.equals(Integer.toString((workout.size() * 2) + 3))) {
                 removeWorkout(workout);
                 keepGoing = false;
@@ -565,7 +565,7 @@ public class WorkoutLoggerApp {
             workoutSet.addWorkout(workout);
             keepGoing = false;
             System.out.println("\nWorkout name set to " + workout.getName());
-            viewWorkout(workout);
+            viewWorkouts();
         }
     }
 
