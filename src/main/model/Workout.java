@@ -1,15 +1,15 @@
 package model;
 
-// Represents a workout having a date (yyyy-mm-dd), workout type, and set of exercises
-
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a workout having a date, name, and a set of exercises
 public class Workout {
     private Date date;
     private String name;
     private List<Exercise> exercises;
 
+    // REQUIRES: name has non-zero length
     // EFFECTS: makes a new workout with year, month, day, name, and an empty list of exercises
     public Workout(Date date, String name) {
         this.date = date;

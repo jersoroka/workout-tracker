@@ -16,50 +16,6 @@ public class DateTest {
     }
 
     @Test
-    void testDate() {
-        testDate = new Date(2021, 2, 8);
-        assertEquals(2021, testDate.getYear());
-        assertEquals(2, testDate.getMonth());
-        assertEquals(8, testDate.getDay());
-    }
-
-    @Test
-    void testSetYearValid() {
-        assertTrue(testDate.setYear(2011));
-        assertEquals(2011, testDate.getYear());
-    }
-
-    @Test
-    void testSetYearInvalid() {
-        assertFalse(testDateLeapYear.setYear(2021));
-        assertEquals(2020, testDateLeapYear.getYear());
-    }
-
-    @Test
-    void testSetMonthValid() {
-        assertTrue(testDate.setMonth(12));
-        assertEquals(12, testDate.getMonth());
-    }
-
-    @Test
-    void testSetMonthInvalid() {
-        assertFalse(testDateLeapYear.setMonth(13));
-        assertEquals(2, testDateLeapYear.getMonth());
-    }
-
-    @Test
-    void testSetDayValid() {
-        assertTrue(testDate.setYear(31));
-        assertEquals(31, testDate.getYear());
-    }
-
-    @Test
-    void testSetDayInvalid() {
-        testDate.setDay(31);
-        assertEquals(9, testDate.getDay());
-    }
-
-    @Test
     void testIsLeapYearDivides4Divides100DoesNotDivide400() {
         testDate.setYear(1800);
         assertFalse(testDate.isLeapYear());
@@ -180,5 +136,40 @@ public class DateTest {
         assertEquals("2020-11-11", testDateDoubleDigitMonthDoubleDigitDay.formatToString());
     }
 
+    @Test
+    void testSetYearValid() {
+        assertTrue(testDate.setYear(2011));
+        assertEquals(2011, testDate.getYear());
+    }
+
+    @Test
+    void testSetYearInvalid() {
+        assertFalse(testDateLeapYear.setYear(2021));
+        assertEquals(2020, testDateLeapYear.getYear());
+    }
+
+    @Test
+    void testSetMonthValid() {
+        assertTrue(testDate.setMonth(12));
+        assertEquals(12, testDate.getMonth());
+    }
+
+    @Test
+    void testSetMonthInvalid() {
+        assertFalse(testDateLeapYear.setMonth(13));
+        assertEquals(2, testDateLeapYear.getMonth());
+    }
+
+    @Test
+    void testSetDayValid() {
+        assertTrue(testDate.setYear(31));
+        assertEquals(31, testDate.getYear());
+    }
+
+    @Test
+    void testSetDayInvalid() {
+        testDate.setDay(31);
+        assertEquals(9, testDate.getDay());
+    }
 
 }

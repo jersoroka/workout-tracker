@@ -1,5 +1,6 @@
 package model;
 
+// Represents a date with year, month, and day
 public class Date {
     private int year;
     private int month;
@@ -11,7 +12,7 @@ public class Date {
         this.day = day;
     }
 
-    // EFFECTS: produces true if the date is in a leap year, false otherwise
+    // EFFECTS: produces true if year is a leap year, false otherwise
     // formula for leap year calculation from: https://www.mathsisfun.com/leap-years.html
     public boolean isLeapYear() {
         if (year % 4 == 0) {
@@ -37,7 +38,7 @@ public class Date {
         return (month == 2) & (0 < day) & (day <= 28);
     }
 
-    // EFFECTS: returns the year, month, and day or the workout as a string in the format "year-month-day"
+    // EFFECTS: returns the year, month, and day as a string in the format yyyy-mm-dd
     public String formatToString() {
         String year = Integer.toString(this.year);
         String month = Integer.toString(this.month);
@@ -61,7 +62,7 @@ public class Date {
     }
 
     // MODIFIES: this
-    // EFFECTS: If year produces a valid date with month and day, sets this.year to year and returns true.
+    // EFFECTS: If year produces a valid date with month and day, set this.year to year and returns true.
     // If the combination is invalid, date is not changed and returns false.
     public boolean setYear(int year) {
         Date newDate = new Date(year, this.month, this.day);
@@ -78,7 +79,7 @@ public class Date {
     }
 
     // MODIFIES: this
-    // EFFECTS: If month produces a valid date with year and day, sets this.month to month and returns true.
+    // EFFECTS: If month produces a valid date with year and day, set this.month to month and returns true.
     // If the combination is invalid, date is not changed and returns false.
     public boolean setMonth(int month) {
         Date newDate = new Date(this.year, month, this.day);
@@ -95,7 +96,7 @@ public class Date {
     }
 
     // MODIFIES: this
-    // EFFECTS: If day produces a valid date with month and year, sets this.day to day and returns true.
+    // EFFECTS: If day produces a valid date with month and year, set this.day to day and returns true.
     // If the combination is invalid, date is not changed and returns false.
     public boolean setDay(int day) {
         Date newDate = new Date(this.year, this.month, day);

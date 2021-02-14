@@ -68,6 +68,7 @@ public class Exercise {
         return name;
     }
 
+    // REQUIRES: name has non-zero length
     public void setName(String name) {
         this.name = name;
     }
