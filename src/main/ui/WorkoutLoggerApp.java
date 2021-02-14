@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+// Workout logger application
 public class WorkoutLoggerApp {
     private WorkoutSet workoutSet;
     private Scanner input;
@@ -384,6 +385,7 @@ public class WorkoutLoggerApp {
                     + " -> remove Set " + (i + 1));
         }
         System.out.println(exercise.size() * 2 + " -> add Set");
+        System.out.println((exercise.size() * 2 + 1) + " -> edit name");
     }
 
     // EFFECTS: processes user command in viewWorkout
@@ -396,7 +398,8 @@ public class WorkoutLoggerApp {
                 removeSet(exercise.getSet(intCommand - exercise.size()), exercise, workout);
             } else if (intCommand == (exercise.size() * 2)) {
                 addSet(exercise, workout);
-                viewWorkout(workout);
+            } else if (intCommand == (exercise.size() * 2 + 1)) {
+                editExerciseName(exercise);
             }
         } else {
             invalidInput();
@@ -428,6 +431,23 @@ public class WorkoutLoggerApp {
         }
     }
 
+    // MODIFIES: exercise
+    // EFFECTS: edits exercise name
+    private void editExerciseName(Exercise exercise) {
+        boolean keepGoing = true;
+
+        while (keepGoing) {
+            System.out.println("\nEnter the new name of the exercise");
+            String name = input.useDelimiter("\\n").next();
+            if (isNotOnlyWhitespace(name)) {
+                exercise.setName(name);
+                System.out.println("Exercise name set to " + name);
+                keepGoing = false;
+            } else {
+                invalidMinimumCharacterInput();
+            }
+        }
+    }
 
     // MODIFIES: workout
     // EFFECTS: changes workout name

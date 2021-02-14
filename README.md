@@ -18,20 +18,22 @@ The application allows the user to describe a workout by:
  
 ## Who is the application for?
 
-The application is for weightlifters that want to systematically track their progress. By consistently logging their workouts, the user will be able to track their progress and have data that they can be use to reflect on their own progress and fitness goals.
+The application is for weightlifters that want to systematically document their workouts. 
+By consistently logging their workouts, the user will be able to track their progress and have data to reflect on their own progress and fitness goals.
 
 ## Motivation
 
-I enjoy exercising, and I've read many times of the advantages of tracking you workout, especially when it comes to identifying weak points, overtraining, and undertraining different parts of the body. I want to make a project that aligns with my interests and is something useful.
+I enjoy exercising and there are many advantages to tracking progress, especially when it comes to identifying weak point and keeping yourself motivated. 
+I want to make a project that aligns with my interests and is something useful.
 
 ## User Stories
 
 - As a user, I want to be able to add a workout to my workout journal
 - As a user, I want to be able to delete a workout from my workout journal
-- As a user, I want to be able to modify a workout from my workout journal
+- As a user, I want to be able to modify the name, date, and exercises in a workout from my workout journal
 - As a user, I want to be able to add an exercise to a workout in my workout journal
 - As a user, I want to be able to delete an exercise from a workout in my workout journal
-- As a user, I want to be able to modify an exercise in a workout in my workout journal
+- As a user, I want to be able to modify the name and sets of exercise in a workout in my workout journal
 - As a user, I want to be able to add a set to an exercise in a workout in my workout journal
 - As a user, I want to be able to delete a set of an exercise in a workout in my workout journal
-- As a user, I want to be able to modify an exercise in a workout in my workout journal
+- As a user, I want to be able to modify the weight, reps, and comment of a set in an exercise in a workout in my workout journal
