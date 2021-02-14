@@ -15,36 +15,35 @@ public class WorkoutSetTest {
     }
 
     @Test
-    void testSize() {
-
-        assertEquals(1, testWorkoutSet.size());
-
-        testWorkoutSet.addWorkout(2020, 7, 4, "legs");
-        assertEquals(2, testWorkoutSet.size());
-    }
-
-    @Test
-    void testAddWorkoutManyValid() {
+    void testAddWorkoutManyParamsManyValid() {
         assertTrue(testWorkoutSet.addWorkout(2021, 2, 3, "pull"));
         assertEquals(2, testWorkoutSet.size());
-        assertEquals("pull",  testWorkoutSet.getWorkout(1).getName());
+        assertEquals("pull", testWorkoutSet.getWorkout(1).getName());
         assertEquals("2021-02-03", testWorkoutSet.getWorkout(1).getDate().formatToString());
 
         assertTrue(testWorkoutSet.addWorkout(2021, 2, 4, "arms"));
         assertEquals(3, testWorkoutSet.size());
-        assertEquals("arms",  testWorkoutSet.getWorkout(2).getName());
+        assertEquals("arms", testWorkoutSet.getWorkout(2).getName());
         assertEquals("2021-02-04", testWorkoutSet.getWorkout(2).getDate().formatToString());
 
         assertTrue(testWorkoutSet.addWorkout(2020, 12, 11, "mobility"));
         assertEquals(4, testWorkoutSet.size());
-        assertEquals("mobility",  testWorkoutSet.getWorkout(3).getName());
+        assertEquals("mobility", testWorkoutSet.getWorkout(3).getName());
         assertEquals("2020-12-11", testWorkoutSet.getWorkout(3).getDate().formatToString());
     }
 
     @Test
-    void testAddInvalidDateWorkout() {
-        assertFalse(testWorkoutSet.addWorkout(2021, 2, 29, "push"));
+    void testAddWorkoutManyParamsInvalid() {
+        assertFalse(testWorkoutSet.addWorkout(2021, 3, 33, "test workout"));
         assertEquals(1, testWorkoutSet.size());
+    }
+
+    @Test
+    void testAddWorkoutObject() {
+        Date testDate = new Date(2021, 2, 1);
+        Workout testWorkout = new Workout(testDate, "chest");
+        testWorkoutSet.addWorkout(testWorkout);
+        assertEquals(2, testWorkoutSet.size());
     }
 
     @Test
@@ -60,13 +59,20 @@ public class WorkoutSetTest {
         assertEquals(2, testWorkoutSet.size());
         assertEquals("2020-12-01", testWorkoutSet.getWorkout(0).getDate().formatToString());
         assertEquals("2021-02-04", testWorkoutSet.getWorkout(1).getDate().formatToString());
-
     }
 
     @Test
     void testIndexOf() {
-        testWorkoutSet.addWorkout(2021, 2,28, "chest");
+        testWorkoutSet.addWorkout(2021, 2, 28, "chest");
         Workout workout = testWorkoutSet.getWorkout(1);
         assertEquals(1, testWorkoutSet.indexOf(workout));
     }
+
+    @Test
+    void testSize() {
+        assertEquals(1, testWorkoutSet.size());
+        testWorkoutSet.addWorkout(2020, 7, 4, "legs");
+        assertEquals(2, testWorkoutSet.size());
+    }
+
 }

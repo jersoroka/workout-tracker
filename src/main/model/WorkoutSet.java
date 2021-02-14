@@ -1,21 +1,20 @@
 package model;
 
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a set of workouts
 public class WorkoutSet {
     private List<Workout> workouts;
 
-    // EFFECTS: instantiates an empty workout set
+    // EFFECTS: makes an empty set of workouts
     public WorkoutSet() {
         workouts = new ArrayList<>();
     }
 
     // MODIFIES: this
-    // EFFECTS: if date is valid, add workout with date constructed from year, month, and day, and name and return true.
-    // If date is invalid, return false and do not add a workout.
+    // EFFECTS: if date is valid, return true add workout with this.name set to name and date constructed from year,
+    // month, and day. If date is invalid, return false and do not add a workout.
     public boolean addWorkout(int year, int month, int day, String name) {
         Date date = new Date(year, month, day);
         if (date.isValidDate()) {
@@ -29,20 +28,20 @@ public class WorkoutSet {
 
     // REQUIRES: workout must have a valid date
     // MODIFIES: this
-    // EFFECTS: adds workout to WorkoutSet
+    // EFFECTS: adds workout to workouts
     public void addWorkout(Workout workout) {
         this.workouts.add(workout);
     }
 
 
-    // REQUIRES: index must <= (workouts.size() - 1)
+    // REQUIRES: 0 <= index < workouts.size()
     // MODIFIES: this
     // EFFECTS: removes a workout at index from this.workouts
     public void removeWorkout(int index) {
         workouts.remove(index);
     }
 
-    // REQUIRES: index must be <= (workouts.size() - 1)
+    // REQUIRES: 0 <= index < workouts.size()
     // EFFECTS: returns the workout at the index
     public Workout getWorkout(int index) {
         return workouts.get(index);
@@ -53,6 +52,7 @@ public class WorkoutSet {
         return workouts.size();
     }
 
+    // REQUIRES: workout must be in workouts
     // EFFECTS: returns the index of the workout
     public int indexOf(Workout workout) {
         return workouts.indexOf(workout);

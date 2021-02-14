@@ -10,7 +10,7 @@ public class Workout {
     private List<Exercise> exercises;
 
     // REQUIRES: name has non-zero length, date is valid
-    // EFFECTS: makes a new workout with date, name, and an empty list of exercises
+    // EFFECTS: makes a new workout with this.date set to date, this.name set to name, and an empty list of exercises
     public Workout(Date date, String name) {
         this.date = date;
         this.name = name;

@@ -7,7 +7,7 @@ public class Set {
     private String comment;
 
     // REQUIRES: reps >= 0 and weight >= 0
-    // EFFECTS: this.reps, this.weight, and this.comment are set to reps, weight, and comment
+    // EFFECTS: this.reps is set to reps, this.weight is set to weight, and this.comment is set to comment
     public Set(int reps, int weight, String comment) {
         this.reps = reps;
         this.weight = weight;
