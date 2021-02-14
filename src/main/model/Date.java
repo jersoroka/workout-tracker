@@ -6,7 +6,7 @@ public class Date {
     private int month;
     private int day;
 
-    // REQUIRES: year. month, and day are positive integers
+    // REQUIRES: year, month, and day are positive integers
     // EFFECTS: this.year is set to year, this.month is set to month, and this.day is set to day
     public Date(int year, int month, int day) {
         this.year = year;

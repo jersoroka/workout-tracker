@@ -5,6 +5,7 @@ import model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class WorkoutLoggerApp {
     private WorkoutSet workoutSet;
@@ -16,7 +17,6 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user input
-    // Code template attributed to TellerApp example
     private void runWorkoutLogger() {
         init();
         homeScreen();
@@ -73,7 +73,6 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: processes user inputs
-    // Code template attributed to TellerApp example
     private void homeScreen() {
         boolean keepGoing = true;
         String command;
@@ -112,7 +111,6 @@ public class WorkoutLoggerApp {
     // MODIFIES: this
     // EFFECTS: processes user input
     private void viewWorkouts() {
-        boolean keepGoing = true;
         String command;
 
         List<Integer> workoutIndices = new ArrayList<>();
@@ -145,7 +143,6 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user command in viewWorkouts
-    // Code attributed to TellerApp example
     private void processViewWorkoutsCommand(String command, List<Integer> workoutIndices) {
         if (isOnlyIntegers(command)) {
             int intCommand = Integer.parseInt(command);
@@ -159,7 +156,6 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // Code template attributed to TellerApp example
     private void viewWorkout(Workout workout) {
         String command;
 
@@ -213,7 +209,6 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user command in viewWorkout
-    // Code attributed to TellerApp example
     private void processViewWorkoutCommand(String command, Workout workout) {
         if (isOnlyIntegers(command)) {
             int intCommand = Integer.parseInt(command);
@@ -242,13 +237,16 @@ public class WorkoutLoggerApp {
         while (keepGoing) {
             input.nextLine();
             System.out.println("\nEnter the name of the new exercise");
-            String name = input.nextLine();
-            workout.addExercise(name);
-            Exercise exercise = workout.getExercise(workout.size() - 1);
-            System.out.println(name + " has been added to the workout");
-            addSetToExercise(exercise, workout);
-            keepGoing = false;
-
+            String name = input.useDelimiter("\\n").next();
+            if (isNotOnlyWhitespace(name)) {
+                workout.addExercise(name);
+                Exercise exercise = workout.getExercise(workout.size() - 1);
+                System.out.println(name + " has been added to the workout");
+                addSetToExercise(exercise, workout);
+                keepGoing = false;
+            } else {
+                invalidMinimumCharacterInput();
+            }
         }
     }
 
@@ -278,17 +276,21 @@ public class WorkoutLoggerApp {
         String command;
 
         while (keepGoing) {
-            input.nextLine();
             System.out.println("\nEnter the new name of the workout");
-            command = input.nextLine();
-            command = command.toLowerCase();
-            workout.setName(command);
-            System.out.println("\nWorkout name set to " + workout.getName());
-            workout.setName(command);
-            keepGoing = false;
+            command = input.useDelimiter("\\n").next();
+            if (isNotOnlyWhitespace(command)) {
+                command = command.toLowerCase();
+                workout.setName(command);
+                System.out.println("\nWorkout name set to " + workout.getName());
+                workout.setName(command);
+                keepGoing = false;
+            } else {
+                invalidMinimumCharacterInput();
+            }
         }
     }
 
+    // REQUIRES: workout contains exercise
     // MODIFIES: workout
     // EFFECTS: removes exercise from workout
     private void removeExercise(Exercise exercise, Workout workout) {
@@ -325,6 +327,7 @@ public class WorkoutLoggerApp {
         }
     }
 
+    // REQUIRES: workoutSet contains workout
     // MODIFIES: this
     // EFFECTS: removes workout from workouts
     private void removeWorkout(Workout workout) {
@@ -336,7 +339,6 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // Code attributed to TellerApp example
     private void editExercise(Exercise exercise, Workout workout) {
         String command;
 
@@ -370,7 +372,6 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user command in viewWorkout
-    // Code attributed to TellerApp example
     private void processEditExerciseCommand(String command, Exercise exercise, Workout workout) {
         if (isOnlyIntegers(command)) {
             int intCommand = Integer.parseInt(command);
@@ -401,7 +402,6 @@ public class WorkoutLoggerApp {
             if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)) {
                 System.out.println("Please enter only non-negative integers");
             } else {
-
                 input.nextLine();
                 System.out.println("Enter a comment. Leave this field blank if there are no comments");
                 String comment = input.nextLine();
@@ -417,7 +417,6 @@ public class WorkoutLoggerApp {
     // MODIFIES: workout
     // EFFECTS: changes workout name
     private void editSet(Set set, Exercise exercise, Workout workout) {
-        boolean keepGoing = true;
         String command;
 
         while (true) {
@@ -436,6 +435,7 @@ public class WorkoutLoggerApp {
         }
     }
 
+    // REQUIRES: exercise contains set
     // MODIFIES: this
     // EFFECTS: removes workout from workouts
     private void removeSet(Set set, Exercise exercise, Workout workout) {
@@ -454,7 +454,6 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: processes user command in editSet
-    // Code attributed to TellerApp example
     private void processEditSetCommand(Set set, String command, Exercise exercise, Workout workout) {
         if (isOnlyIntegers(command)) {
             if (command.equals(Integer.toString(0))) {
@@ -547,6 +546,11 @@ public class WorkoutLoggerApp {
         return true;
     }
 
+    // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
+    private boolean isNotOnlyWhitespace(String command) {
+        return Pattern.matches("\\S+", command);
+    }
+
     // EFFECTS: displays prompts to either go back to the previous screen or quit to user
     private void displayExitAndBackPrompts() {
         System.out.println("\nb -> back");
@@ -571,9 +575,14 @@ public class WorkoutLoggerApp {
         System.out.println("Please provide a valid input");
     }
 
-    // EFFECTS: prints message to user when input is negative
+    // EFFECTS: prints message to user that the input is invalid because it is negative
     private void invalidNegativeInput() {
         System.out.println("Please provide only non-negative inputs");
+    }
+
+    // EFFECTS: prints message to user that the input is invalid because it does not contain at least one character
+    private void invalidMinimumCharacterInput() {
+        System.out.println("Please provide an input with at least one character");
     }
 
 
