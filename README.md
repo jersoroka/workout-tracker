@@ -37,3 +37,5 @@ I want to make a project that aligns with my interests and is something useful.
 - As a user, I want to be able to add a set to an exercise in a workout in my workout journal
 - As a user, I want to be able to delete a set of an exercise in a workout in my workout journal
 - As a user, I want to be able to modify the weight, reps, and comment of a set in an exercise in a workout in my workout journal
+- As a user, I want to be able to save my workouts to a file
+- As a user, I want to be able to load my workouts from a file
