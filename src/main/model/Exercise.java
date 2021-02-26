@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents an exercise having a name and list of sets performed
-public class Exercise {
+public class Exercise implements Writable {
     private String name;
     private List<Set> sets;
 
@@ -77,4 +81,23 @@ public class Exercise {
         return sets;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("sets", setsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns sets as a JSON array
+    // code attributed to JsonSerializationDemo
+    private JSONArray setsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Set set: sets) {
+            jsonArray.put(set.toJson());
+        }
+
+        return jsonArray;
+    }
 }

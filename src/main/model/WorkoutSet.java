@@ -1,10 +1,15 @@
 package model;
 
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a set of workouts
-public class WorkoutSet {
+public class WorkoutSet implements Writable {
     private List<Workout> workouts;
 
     // EFFECTS: makes an empty set of workouts
@@ -58,4 +63,20 @@ public class WorkoutSet {
         return workouts.indexOf(workout);
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("workouts", workoutsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns workouts as a JSON array
+    // code attributed to JsonSerializationDemo
+    private JSONArray workoutsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Workout workout : workouts) {
+            jsonArray.put(workout.toJson());
+        }
+        return jsonArray;
+    }
 }

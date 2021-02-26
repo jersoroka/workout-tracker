@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a workout having a date, name, and a set of exercises
-public class Workout {
+public class Workout implements Writable {
     private Date date;
     private String name;
     private List<Exercise> exercises;
@@ -78,4 +82,22 @@ public class Workout {
         return exercises;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("date", date);
+        json.put("name", name);
+        json.put("exercises", exercisesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns exercises as a JSON array
+    // code attributed to JsonSerializationDemo
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Exercise exercise : exercises) {
+            jsonArray.put(exercise.toJson());
+        }
+        return jsonArray;
+    }
 }

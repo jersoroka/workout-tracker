@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a date with year, month, and day
-public class Date {
+public class Date implements Writable {
     private int year;
     private int month;
     private int day;
@@ -109,5 +112,14 @@ public class Date {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("year", year);
+        json.put("month", month);
+        json.put("day", day);
+        return json;
     }
 }

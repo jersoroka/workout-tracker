@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a set with information about repetitions, weight, and comments from the user
-public class Set {
+public class Set implements Writable {
     private int reps;
     private int weight;
     private String comment;
@@ -49,4 +52,14 @@ public class Set {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("reps", reps);
+        json.put("weight", weight);
+        json.put("comment", comment);
+        return json;
+    }
+
 }
