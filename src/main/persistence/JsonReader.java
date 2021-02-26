@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,7 +40,7 @@ public class JsonReader {
         StringBuilder contentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s));
+            stream.forEach(contentBuilder::append);
         }
 
         return contentBuilder.toString();
@@ -47,7 +48,6 @@ public class JsonReader {
 
     // EFFECTS: parses workroom from JSON object and returns it
     // code attributed to JsonSerializationDemo
-    // TODO: does your workout set need to have a name so that it is unique from others?
     private WorkoutSet parseWorkoutSet(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         WorkoutSet workoutSet = new WorkoutSet();
@@ -66,18 +66,57 @@ public class JsonReader {
         }
     }
 
-    // TODO: watch a JSON video - what are you supposed to call to get the date, exercises?
     // MODIFIES: workoutSet
-    // EFFECTS: parses thingy from JSON object and adds it to workout set
+    // EFFECTS: parses workout from JSON object and adds it to workout set
     private void addWorkout(WorkoutSet workoutSet, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        Date date = jsonObject.getJSONObject("date");
-        List<Exercise> exercises = jsonObject.getJSONObject("exercises");
-        Workout workout = new Workout(name, date, exercises);
+        JSONObject date = jsonObject.getJSONObject("date");
+        JSONObject exercises = jsonObject.getJSONObject("exercises");
+        Workout workout = new Workout(parseDate(date), name);
+        addExercises(workout, exercises);
         workoutSet.addWorkout(workout);
     }
 
-    // TODO: addExercise
+    // EFFECTS: parses date from JSON object and returns it
+    private Date parseDate(JSONObject date) {
+        int year = date.getInt("year");
+        int month = date.getInt("month");
+        int day = date.getInt("day");
+        return new Date(year, month, day);
+    }
 
-    // TODO: addSet
+    // EFFECTS: parses exercises from JSON object and returns it
+    private List<Exercise> addExercises(Workout workout, JSONObject exercises) {
+        JSONArray jsonArray = exercises.getJSONArray("exercise");
+        List<Exercise> parsedExercises = new ArrayList<>();
+        for (Object json: jsonArray) {
+            JSONObject exercise = (JSONObject) json;
+            addExercise(workout, exercise);
+        }
+        return parsedExercises;
+    }
+
+    // EFFECTS: parses exercise from JSON object and adds it to exercises
+    private void addExercise(Workout workout, JSONObject exercise) {
+        JSONArray jsonArray = exercise.getJSONArray("sets");
+        String name = exercise.getString("name");
+        workout.addExercise(name);
+        Exercise parsedExercise = workout.getExercise(workout.size() - 1);
+
+        for (Object json: jsonArray) {
+            JSONObject set = (JSONObject) json;
+            addSet(parsedExercise, set);
+        }
+    }
+
+    // EFFECTS: parses set from JSON object and adds it to exercise
+    private void addSet(Exercise exercise, JSONObject set) {
+        int reps = set.getInt("reps");
+        int weight = set.getInt("weight");
+        String comment = set.getString("comment");
+        exercise.addSet(reps, weight, comment);
+    }
+
+
+
 }
