@@ -70,7 +70,7 @@ public class JsonReader {
     private void addWorkout(WorkoutSet workoutSet, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         JSONObject date = jsonObject.getJSONObject("date");
-        JSONObject exercises = jsonObject.getJSONObject("exercises");
+        JSONArray exercises = jsonObject.getJSONArray("exercises");
         Workout workout = new Workout(parseDate(date), name);
         addExercises(workout, exercises);
         workoutSet.addWorkout(workout);
@@ -84,18 +84,15 @@ public class JsonReader {
         return new Date(year, month, day);
     }
 
-    // EFFECTS: parses exercises from JSON object and returns it
-    private List<Exercise> addExercises(Workout workout, JSONObject exercises) {
-        JSONArray jsonArray = exercises.getJSONArray("exercise");
-        List<Exercise> parsedExercises = new ArrayList<>();
-        for (Object json: jsonArray) {
+    // EFFECTS: parses exercises from JSON object and adds it to workout
+    private void addExercises(Workout workout, JSONArray exercises) {
+        for (Object json: exercises) {
             JSONObject exercise = (JSONObject) json;
             addExercise(workout, exercise);
         }
-        return parsedExercises;
     }
 
-    // EFFECTS: parses exercise from JSON object and adds it to exercises
+    // EFFECTS: parses exercise from JSON object and adds it to exercises in workout
     private void addExercise(Workout workout, JSONObject exercise) {
         JSONArray jsonArray = exercise.getJSONArray("sets");
         String name = exercise.getString("name");
@@ -115,7 +112,5 @@ public class JsonReader {
         String comment = set.getString("comment");
         exercise.addSet(reps, weight, comment);
     }
-
-
 
 }
