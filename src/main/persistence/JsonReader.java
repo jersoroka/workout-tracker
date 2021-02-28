@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 // Represents a reader that reads workout set from source file
@@ -46,7 +44,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses workout set from JSON object and returns it
     // code attributed to JsonSerializationDemo
     private WorkoutSet parseWorkoutSet(JSONObject jsonObject) {
         WorkoutSet workoutSet = new WorkoutSet();
@@ -55,7 +53,7 @@ public class JsonReader {
     }
 
     // MODIFIES: workoutSet
-    // EFFECTS: parses thingies from JSON object and adds them to workout set
+    // EFFECTS: parses workouts from JSON object and adds them to workout set
     // code attributed to JsonSerializationDemo
     private void addWorkouts(WorkoutSet workoutSet, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("workouts");
@@ -66,7 +64,7 @@ public class JsonReader {
     }
 
     // MODIFIES: workoutSet
-    // EFFECTS: parses workout from JSON object and adds it to workout set
+    // EFFECTS: parses individual workout from JSON object and adds it to workout set
     private void addWorkout(WorkoutSet workoutSet, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         JSONObject date = jsonObject.getJSONObject("date");
@@ -86,7 +84,7 @@ public class JsonReader {
 
     // EFFECTS: parses exercises from JSON object and adds it to workout
     private void addExercises(Workout workout, JSONArray exercises) {
-        for (Object json: exercises) {
+        for (Object json : exercises) {
             JSONObject exercise = (JSONObject) json;
             addExercise(workout, exercise);
         }
@@ -99,7 +97,7 @@ public class JsonReader {
         workout.addExercise(name);
         Exercise parsedExercise = workout.getExercise(workout.size() - 1);
 
-        for (Object json: jsonArray) {
+        for (Object json : jsonArray) {
             JSONObject set = (JSONObject) json;
             addSet(parsedExercise, set);
         }

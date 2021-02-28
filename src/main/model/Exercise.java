@@ -93,11 +93,9 @@ public class Exercise implements Writable {
     // code attributed to JsonSerializationDemo
     private JSONArray setsToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (Set set: sets) {
             jsonArray.put(set.toJson());
         }
-
         return jsonArray;
     }
 }
