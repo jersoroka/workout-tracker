@@ -29,48 +29,8 @@ public class WorkoutLoggerApp {
     private void init() {
         workoutSet = new WorkoutSet();
         input = new Scanner(System.in);
-
-        addPushWorkout();
-        addLegsWorkout();
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds a push workout to workouts
-    private void addPushWorkout() {
-        workoutSet.addWorkout(2021, 2, 1, "push");
-        Workout push = workoutSet.getWorkout(0);
-        push.addExercise("bench press");
-        Exercise benchPress = push.getExercise(0);
-        push.addExercise("overhead press");
-        Exercise overheadPress = push.getExercise(1);
-
-        benchPress.addSet(10, 135, "warmup");
-        benchPress.addSet(10, 185, "working set");
-        benchPress.addSet(8, 115, "3 second pause");
-
-        overheadPress.addSet(10, 95, "warmup");
-        overheadPress.addSet(5, 135, "RPE 8");
-        overheadPress.addSet(5, 125, "RPE 8");
-    }
-
-    // MODIFIES: this
-    // EFFECTS: adds a legs workout to workouts
-    private void addLegsWorkout() {
-        workoutSet.addWorkout(2021, 2, 3, "legs");
-        Workout legs = workoutSet.getWorkout(1);
-        legs.addExercise("front squat");
-        Exercise frontSquat = legs.getExercise(0);
-        legs.addExercise("romanian deadlift");
-        Exercise romanianDeadlift = legs.getExercise(1);
-
-        frontSquat.addSet(10, 135, "warmup");
-        frontSquat.addSet(10, 185, "working set");
-        frontSquat.addSet(8, 115, "slow descent, explosive out of bottom");
-
-        romanianDeadlift.addSet(10, 95, "warmup");
-        romanianDeadlift.addSet(5, 135, "RPE 8");
-        romanianDeadlift.addSet(5, 125, "RPE 8");
-    }
 
     // MODIFIES: this
     // EFFECTS: processes user inputs
