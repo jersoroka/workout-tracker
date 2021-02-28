@@ -1,9 +1,6 @@
 package persistence;
 
-import model.Date;
-import model.Exercise;
-import model.Set;
-import model.Workout;
+import model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,5 +24,28 @@ public class JsonTest {
         assertEquals(reps, set.getReps());
         assertEquals(weight, set.getWeight());
         assertEquals(comment, set.getComment());
+    }
+
+    protected WorkoutSet makeWorkoutSet() {
+        WorkoutSet workoutSet = new WorkoutSet();
+
+        workoutSet.addWorkout(2021,2,27,"legs");
+        Workout legsWorkout = workoutSet.getWorkout(0);
+        legsWorkout.addExercise("front squats");
+        Exercise frontSquats = legsWorkout.getExercise(0);
+        frontSquats.addSet(10, 135,"warmup");
+        frontSquats.addSet(10,155,"");
+        legsWorkout.addExercise("leg curls");
+        Exercise legCurls = legsWorkout.getExercise(1);
+        legCurls.addSet(20,45,"");
+
+        workoutSet.addWorkout(2021,2,28,"back");
+        Workout backWorkout = workoutSet.getWorkout(1);
+        backWorkout.addExercise("rows");
+        Exercise rows = backWorkout.getExercise(0);
+        rows.addSet(10, 75,"fast reps");
+        rows.addSet(12,85,"");
+
+        return workoutSet;
     }
 }

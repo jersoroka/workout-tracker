@@ -1,0 +1,58 @@
+{"workouts": [
+    {
+        "date": {
+            "month": 2,
+            "year": 2021,
+            "day": 27
+        },
+        "exercises": [
+            {
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 135,
+                        "comment": "warmup"
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 155,
+                        "comment": ""
+                    }
+                ],
+                "name": "front squats"
+            },
+            {
+                "sets": [{
+                    "reps": 20,
+                    "weight": 45,
+                    "comment": ""
+                }],
+                "name": "leg curls"
+            }
+        ],
+        "name": "legs"
+    },
+    {
+        "date": {
+            "month": 2,
+            "year": 2021,
+            "day": 28
+        },
+        "exercises": [{
+            "sets": [
+                {
+                    "reps": 10,
+                    "weight": 75,
+                    "comment": "fast reps"
+                },
+                {
+                    "reps": 12,
+                    "weight": 85,
+                    "comment": ""
+                }
+            ],
+            "name": "rows"
+        }],
+        "name": "back"
+    }
+]}
