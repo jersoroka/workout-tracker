@@ -355,7 +355,7 @@ public class WorkoutLoggerApp {
             if ((0 <= intCommand) & (intCommand < exercise.size())) {
                 editSet(exercise.getSet(intCommand), exercise);
             } else if ((exercise.size() <= intCommand) & (intCommand < exercise.size() * 2)) {
-                removeSet(exercise.getSet(intCommand - exercise.size()), exercise, workout);
+                removeSet(exercise.getSet(intCommand - exercise.size()), exercise);
             } else if (intCommand == (exercise.size() * 2)) {
                 addSet(exercise, workout);
             } else if (intCommand == (exercise.size() * 2 + 1)) {
@@ -433,7 +433,7 @@ public class WorkoutLoggerApp {
     // REQUIRES: exercise contains set
     // MODIFIES: this
     // EFFECTS: removes workout from workouts
-    private void removeSet(Set set, Exercise exercise, Workout workout) {
+    private void removeSet(Set set, Exercise exercise) {
         int index = exercise.indexOf(set);
         exercise.removeSet(index);
         System.out.println("\nSet successfully removed");
