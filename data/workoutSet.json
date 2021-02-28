@@ -1,0 +1,27 @@
+{"workouts": [
+    {
+        "date": {
+            "month": 7,
+            "year": 2021,
+            "day": 4
+        },
+        "exercises": [{
+            "sets": [{
+                "reps": 12,
+                "weight": 45,
+                "comment": ""
+            }],
+            "name": "barbell curls"
+        }],
+        "name": "legs"
+    },
+    {
+        "date": {
+            "month": 7,
+            "year": 2021,
+            "day": 5
+        },
+        "exercises": [],
+        "name": "back"
+    }
+]}

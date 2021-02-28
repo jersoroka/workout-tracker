@@ -1,7 +1,11 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +13,11 @@ import java.util.regex.Pattern;
 
 // Workout logger application
 public class WorkoutLoggerApp {
+    private static final String JSON_STORE = "./data/workoutSet.json";
     private WorkoutSet workoutSet;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the workout logger app
     public WorkoutLoggerApp() {
@@ -29,6 +36,8 @@ public class WorkoutLoggerApp {
     private void init() {
         workoutSet = new WorkoutSet();
         input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
 
@@ -54,6 +63,8 @@ public class WorkoutLoggerApp {
         System.out.println("\nSelect from:");
         System.out.println("v -> view, edit, or remove a workout");
         System.out.println("a -> add a workout");
+        System.out.println("s -> save workout logger to file");
+        System.out.println("l -> load workout logger from file");
         System.out.println("q -> quit");
     }
 
@@ -63,6 +74,12 @@ public class WorkoutLoggerApp {
             viewWorkouts();
         } else if (command.equals("a")) {
             addWorkout();
+        } else if (command.equals("s")) {
+            saveWorkoutSet();
+            homeScreen();
+        } else if (command.equals("l")) {
+            loadWorkoutSet();
+            homeScreen();
         } else {
             invalidInput();
             homeScreen();
@@ -576,6 +593,31 @@ public class WorkoutLoggerApp {
     // EFFECTS: prints message to user that the input is invalid because it does not contain at least one character
     private void invalidMinimumCharacterInput() {
         System.out.println("Please provide an input with at least one letter or number");
+    }
+
+    // EFFECTS: saves the workout set to file
+    // code attributed to JsonSerializationDemo
+    private void saveWorkoutSet() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(workoutSet);
+            jsonWriter.close();
+            System.out.println("Saved workout logger to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workout set from file
+    // code attributed to JsonSerializationDemo
+    private void loadWorkoutSet() {
+        try {
+            workoutSet = jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println(("Unable to read from file: " + JSON_STORE));
+        }
     }
 
 
