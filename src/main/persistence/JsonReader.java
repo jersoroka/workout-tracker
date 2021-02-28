@@ -49,7 +49,6 @@ public class JsonReader {
     // EFFECTS: parses workroom from JSON object and returns it
     // code attributed to JsonSerializationDemo
     private WorkoutSet parseWorkoutSet(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
         WorkoutSet workoutSet = new WorkoutSet();
         addWorkouts(workoutSet, jsonObject);
         return workoutSet;

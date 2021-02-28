@@ -1,0 +1,49 @@
+{
+  "workouts": [
+    {
+      "date": {
+        "year": 2021,
+        "month": 2,
+        "day": 27
+      },
+      "name": "chest",
+      "exercises": [
+        {
+          "name": "bench press",
+          "sets": [
+            {
+              "reps": 10,
+              "weight": 135,
+              "comment": "none"
+            },
+            {
+              "reps": 10,
+              "weight": 135,
+              "comment": "medium speed"
+            },
+            {
+              "reps": 12,
+              "weight": 115,
+              "comment": "burnout"
+            }
+          ]
+        },
+        {
+          "name": "overhead press",
+          "sets": [
+            {
+              "reps": 8,
+              "weight": 95,
+              "comment": "warmup"
+            },
+            {
+              "reps": 10,
+              "weight": 115,
+              "comment": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
