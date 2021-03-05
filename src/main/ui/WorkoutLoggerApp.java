@@ -32,7 +32,7 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: initializes workouts
-    // Code template attributed to TellerApp example
+    // code based on https://github.students.cs.ubc.ca/CPSC210/TellerApp.git
     private void init() {
         workoutSet = new WorkoutSet();
         input = new Scanner(System.in);
@@ -596,7 +596,7 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: saves the workout set to file
-    // code attributed to JsonSerializationDemo
+    // code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void saveWorkoutSet() {
         try {
             jsonWriter.open();
@@ -610,7 +610,7 @@ public class WorkoutLoggerApp {
 
     // MODIFIES: this
     // EFFECTS: loads workout set from file
-    // code attributed to JsonSerializationDemo
+    // code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void loadWorkoutSet() {
         try {
             workoutSet = jsonReader.read();

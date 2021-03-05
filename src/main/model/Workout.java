@@ -92,7 +92,7 @@ public class Workout implements Writable {
     }
 
     // EFFECTS: returns exercises as a JSON array
-    // code attributed to JsonSerializationDemo
+    // code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private JSONArray exercisesToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Exercise exercise : exercises) {

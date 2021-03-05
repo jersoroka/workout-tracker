@@ -90,7 +90,7 @@ public class Exercise implements Writable {
     }
 
     // EFFECTS: returns sets as a JSON array
-    // code attributed to JsonSerializationDemo
+    // code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private JSONArray setsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Set set: sets) {

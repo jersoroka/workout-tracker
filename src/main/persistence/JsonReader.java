@@ -14,18 +14,17 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 // Represents a reader that reads workout set from source file
+// code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    // code attributed to JsonSerializationDemo
     public JsonReader(String source) {
         this.source = source;
     }
 
     // EFFECTS: reads workout set from file and returns it
     // throws IOException if an error occurs reading data from file
-    // code attributed to JsonSerializationDemo
     public WorkoutSet read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -33,7 +32,6 @@ public class JsonReader {
     }
 
     // EFFECTS: reads source file as string and returns it
-    // code attributed to JsonSerializationDemo
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -45,7 +43,6 @@ public class JsonReader {
     }
 
     // EFFECTS: parses workout set from JSON object and returns it
-    // code attributed to JsonSerializationDemo
     private WorkoutSet parseWorkoutSet(JSONObject jsonObject) {
         WorkoutSet workoutSet = new WorkoutSet();
         addWorkouts(workoutSet, jsonObject);
@@ -54,7 +51,6 @@ public class JsonReader {
 
     // MODIFIES: workoutSet
     // EFFECTS: parses workouts from JSON object and adds them to workout set
-    // code attributed to JsonSerializationDemo
     private void addWorkouts(WorkoutSet workoutSet, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("workouts");
         for (Object json : jsonArray) {
