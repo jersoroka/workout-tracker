@@ -78,6 +78,7 @@ public class JsonReader {
         return new Date(year, month, day);
     }
 
+    // MODIFIES: workout
     // EFFECTS: parses exercises from JSON object and adds it to workout
     private void addExercises(Workout workout, JSONArray exercises) {
         for (Object json : exercises) {
@@ -86,6 +87,7 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: workout
     // EFFECTS: parses exercise from JSON object and adds it to exercises in workout
     private void addExercise(Workout workout, JSONObject exercise) {
         JSONArray jsonArray = exercise.getJSONArray("sets");
@@ -99,6 +101,7 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: exercise
     // EFFECTS: parses set from JSON object and adds it to exercise
     private void addSet(Exercise exercise, JSONObject set) {
         int reps = set.getInt("reps");
