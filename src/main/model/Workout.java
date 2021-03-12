@@ -83,6 +83,7 @@ public class Workout implements Writable {
     }
 
     @Override
+    // EFFECTS: returns workout as JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("date", date.toJson());

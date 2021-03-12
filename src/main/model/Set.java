@@ -54,6 +54,7 @@ public class Set implements Writable {
     }
 
     @Override
+    // EFFECTS: returns JSON object as set
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("reps", reps);

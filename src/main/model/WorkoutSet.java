@@ -64,6 +64,7 @@ public class WorkoutSet implements Writable {
     }
 
     @Override
+    // EFFECTS: returns WorkoutSet as JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("workouts", workoutsToJson());

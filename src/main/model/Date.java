@@ -115,6 +115,7 @@ public class Date implements Writable {
     }
 
     @Override
+    // EFFECTS: returns Date as JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("year", year);
