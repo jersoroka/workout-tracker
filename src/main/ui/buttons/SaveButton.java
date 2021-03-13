@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 
 public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
-    private JsonWriter jsonWriter;
+    private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
     public SaveButton(JComponent parent, WorkoutSet workoutSet) {
         super(parent, workoutSet);

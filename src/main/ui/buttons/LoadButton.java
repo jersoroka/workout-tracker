@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
-    private JsonReader jsonReader;
+    private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
     public LoadButton(JComponent parent, WorkoutSet workoutSet) {
         super(parent, workoutSet);

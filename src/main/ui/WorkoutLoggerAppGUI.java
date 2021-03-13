@@ -1,22 +1,18 @@
 package ui;
 
-import model.Workout;
 import model.WorkoutSet;
+import ui.buttons.*;
 import ui.buttons.Button;
-import ui.buttons.LoadButton;
-import ui.buttons.SaveButton;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class WorkoutLoggerAppGUI extends JFrame {
-    private JFrame frame;
-    private JButton button;
-    private JLabel label;
     private WorkoutSet workoutSet;
 
 
     public WorkoutLoggerAppGUI() {
+        super("Workout Logger App");
         initializeFields();
         initializeGraphics();
     }
@@ -33,11 +29,21 @@ public class WorkoutLoggerAppGUI extends JFrame {
     private void initializeGraphics() {
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(800, 600));
+        createHomeMenuButtons();
         createPersistenceButtons();
-        // add something
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // not sure what this one does
         setVisible(true);
+    }
+
+    private void createHomeMenuButtons() {
+        JPanel homeArea = new JPanel();
+        homeArea.setLayout(new GridLayout(0, 1));
+        homeArea.setSize(new Dimension(0, 0));
+        add(homeArea, BorderLayout.CENTER);
+
+        Button addWorkout = new AddWorkoutButton(homeArea, workoutSet);
+        Button viewWorkouts = new ViewWorkoutsButton(homeArea, workoutSet);
     }
 
     // MODIFIES: this

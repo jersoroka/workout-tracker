@@ -9,10 +9,10 @@ public abstract class Button {
     protected WorkoutSet workoutSet;
 
     public Button(JComponent parent, WorkoutSet workoutSet) {
-        addToParent(parent);
-        addListener();
-        createButton(parent);
         this.workoutSet = workoutSet;
+        createButton(parent);
+        addListener();
+        addToParent(parent);
     }
 
     // MODIFIES: this
