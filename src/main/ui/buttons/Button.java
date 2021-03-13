@@ -1,14 +1,18 @@
 package ui.buttons;
 
+import model.WorkoutSet;
+
 import javax.swing.*;
 
 public abstract class Button {
     protected JButton button;
+    protected WorkoutSet workoutSet;
 
-    public Button(JComponent parent) {
+    public Button(JComponent parent, WorkoutSet workoutSet) {
         addToParent(parent);
         addListener();
         createButton(parent);
+        this.workoutSet = workoutSet;
     }
 
     // MODIFIES: this

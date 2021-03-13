@@ -12,11 +12,9 @@ import java.io.FileNotFoundException;
 public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonWriter jsonWriter;
-    private WorkoutSet workoutSet;
 
     public SaveButton(JComponent parent, WorkoutSet workoutSet) {
-        super(parent);
-        this.workoutSet = workoutSet;
+        super(parent, workoutSet);
     }
 
     // EFFECTS: returns save label

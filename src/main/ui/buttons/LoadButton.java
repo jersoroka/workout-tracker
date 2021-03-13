@@ -11,11 +11,9 @@ import java.io.IOException;
 public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonReader jsonReader;
-    private WorkoutSet workoutSet;
 
     public LoadButton(JComponent parent, WorkoutSet workoutSet) {
-        super(parent);
-        this.workoutSet = workoutSet;
+        super(parent, workoutSet);
     }
 
     // EFFECTS: returns load label
