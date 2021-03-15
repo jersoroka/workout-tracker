@@ -14,6 +14,12 @@ public class AddWorkoutSubmitButton extends Button {
     }
 
     @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton(getLabel());
+        button = customizeButton(button);
+    }
+
+    @Override
     protected String getLabel() {
         return "Submit";
     }

@@ -17,6 +17,12 @@ public class SaveButton extends Button {
         super(workoutLoggerAppGUI, parent, workoutSet);
     }
 
+    @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton(getLabel());
+        button = customizeButton(button);
+    }
+
     // EFFECTS: returns save label
     @Override
     protected String getLabel() {

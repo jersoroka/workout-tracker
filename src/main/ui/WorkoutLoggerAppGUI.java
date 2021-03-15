@@ -1,5 +1,6 @@
 package ui;
 
+import model.Workout;
 import model.WorkoutSet;
 import ui.buttons.*;
 import ui.buttons.Button;
@@ -53,7 +54,21 @@ public class WorkoutLoggerAppGUI extends JFrame {
         JPanel viewWorkoutsScreen = new JPanel();
         viewWorkoutsScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
         viewWorkoutsScreen.setSize(WIDTH, HEIGHT);
+        createViewWorkoutButtons(viewWorkoutsScreen);
         container.add(viewWorkoutsScreen, "view workouts");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates buttons corresponding to each workout in workoutSet
+    private void createViewWorkoutButtons(JPanel parent) {
+        JPanel workoutsArea = new JPanel();
+        workoutsArea.setLayout(new GridLayout(workoutSet.size(), 0, HORIZONTAL_GAP, VERTICAL_GAP));
+        parent.add(workoutsArea, BorderLayout.SOUTH);
+
+        for (Workout workout : workoutSet.getWorkouts()) {
+            new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
+
+        }
     }
 
 
@@ -81,6 +96,9 @@ public class WorkoutLoggerAppGUI extends JFrame {
     // EFFECTS: instantiates frame, button, label, and panel
     private void initializeFields() {
         workoutSet = new WorkoutSet();
+        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
     }
 
     // MODIFIES: this

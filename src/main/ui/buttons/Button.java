@@ -30,10 +30,7 @@ public abstract class Button {
     }
 
     // EFFECTS: creates button with appropriate label
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
-    }
+    protected abstract void createButton(JComponent parent);
 
     // EFFECTS: Returns the string for the label
     protected abstract String getLabel();

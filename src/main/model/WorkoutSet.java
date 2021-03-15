@@ -63,6 +63,10 @@ public class WorkoutSet implements Writable {
         return workouts.indexOf(workout);
     }
 
+    public List<Workout> getWorkouts() {
+        return workouts;
+    }
+
     @Override
     // EFFECTS: returns WorkoutSet as JSON object
     public JSONObject toJson() {

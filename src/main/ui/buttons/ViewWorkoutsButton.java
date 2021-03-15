@@ -12,6 +12,12 @@ public class ViewWorkoutsButton extends Button {
         super(workoutLoggerAppGUI, parent, workoutSet);
     }
 
+    @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton(getLabel());
+        button = customizeButton(button);
+    }
+
     // EFFECTS: returns view workouts button
     @Override
     protected String getLabel() {
