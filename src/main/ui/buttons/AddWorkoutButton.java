@@ -1,6 +1,7 @@
 package ui.buttons;
 
 import model.WorkoutSet;
+import ui.WorkoutLoggerAppGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class AddWorkoutButton extends Button {
 
-    public AddWorkoutButton(JComponent parent, WorkoutSet workoutSet) {
-        super(parent, workoutSet);
+    public AddWorkoutButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
+        super(workoutLoggerAppGUI, parent, workoutSet);
     }
 
     // EFFECTS: returns add workout label
@@ -30,11 +31,8 @@ public class AddWorkoutButton extends Button {
         // EFFECTS: opens add workout screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            addWorkoutScreen();
+            workoutLoggerAppGUI.getCards().show(workoutLoggerAppGUI.getContainer(), "add workout");
         }
     }
 
-    // EFFECTS: opens add workout screen
-    // TODO: how do you open up a new screen?
-    private void addWorkoutScreen() {}
 }

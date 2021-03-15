@@ -1,18 +1,23 @@
 package ui.buttons;
 
 import model.WorkoutSet;
+import ui.WorkoutLoggerAppGUI;
 
 import javax.swing.*;
 
 public abstract class Button {
     protected JButton button;
     protected WorkoutSet workoutSet;
+    protected JComponent parent;
+    protected WorkoutLoggerAppGUI workoutLoggerAppGUI;
 
-    public Button(JComponent parent, WorkoutSet workoutSet) {
+    public Button(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
         this.workoutSet = workoutSet;
+        this.workoutLoggerAppGUI = workoutLoggerAppGUI;
         createButton(parent);
+        this.parent = parent;
         addListener();
-        addToParent(parent);
+        addToParent();
     }
 
     // MODIFIES: this
@@ -39,7 +44,7 @@ public abstract class Button {
 
     // MODIFIES: parent
     // EFFECTS:  adds the given button to the parent component
-    public void addToParent(JComponent parent) {
+    public void addToParent() {
         parent.add(button);
     }
 }

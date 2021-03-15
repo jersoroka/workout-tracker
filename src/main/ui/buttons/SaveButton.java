@@ -13,8 +13,8 @@ public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
-    public SaveButton(JComponent parent, WorkoutSet workoutSet) {
-        super(parent, workoutSet);
+    public SaveButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
+        super(workoutLoggerAppGUI, parent, workoutSet);
     }
 
     // EFFECTS: returns save label
