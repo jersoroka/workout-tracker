@@ -4,7 +4,6 @@ import model.WorkoutSet;
 import ui.buttons.*;
 import ui.buttons.Button;
 
-import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,7 +33,18 @@ public class WorkoutLoggerAppGUI extends JFrame {
         JPanel addWorkoutScreen = new JPanel();
         addWorkoutScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
         addWorkoutScreen.setSize(WIDTH, HEIGHT);
+        createAddWorkoutScreenButtons(addWorkoutScreen);
         container.add(addWorkoutScreen, "add workout");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: a helper method which declares and instantiates the back and submit button for the add workouts screen
+    private void createAddWorkoutScreenButtons(JPanel parent) {
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
+        parent.add(buttonPanel, BorderLayout.SOUTH);
+        Button backButton = new AddWorkoutBackButton(this, buttonPanel, workoutSet);
+        Button submitButton = new AddWorkoutSubmitButton(this, buttonPanel, workoutSet);
     }
 
     // MODIFIES: this
@@ -75,10 +85,10 @@ public class WorkoutLoggerAppGUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: a helper method which declares and instantiates persistence buttons
-    private void createPersistenceButtons(JPanel homeScreen) {
+    private void createPersistenceButtons(JPanel parent) {
         JPanel persistenceArea = new JPanel();
         persistenceArea.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        homeScreen.add(persistenceArea, BorderLayout.SOUTH);
+        parent.add(persistenceArea, BorderLayout.SOUTH);
         Button saveButton = new SaveButton(this, persistenceArea, workoutSet);
         Button loadButton = new LoadButton(this, persistenceArea, workoutSet);
     }
@@ -86,10 +96,10 @@ public class WorkoutLoggerAppGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: a helper method which declares and instantiates the buttons on the home screen
     //          that correspond to workout options
-    private void createHomeScreenWorkoutButtons(JPanel homeScreen) {
+    private void createHomeScreenWorkoutButtons(JPanel parent) {
         JPanel homeArea = new JPanel();
         homeArea.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        homeScreen.add(homeArea, BorderLayout.NORTH);
+        parent.add(homeArea, BorderLayout.NORTH);
         Button addWorkout = new AddWorkoutButton(this, homeArea, workoutSet);
         Button viewWorkouts = new ViewWorkoutsButton(this, homeArea, workoutSet);
     }
