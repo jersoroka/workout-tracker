@@ -5,6 +5,7 @@ import model.WorkoutSet;
 import ui.WorkoutLoggerAppGUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class ViewWorkoutButton {
     protected JButton button;
@@ -51,6 +52,7 @@ public class ViewWorkoutButton {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
+        button.setPreferredSize(new Dimension(600, 100));
         return button;
     }
 

@@ -4,12 +4,12 @@ import model.WorkoutSet;
 import ui.WorkoutLoggerAppGUI;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddWorkoutButton extends Button {
-
-    public AddWorkoutButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
+public class ViewWorkoutBackButton extends Button {
+    public ViewWorkoutBackButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
         super(workoutLoggerAppGUI, parent, workoutSet);
     }
 
@@ -19,26 +19,25 @@ public class AddWorkoutButton extends Button {
         button = customizeButton(button);
     }
 
-    // EFFECTS: returns add workout label
+    // EFFECTS: returns back button label
     @Override
     protected String getLabel() {
-        return "Add Workout";
+        return "Back";
     }
 
     // MODIFIES: this
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new AddWorkoutButton.AddWorkoutButtonClickHandler());
+        button.addActionListener(new ViewWorkoutBackButton.ViewWorkoutsBackButtonClickHandler());
     }
 
-    private class AddWorkoutButtonClickHandler implements ActionListener {
+    private class ViewWorkoutsBackButtonClickHandler implements ActionListener {
 
-        // EFFECTS: opens home screen when clicked
+        // EFFECTS: opens view workout screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
             workoutLoggerAppGUI.getCards().show(workoutLoggerAppGUI.getContainer(), "home");
         }
     }
-
 }

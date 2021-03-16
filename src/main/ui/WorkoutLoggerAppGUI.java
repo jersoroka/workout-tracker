@@ -7,10 +7,12 @@ import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 public class WorkoutLoggerAppGUI extends JFrame {
-    private static final int HEIGHT = 600;
-    private static final int WIDTH = 800;
+    private static final int HEIGHT = 1600;
+    private static final int WIDTH = 2000;
     private static final int HORIZONTAL_GAP = 0;
     private static final int VERTICAL_GAP = 10;
     private static WorkoutLoggerAppGUI workoutLoggerAppGUI;
@@ -52,23 +54,28 @@ public class WorkoutLoggerAppGUI extends JFrame {
     // EFFECTS: creates the window where the user can view previous workouts
     private void createViewWorkoutsScreen() {
         JPanel viewWorkoutsScreen = new JPanel();
-        viewWorkoutsScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
+        viewWorkoutsScreen.setLayout(new GridLayout(1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
         viewWorkoutsScreen.setSize(WIDTH, HEIGHT);
         createViewWorkoutButtons(viewWorkoutsScreen);
-        container.add(viewWorkoutsScreen, "view workouts");
+
+        JScrollPane viewWorkoutsScreenScrollPane = new JScrollPane(viewWorkoutsScreen,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        container.add(viewWorkoutsScreenScrollPane, "view workouts");
     }
 
     // MODIFIES: this
-    // EFFECTS: creates buttons corresponding to each workout in workoutSet
+    // EFFECTS: creates buttons corresponding to each workout in workoutSet and adds back button
     private void createViewWorkoutButtons(JPanel parent) {
         JPanel workoutsArea = new JPanel();
-        workoutsArea.setLayout(new GridLayout(workoutSet.size(), 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        parent.add(workoutsArea, BorderLayout.SOUTH);
+        workoutsArea.setLayout(new GridLayout(workoutSet.size() + 1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
+        parent.add(workoutsArea, BorderLayout.NORTH);
 
         for (Workout workout : workoutSet.getWorkouts()) {
             new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
-
         }
+        new ViewWorkoutBackButton(this, workoutsArea, workoutSet);
     }
 
 
@@ -96,6 +103,12 @@ public class WorkoutLoggerAppGUI extends JFrame {
     // EFFECTS: instantiates frame, button, label, and panel
     private void initializeFields() {
         workoutSet = new WorkoutSet();
+        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
+        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
         workoutSet.addWorkout(2021, 3, 14, "test");
         workoutSet.addWorkout(2021, 7, 4, "test");
         workoutSet.addWorkout(2021, 7, 1, "test");

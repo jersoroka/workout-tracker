@@ -18,7 +18,7 @@ public class ViewWorkoutsButton extends Button {
         button = customizeButton(button);
     }
 
-    // EFFECTS: returns view workouts button
+    // EFFECTS: returns view workouts label
     @Override
     protected String getLabel() {
         return "View Workouts";
