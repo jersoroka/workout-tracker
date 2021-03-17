@@ -5,6 +5,8 @@ import ui.buttons.AddWorkoutSubmitButton;
 import ui.buttons.BackButton;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.security.acl.Group;
 
@@ -13,7 +15,7 @@ import static javax.swing.SwingConstants.*;
 
 public class AddWorkout extends Screen {
     private GroupLayout layout;
-    private static final int LABEL_WIDTH = WIDTH / 20;
+    private static final int LABEL_WIDTH = WIDTH / 18;
     private static final int ENTRY_WIDTH = WIDTH / 7;
     private static final int TEXT_HEIGHT = HEIGHT / 50;
 
@@ -111,6 +113,7 @@ public class AddWorkout extends Screen {
     // EFFECTS: creates unmodifiable text box
     private JEditorPane textBox(String entry) {
         JEditorPane label = new JEditorPane();
+        label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         label.setEditable(false);
         label.setText(entry);
         label.setPreferredSize(new Dimension(LABEL_WIDTH, TEXT_HEIGHT));
@@ -120,6 +123,7 @@ public class AddWorkout extends Screen {
     // EFFECTS: creates user entry field
     private JEditorPane entryField() {
         JEditorPane field = new JEditorPane();
+        field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
         return field;
     }
@@ -127,9 +131,11 @@ public class AddWorkout extends Screen {
     // EFFECTS: creates header for the screen
     private JEditorPane header() {
         JEditorPane header = new JEditorPane();
+        header.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         header.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
         header.setEditable(false);
         header.setText("Please enter details for the workout");
         return header;
     }
+
 }
