@@ -11,6 +11,7 @@ public abstract class BackButton extends Button {
 
     public BackButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
         super(gui, parent, workoutSet);
+
     }
 
     @Override
@@ -23,5 +24,7 @@ public abstract class BackButton extends Button {
     protected String getLabel() {
         return "Back";
     }
+
+
 
 }

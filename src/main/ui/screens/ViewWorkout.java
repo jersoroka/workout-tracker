@@ -5,6 +5,7 @@ import model.Workout;
 import ui.GUI;
 import ui.buttons.DeleteWorkoutButton;
 import ui.buttons.additionalobjectbutton.EditExerciseButton;
+import ui.buttons.backbuttons.ViewWorkoutBackButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +30,7 @@ public class ViewWorkout extends JFrame {
     // MODIFIES: this, gui
     // EFFECTS: creates the window where the user can view a specific workout
     public void initializePane() {
-        pane.setLayout(new GridLayout(3, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
+        pane.setLayout(new GridLayout(4, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
         pane.setSize(gui.getScreenWidth(), gui.getScreenHeight());
         gui.getContainer().add(this.getPane(), "view workout");
     }
@@ -100,6 +101,7 @@ public class ViewWorkout extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds a back button to the screen
     public void createBackButton() {
+        new ViewWorkoutBackButton(gui, pane, gui.getWorkoutSet());
 
     }
 
