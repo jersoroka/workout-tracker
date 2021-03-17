@@ -4,6 +4,8 @@ import model.Workout;
 import model.WorkoutSet;
 import ui.buttons.*;
 import ui.buttons.Button;
+import ui.buttons.backbuttons.AddWorkoutBackButton;
+import ui.buttons.backbuttons.ViewWorkoutsBackButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +75,7 @@ public class GUI extends JFrame {
         for (Workout workout : workoutSet.getWorkouts()) {
             new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
         }
-        new ViewWorkoutBackButton(this, workoutsArea, workoutSet);
+        new ViewWorkoutsBackButton(this, workoutsArea, workoutSet);
     }
 
 

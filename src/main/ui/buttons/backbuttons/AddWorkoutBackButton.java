@@ -1,4 +1,4 @@
-package ui.buttons;
+package ui.buttons.backbuttons;
 
 import model.WorkoutSet;
 import ui.GUI;
@@ -7,28 +7,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddWorkoutBackButton extends Button {
+public class AddWorkoutBackButton extends BackButton {
+
     public AddWorkoutBackButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
         super(gui, parent, workoutSet);
     }
 
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
-    }
-
-    @Override
-    protected String getLabel() {
-        return "Back";
-    }
-
+    // MODIFIES: this
+    // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new AddWorkoutBackButton.AddWorkoutBackButtonClickHandler());
+        button.addActionListener(new AddWorkoutBackButton.ClickHandler());
     }
 
-    private class AddWorkoutBackButtonClickHandler implements ActionListener {
+    private class ClickHandler implements ActionListener {
 
         // EFFECTS: returns to home screen
         @Override
@@ -36,4 +28,5 @@ public class AddWorkoutBackButton extends Button {
             gui.getCards().show(gui.getContainer(), "home");
         }
     }
+
 }
