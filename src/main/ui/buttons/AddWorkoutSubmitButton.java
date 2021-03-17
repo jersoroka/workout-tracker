@@ -84,6 +84,7 @@ public class AddWorkoutSubmitButton extends Button {
                 Workout workout = new Workout(new Date(Integer.parseInt(year.getText()),
                         Integer.parseInt(month.getText()), Integer.parseInt(day.getText())), name.getText());
                 workoutSet.addWorkout(workout);
+                gui.createViewWorkoutsScreen();
                 new ViewWorkout(gui, workout);
                 gui.getCards().show(gui.getContainer(), "view workout");
             }
