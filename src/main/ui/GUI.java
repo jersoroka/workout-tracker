@@ -9,6 +9,7 @@ import ui.buttons.BackButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
 import ui.screens.ViewWorkout;
+import ui.screens.ViewWorkouts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,31 +59,9 @@ public class GUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view previous workouts
     public void createViewWorkoutsScreen() {
-        JPanel viewWorkoutsScreen = new JPanel();
-        viewWorkoutsScreen.setLayout(new GridLayout(1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        viewWorkoutsScreen.setSize(WIDTH, HEIGHT);
-        createViewWorkoutButtons(viewWorkoutsScreen);
-
-        JScrollPane viewWorkoutsScreenScrollPane = new JScrollPane(viewWorkoutsScreen,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        container.add(viewWorkoutsScreenScrollPane, "view workouts");
+        new ViewWorkouts(this, "view workouts");
     }
 
-    // MODIFIES: this
-    // EFFECTS: creates buttons corresponding to each workout in workoutSet and adds back button
-    private void createViewWorkoutButtons(JPanel parent) {
-        JPanel workoutsArea = new JPanel();
-        workoutsArea.setLayout(new GridLayout(workoutSet.size() + 1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        parent.add(workoutsArea, BorderLayout.NORTH);
-
-        for (Workout workout : workoutSet.getWorkouts()) {
-            new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
-        }
-
-        new BackButton(this, workoutsArea, workoutSet, "home");
-    }
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view information about a specific workout

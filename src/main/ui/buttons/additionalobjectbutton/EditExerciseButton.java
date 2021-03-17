@@ -17,7 +17,7 @@ public class EditExerciseButton extends AdditionalObjectButton {
     @Override
     protected String getLabel() {
         Exercise exercise = (Exercise) this.object;
-        return exercise.getName();
+        return "Edit " + exercise.getName();
     }
 
     @Override

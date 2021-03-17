@@ -27,6 +27,7 @@ public class ViewWorkout extends Screen {
     @Override
     protected void initializePane() {
         super.initializePane();
+        gui.getContainer().add(this.getPane(), cardName);
         pane.setLayout(new GridLayout(4, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
 
     }

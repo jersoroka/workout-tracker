@@ -6,7 +6,7 @@ import ui.buttons.BackButton;
 
 import javax.swing.*;
 
-public abstract class Screen extends JFrame {
+public class Screen extends JFrame {
     JPanel pane;
     GUI gui;
     Object object;
@@ -22,7 +22,6 @@ public abstract class Screen extends JFrame {
 
     protected void initializePane() {
         pane.setSize(gui.getScreenWidth(), gui.getScreenHeight());
-        gui.getContainer().add(this.getPane(), cardName);
     }
 
     // MODIFIES: parent
