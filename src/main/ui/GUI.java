@@ -80,14 +80,14 @@ public class GUI extends JFrame {
         for (Workout workout : workoutSet.getWorkouts()) {
             new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
         }
-//        new ViewWorkoutsBackButton(this, workoutsArea, workoutSet);
+
         new BackButton(this, workoutsArea, workoutSet, "home");
     }
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view information about a specific workout
     public void createViewWorkoutScreen(Workout workout) {
-        new ViewWorkout(this, workout);
+        new ViewWorkout(this, workout, "view workout");
     }
 
 
@@ -115,22 +115,22 @@ public class GUI extends JFrame {
     // EFFECTS: instantiates frame, button, label, and panel
     private void initializeFields() {
         workoutSet = new WorkoutSet();
-        workoutSet.addWorkout(2021,2,27,"legs");
+        workoutSet.addWorkout(2021, 2, 27, "legs");
         Workout legsWorkout = workoutSet.getWorkout(0);
         legsWorkout.addExercise("front squats");
         Exercise frontSquats = legsWorkout.getExercise(0);
-        frontSquats.addSet(10, 135,"warmup");
-        frontSquats.addSet(10,155,"");
+        frontSquats.addSet(10, 135, "warmup");
+        frontSquats.addSet(10, 155, "");
         legsWorkout.addExercise("leg curls");
         Exercise legCurls = legsWorkout.getExercise(1);
-        legCurls.addSet(20,45,"");
+        legCurls.addSet(20, 45, "");
 
-        workoutSet.addWorkout(2021,2,28,"back");
+        workoutSet.addWorkout(2021, 2, 28, "back");
         Workout backWorkout = workoutSet.getWorkout(1);
         backWorkout.addExercise("rows");
         Exercise rows = backWorkout.getExercise(0);
-        rows.addSet(10, 75,"fast reps");
-        rows.addSet(12,85,"");
+        rows.addSet(10, 75, "fast reps");
+        rows.addSet(12, 85, "");
 
         workoutSet.addWorkout(2021, 7, 4, "test");
         workoutSet.addWorkout(2021, 7, 1, "test");

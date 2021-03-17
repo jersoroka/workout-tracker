@@ -11,28 +11,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ViewWorkout extends JFrame {
-    JPanel pane;
-    GUI gui;
-    Workout workout;
+public class ViewWorkout extends Screen {
+    Workout workout = (Workout) object;
 
-    public ViewWorkout(GUI gui, Workout workout) {
-        pane = new JPanel();
-        this.gui = gui;
-        this.workout = workout;
-        initializePane();
+    public ViewWorkout(GUI gui, Object object, String cardName) {
+        super(gui, object, cardName);
         createWorkoutSummary();
         createExerciseButtons();
         createDeleteButton();
-        createBackButton();
+        createBackButton("view workouts");
     }
 
     // MODIFIES: this, gui
     // EFFECTS: creates the window where the user can view a specific workout
-    public void initializePane() {
+    @Override
+    protected void initializePane() {
+        super.initializePane();
         pane.setLayout(new GridLayout(4, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
-        pane.setSize(gui.getScreenWidth(), gui.getScreenHeight());
-        gui.getContainer().add(this.getPane(), "view workout");
+
     }
 
     // MODIFIES: this
@@ -40,6 +36,7 @@ public class ViewWorkout extends JFrame {
     public void createWorkoutSummary() {
         JEditorPane summary = new JEditorPane();
         summary.setEditable(false);
+        Workout workout = (Workout) object;
 
         summary.setText("Workout Information: \n\nDate of workout: " + workout.getDate().formatToString()
                 + "\n\nWorkout name: " + workout.getName() + "\n\n" + createExerciseSummary());
@@ -76,14 +73,6 @@ public class ViewWorkout extends JFrame {
         }
     }
 
-    // MODIFIES: parent
-    // EFFECTS: adds scroll pane to parent
-    private JScrollPane createScrollPane(JComponent parent) {
-        return new JScrollPane(parent,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-    }
-
     // MODIFIES: this
     // EFFECTS: creates button corresponding to each exercise in exercises
     private void createExerciseButton(JPanel parent) {
@@ -98,14 +87,5 @@ public class ViewWorkout extends JFrame {
         new DeleteWorkoutButton(gui, pane, gui.getWorkoutSet(), workout);
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds a back button to the screen
-    public void createBackButton() {
-        new BackButton(gui, pane, gui.getWorkoutSet(), "view workouts");
 
-    }
-
-    public JPanel getPane() {
-        return pane;
-    }
 }
