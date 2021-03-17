@@ -8,6 +8,7 @@ import ui.buttons.backbuttons.AddWorkoutBackButton;
 import ui.buttons.backbuttons.ViewWorkoutsBackButton;
 import ui.buttons.viewobjectbuttons.ViewWorkoutButton;
 import ui.buttons.viewobjectbuttons.ViewWorkoutsButton;
+import ui.screens.ViewWorkout;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class GUI extends JFrame {
     private static final int WIDTH = 2000;
     private static final int HORIZONTAL_GAP = 0;
     private static final int VERTICAL_GAP = 10;
-    private static GUI GUI;
+    private static GUI gui;
 
     private CardLayout cards;
     private JPanel homeScreen;
@@ -78,6 +79,12 @@ public class GUI extends JFrame {
             new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
         }
         new ViewWorkoutsBackButton(this, workoutsArea, workoutSet);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can view information about a specific workout
+    public void createViewWorkoutScreen(Workout workout) {
+        new ViewWorkout(this, workout);
     }
 
 
@@ -155,12 +162,28 @@ public class GUI extends JFrame {
         return workoutSet;
     }
 
+    public static int getScreenHeight() {
+        return HEIGHT;
+    }
+
+    public static int getScreenWidth() {
+        return WIDTH;
+    }
+
+    public static int getHorizontalGap() {
+        return HORIZONTAL_GAP;
+    }
+
+    public static int getVerticalGap() {
+        return VERTICAL_GAP;
+    }
+
     public static void main(String[] args) {
-        GUI = new GUI();
-        GUI.setTitle("Workout Logger App");
-        GUI.setSize(800, 600);
-        GUI.setResizable(false);
-        GUI.setVisible(true);
-        GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        gui = new GUI();
+        gui.setTitle("Workout Logger App");
+        gui.setSize(800, 600);
+        gui.setResizable(false);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

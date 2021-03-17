@@ -5,7 +5,6 @@ import model.WorkoutSet;
 import ui.GUI;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,8 +30,8 @@ public class ViewWorkoutButton extends ViewObjectButton {
         // EFFECTS: loads selected workout
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO: make view workout screen
-            // viewWorkout();
+            gui.createViewWorkoutScreen((Workout) object);
+            gui.getCards().show(gui.getContainer(), "view workout");
         }
     }
 
