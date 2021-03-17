@@ -1,4 +1,4 @@
-package ui.buttons.viewobjectbuttons;
+package ui.buttons.additionalobjectbutton;
 
 import model.Workout;
 import model.WorkoutSet;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ViewWorkoutButton extends ViewObjectButton {
+public class ViewWorkoutButton extends AdditionalObjectButton {
 
     public ViewWorkoutButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Workout workout) {
         super(gui, parent, workoutSet, workout);

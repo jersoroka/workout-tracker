@@ -1,13 +1,14 @@
 package ui;
 
+import model.Exercise;
 import model.Workout;
 import model.WorkoutSet;
 import ui.buttons.*;
 import ui.buttons.Button;
 import ui.buttons.backbuttons.AddWorkoutBackButton;
 import ui.buttons.backbuttons.ViewWorkoutsBackButton;
-import ui.buttons.viewobjectbuttons.ViewWorkoutButton;
-import ui.buttons.viewobjectbuttons.ViewWorkoutsButton;
+import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
+import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
 import ui.screens.ViewWorkout;
 
 import javax.swing.*;
@@ -55,7 +56,7 @@ public class GUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view previous workouts
-    private void createViewWorkoutsScreen() {
+    public void createViewWorkoutsScreen() {
         JPanel viewWorkoutsScreen = new JPanel();
         viewWorkoutsScreen.setLayout(new GridLayout(1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
         viewWorkoutsScreen.setSize(WIDTH, HEIGHT);
@@ -112,7 +113,23 @@ public class GUI extends JFrame {
     // EFFECTS: instantiates frame, button, label, and panel
     private void initializeFields() {
         workoutSet = new WorkoutSet();
-        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021,2,27,"legs");
+        Workout legsWorkout = workoutSet.getWorkout(0);
+        legsWorkout.addExercise("front squats");
+        Exercise frontSquats = legsWorkout.getExercise(0);
+        frontSquats.addSet(10, 135,"warmup");
+        frontSquats.addSet(10,155,"");
+        legsWorkout.addExercise("leg curls");
+        Exercise legCurls = legsWorkout.getExercise(1);
+        legCurls.addSet(20,45,"");
+
+        workoutSet.addWorkout(2021,2,28,"back");
+        Workout backWorkout = workoutSet.getWorkout(1);
+        backWorkout.addExercise("rows");
+        Exercise rows = backWorkout.getExercise(0);
+        rows.addSet(10, 75,"fast reps");
+        rows.addSet(12,85,"");
+
         workoutSet.addWorkout(2021, 7, 4, "test");
         workoutSet.addWorkout(2021, 7, 1, "test");
         workoutSet.addWorkout(2021, 3, 14, "test");

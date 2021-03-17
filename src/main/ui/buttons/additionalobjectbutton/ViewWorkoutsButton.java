@@ -1,4 +1,4 @@
-package ui.buttons.viewobjectbuttons;
+package ui.buttons.additionalobjectbutton;
 
 import model.WorkoutSet;
 import ui.GUI;
