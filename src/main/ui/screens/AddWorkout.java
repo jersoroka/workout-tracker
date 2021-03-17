@@ -5,22 +5,21 @@ import ui.buttons.AddWorkoutSubmitButton;
 import ui.buttons.BackButton;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.security.acl.Group;
 
 import static javax.swing.GroupLayout.*;
 import static javax.swing.SwingConstants.*;
 
 public class AddWorkout extends Screen {
-    private GroupLayout layout;
-    private static final int LABEL_WIDTH = WIDTH / 18;
-    private static final int ENTRY_WIDTH = WIDTH / 7;
+    private static final int LABEL_WIDTH = WIDTH / 15;
+    private static final int ENTRY_WIDTH = WIDTH / 5;
     private static final int TEXT_HEIGHT = HEIGHT / 50;
+    private Font font = new Font("Dialog", Font.PLAIN, 16);
+    private GroupLayout layout;
 
-    public AddWorkout(GUI gui, String cardName) {
-        super(gui, gui.getWorkoutSet(), cardName);
+    public AddWorkout(GUI gui) {
+        super(gui, gui.getWorkoutSet(), "add workout");
         createTextFields();
     }
 
@@ -45,35 +44,36 @@ public class AddWorkout extends Screen {
     //          group layout
     private void createTextFields() {
         JEditorPane header = header();
-        JEditorPane workoutNameLabel = textBox("Workout Name: ");
-        JEditorPane workoutNameEntry = entryField();
-        JEditorPane monthLabel = textBox("Month: ");
+        JEditorPane nameLabel = textBox("Workout Name: ");
+        JEditorPane nameEntry = entryField();
+        JEditorPane monthLabel = textBox("Month (1-12): ");
         JEditorPane monthEntry = entryField();
         JEditorPane dayLabel = textBox("Day: ");
         JEditorPane dayEntry = entryField();
         JEditorPane yearLabel = textBox("Year: ");
         JEditorPane yearEntry = entryField();
         JButton backButton = new BackButton(gui, pane, gui.getWorkoutSet(), "home").getButton();
-        JButton submitButton = new AddWorkoutSubmitButton(gui, pane, gui.getWorkoutSet()).getButton();
+        JButton submitButton = new AddWorkoutSubmitButton(gui, pane, nameEntry, monthEntry, dayEntry,
+                yearEntry).getButton();
 
-        setHorizontalGroup(workoutNameLabel, workoutNameEntry, monthLabel, monthEntry, dayLabel, dayEntry, yearLabel,
+        setHorizontalGroup(nameLabel, nameEntry, monthLabel, monthEntry, dayLabel, dayEntry, yearLabel,
                 yearEntry, backButton, submitButton, header);
 
-        setVerticalGroup(workoutNameLabel, workoutNameEntry, monthLabel, monthEntry, dayLabel, dayEntry, yearLabel,
+        setVerticalGroup(nameLabel, nameEntry, monthLabel, monthEntry, dayLabel, dayEntry, yearLabel,
                 yearEntry, backButton, submitButton, header);
 
         layout.linkSize(HORIZONTAL, backButton, submitButton);
     }
 
-    private void setVerticalGroup(JEditorPane workoutNameLabel, JEditorPane workoutNameEntry, JEditorPane monthLabel,
+    private void setVerticalGroup(JEditorPane nameLabel, JEditorPane nameEntry, JEditorPane monthLabel,
                                   JEditorPane monthEntry, JEditorPane dayLabel, JEditorPane dayEntry,
                                   JEditorPane yearLabel, JEditorPane yearEntry, JButton backButton,
                                   JButton submitButton, JEditorPane header) {
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(header, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(workoutNameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                        .addComponent(workoutNameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
+                        .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                        .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup()
                         .addComponent(monthLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                         .addComponent(monthEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
@@ -87,7 +87,7 @@ public class AddWorkout extends Screen {
                 .addComponent(backButton));
     }
 
-    private void setHorizontalGroup(JEditorPane workoutNameLabel, JEditorPane workoutNameEntry, JEditorPane monthLabel,
+    private void setHorizontalGroup(JEditorPane nameLabel, JEditorPane nameEntry, JEditorPane monthLabel,
                                     JEditorPane monthEntry, JEditorPane dayLabel, JEditorPane dayEntry,
                                     JEditorPane yearLabel, JEditorPane yearEntry, JButton backButton,
                                     JButton submitButton, JEditorPane header) {
@@ -96,12 +96,12 @@ public class AddWorkout extends Screen {
                         .addComponent(header, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(workoutNameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                        .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(monthLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(dayLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(yearLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(workoutNameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                        .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(monthEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(dayEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                         .addComponent(yearEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
@@ -116,6 +116,7 @@ public class AddWorkout extends Screen {
         label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         label.setEditable(false);
         label.setText(entry);
+        label.setFont(new Font("Dialog", Font.BOLD, 16));
         label.setPreferredSize(new Dimension(LABEL_WIDTH, TEXT_HEIGHT));
         return label;
     }
@@ -125,6 +126,7 @@ public class AddWorkout extends Screen {
         JEditorPane field = new JEditorPane();
         field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
+        field.setFont(font);
         return field;
     }
 
@@ -132,9 +134,11 @@ public class AddWorkout extends Screen {
     private JEditorPane header() {
         JEditorPane header = new JEditorPane();
         header.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        header.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
+        header.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT * 2));
         header.setEditable(false);
-        header.setText("Please enter details for the workout");
+        header.setFont(new Font("Dialog", Font.BOLD, 16));
+        header.setText("Please enter details for the workout. "
+                + "\nEnter the month of the workout as a number.");
         return header;
     }
 

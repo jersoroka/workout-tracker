@@ -547,7 +547,7 @@ public class WorkoutLoggerApp {
     }
 
     // EFFECTS: produces true if string contains only integer characters, false otherwise
-    private boolean isOnlyIntegers(String string) {
+    public boolean isOnlyIntegers(String string) {
         try {
             Integer.parseInt(string);
         } catch (NumberFormatException e) {

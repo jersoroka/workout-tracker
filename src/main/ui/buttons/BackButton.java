@@ -25,6 +25,7 @@ public class BackButton extends Button {
     protected void createButton(JComponent parent) {
         button = new JButton(getLabel());
         button = customizeButton(button);
+        button.setFont(new Font("Dialog", Font.PLAIN, 18));
     }
 
     // EFFECTS: return back button label
@@ -46,8 +47,6 @@ public class BackButton extends Button {
         // EFFECTS: returns to previous screen and plays a sound
         @Override
         public void actionPerformed(ActionEvent e) {
-            Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-            sound.run();
             gui.getCards().show(gui.getContainer(), card);
         }
     }

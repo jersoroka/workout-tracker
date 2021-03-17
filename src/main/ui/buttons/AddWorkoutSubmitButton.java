@@ -1,16 +1,54 @@
 package ui.buttons;
 
-import model.WorkoutSet;
+import model.Date;
+import model.Workout;
 import ui.GUI;
+import ui.screens.ViewWorkout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 public class AddWorkoutSubmitButton extends Button {
+    JEditorPane name;
+    JEditorPane month;
+    JEditorPane day;
+    JEditorPane year;
 
-    public AddWorkoutSubmitButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
-        super(gui, parent, workoutSet);
+    public AddWorkoutSubmitButton(GUI gui, JComponent parent, JEditorPane name, JEditorPane month, JEditorPane day,
+                                  JEditorPane year) {
+        super(gui, parent, gui.getWorkoutSet());
+        this.name = name;
+        this.month = month;
+        this.day = day;
+        this.year = year;
+    }
+
+    // EFFECTS: produces true if combination of year, month, and day is valid
+    private boolean dateValidation(String year, String month, String day) {
+        if (!isOnlyIntegers(year) | !isOnlyIntegers(month) | !isOnlyIntegers(day)) {
+            return false;
+        } else {
+            Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+            return date.isValidDate();
+        }
+    }
+
+    // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
+    private boolean nameValidation(String command) {
+        return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
+    }
+
+    // EFFECTS: produces true if string contains only integer characters, false otherwise
+    public boolean isOnlyIntegers(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -34,73 +72,21 @@ public class AddWorkoutSubmitButton extends Button {
         // EFFECTS: adds workout and opens view workouts screen
         @Override
         public void actionPerformed(ActionEvent e) {
-            // addWorkout();
-            gui.getCards().show(gui.getContainer(), "view workouts");
+            if (!dateValidation(year.getText(), month.getText(), day.getText())) {
+                JOptionPane.showMessageDialog(parent, "Invalid date combination.");
+                Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+                sound.run();
+            } else if (!nameValidation(name.getText())) {
+                JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
+                Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+                sound.run();
+            } else {
+                Workout workout = new Workout(new Date(Integer.parseInt(year.getText()),
+                        Integer.parseInt(month.getText()), Integer.parseInt(day.getText())), name.getText());
+                workoutSet.addWorkout(workout);
+                new ViewWorkout(gui, workout);
+                gui.getCards().show(gui.getContainer(), "view workout");
+            }
         }
     }
-
-//    // MODIFIES: this
-//    // EFFECTS: adds workout to workoutSet
-//    private void addWorkout() {
-//        boolean keepGoing = true;
-//        Date date = new Date(2021, 1, 1);
-//        Workout workout = new Workout(date, "default");
-//
-//        while (keepGoing) {
-//            setWorkoutName(workout);
-//            setWorkoutDate(workout);
-//            workoutSet.addWorkout(workout);
-//            keepGoing = false;
-//            System.out.println("\nWorkout name set to " + workout.getName());
-//            viewWorkouts();
-//        }
-//    }
-//
-//    // MODIFIES: this, workout
-//    // EFFECTS: sets workout name
-//    private void setWorkoutName(Workout workout) {
-//        boolean keepGoing = true;
-//        String command;
-//
-//        while (keepGoing) {
-//            System.out.println("\nEnter the new name of the workout");
-//            command = input.useDelimiter("\\n").next();
-//            if (isNotOnlyWhitespace(command)) {
-//                command = command.toLowerCase();
-//                workout.setName(command);
-//                System.out.println("\nWorkout name set to " + workout.getName());
-//                workout.setName(command);
-//                keepGoing = false;
-//            } else {
-//                invalidMinimumCharacterInput();
-//            }
-//        }
-//    }
-//
-//    // MODIFIES: this, workout
-//    // EFFECTS: changes workout date
-//    private void setWorkoutDate(Workout workout) {
-//        boolean keepGoing = true;
-//
-//        while (keepGoing) {
-//            System.out.println("\nEnter the year the workout is set");
-//            String year = input.next();
-//            System.out.println("Enter the month of the workout as a number. For example, May is 5 and July is 7");
-//            String month = input.next();
-//            System.out.println("Enter the day of the workout");
-//            String day = input.next();
-//
-//            if (!isOnlyIntegers(year) | !isOnlyIntegers(month) | !isOnlyIntegers(day)) {
-//                System.out.println("Please only enter positive integers");
-//            } else {
-//                Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-//                if (workout.setDate(date)) {
-//                    System.out.println("\nDate set to " + date.formatToString());
-//                    keepGoing = false;
-//                } else {
-//                    System.out.println("\nThat date is not valid. Please enter a a valid date");
-//                }
-//            }
-//        }
-//    }
 }

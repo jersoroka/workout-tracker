@@ -14,8 +14,8 @@ import java.util.List;
 public class ViewWorkout extends Screen {
     Workout workout = (Workout) object;
 
-    public ViewWorkout(GUI gui, Object object, String cardName) {
-        super(gui, object, cardName);
+    public ViewWorkout(GUI gui, Object object) {
+        super(gui, object, "view workout");
         createWorkoutSummary();
         createExerciseButtons();
         createDeleteButton();

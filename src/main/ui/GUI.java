@@ -23,7 +23,6 @@ public class GUI extends JFrame {
     private static GUI gui;
 
     private CardLayout cards;
-    private JPanel homeScreen;
     private Container container;
     private WorkoutSet workoutSet;
 
@@ -38,20 +37,20 @@ public class GUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: creates the window where the user can add a workout
     private void createAddWorkoutScreen() {
-        new AddWorkout(this, "add workout");
+        new AddWorkout(this);
     }
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view previous workouts
     public void createViewWorkoutsScreen() {
-        new ViewWorkouts(this, "view workouts");
+        new ViewWorkouts(this);
     }
 
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view information about a specific workout
     public void createViewWorkoutScreen(Workout workout) {
-        new ViewWorkout(this, workout, "view workout");
+        new ViewWorkout(this, workout);
     }
 
 

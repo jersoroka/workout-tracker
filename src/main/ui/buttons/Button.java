@@ -4,6 +4,7 @@ import model.WorkoutSet;
 import ui.GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class Button {
     protected JButton button;
@@ -26,6 +27,7 @@ public abstract class Button {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
+        button.setFont(new Font("Dialog", Font.PLAIN, 18));
         return button;
     }
 

@@ -11,8 +11,8 @@ import java.awt.*;
 
 public class ViewWorkouts extends Screen {
 
-    public ViewWorkouts(GUI gui, String cardName) {
-        super(gui, gui.getWorkoutSet(), cardName);
+    public ViewWorkouts(GUI gui) {
+        super(gui, gui.getWorkoutSet(), "view workouts");
         createWorkoutsPane();
     }
 
