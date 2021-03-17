@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import model.WorkoutSet;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 
@@ -9,11 +9,11 @@ public abstract class Button {
     protected JButton button;
     protected WorkoutSet workoutSet;
     protected JComponent parent;
-    protected WorkoutLoggerAppGUI workoutLoggerAppGUI;
+    protected GUI gui;
 
-    public Button(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
+    public Button(GUI gui, JComponent parent, WorkoutSet workoutSet) {
         this.workoutSet = workoutSet;
-        this.workoutLoggerAppGUI = workoutLoggerAppGUI;
+        this.gui = gui;
         createButton(parent);
         this.parent = parent;
         addListener();

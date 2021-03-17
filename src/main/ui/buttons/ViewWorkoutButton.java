@@ -2,7 +2,7 @@ package ui.buttons;
 
 import model.Workout;
 import model.WorkoutSet;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +11,13 @@ public class ViewWorkoutButton {
     protected JButton button;
     protected WorkoutSet workoutSet;
     protected JComponent parent;
-    protected WorkoutLoggerAppGUI workoutLoggerAppGUI;
+    protected GUI gui;
     protected Workout workout;
 
-    public ViewWorkoutButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent,
+    public ViewWorkoutButton(GUI gui, JComponent parent,
                              WorkoutSet workoutSet, Workout workout) {
         this.workoutSet = workoutSet;
-        this.workoutLoggerAppGUI = workoutLoggerAppGUI;
+        this.gui = gui;
         this.workout = workout;
         this.parent = parent;
         createButton(parent);

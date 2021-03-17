@@ -2,7 +2,7 @@ package ui.buttons;
 
 import model.WorkoutSet;
 import persistence.JsonReader;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +13,8 @@ public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
-    public LoadButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
-        super(workoutLoggerAppGUI, parent, workoutSet);
+    public LoadButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+        super(gui, parent, workoutSet);
     }
 
     @Override

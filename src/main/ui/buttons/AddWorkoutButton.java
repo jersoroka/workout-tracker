@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import model.WorkoutSet;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class AddWorkoutButton extends Button {
 
-    public AddWorkoutButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
-        super(workoutLoggerAppGUI, parent, workoutSet);
+    public AddWorkoutButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+        super(gui, parent, workoutSet);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class AddWorkoutButton extends Button {
         // EFFECTS: opens home screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            workoutLoggerAppGUI.getCards().show(workoutLoggerAppGUI.getContainer(), "home");
+            gui.getCards().show(gui.getContainer(), "home");
         }
     }
 

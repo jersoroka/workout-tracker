@@ -1,7 +1,7 @@
 package ui.buttons;
 
 import model.WorkoutSet;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class AddWorkoutSubmitButton extends Button {
 
-    public AddWorkoutSubmitButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
-        super(workoutLoggerAppGUI, parent, workoutSet);
+    public AddWorkoutSubmitButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+        super(gui, parent, workoutSet);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AddWorkoutSubmitButton extends Button {
         @Override
         public void actionPerformed(ActionEvent e) {
             // addWorkout();
-            workoutLoggerAppGUI.getCards().show(workoutLoggerAppGUI.getContainer(), "view workouts");
+            gui.getCards().show(gui.getContainer(), "view workouts");
         }
     }
 

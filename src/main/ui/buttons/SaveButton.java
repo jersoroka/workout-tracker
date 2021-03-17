@@ -2,7 +2,7 @@ package ui.buttons;
 
 import model.WorkoutSet;
 import persistence.JsonWriter;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +13,8 @@ public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
-    public SaveButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
-        super(workoutLoggerAppGUI, parent, workoutSet);
+    public SaveButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+        super(gui, parent, workoutSet);
     }
 
     @Override

@@ -7,22 +7,20 @@ import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 
-public class WorkoutLoggerAppGUI extends JFrame {
+public class GUI extends JFrame {
     private static final int HEIGHT = 1600;
     private static final int WIDTH = 2000;
     private static final int HORIZONTAL_GAP = 0;
     private static final int VERTICAL_GAP = 10;
-    private static WorkoutLoggerAppGUI workoutLoggerAppGUI;
+    private static GUI GUI;
 
     private CardLayout cards;
     private JPanel homeScreen;
     private Container container;
     private WorkoutSet workoutSet;
 
-    public WorkoutLoggerAppGUI() {
+    public GUI() {
         initializeCardLayout();
         initializeFields();
         createHomeScreen();
@@ -154,11 +152,11 @@ public class WorkoutLoggerAppGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        workoutLoggerAppGUI = new WorkoutLoggerAppGUI();
-        workoutLoggerAppGUI.setTitle("Workout Logger App");
-        workoutLoggerAppGUI.setSize(800, 600);
-        workoutLoggerAppGUI.setResizable(false);
-        workoutLoggerAppGUI.setVisible(true);
-        workoutLoggerAppGUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        GUI = new GUI();
+        GUI.setTitle("Workout Logger App");
+        GUI.setSize(800, 600);
+        GUI.setResizable(false);
+        GUI.setVisible(true);
+        GUI.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

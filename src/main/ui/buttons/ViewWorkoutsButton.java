@@ -1,15 +1,15 @@
 package ui.buttons;
 
 import model.WorkoutSet;
-import ui.WorkoutLoggerAppGUI;
+import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ViewWorkoutsButton extends Button {
-    public ViewWorkoutsButton(WorkoutLoggerAppGUI workoutLoggerAppGUI, JComponent parent, WorkoutSet workoutSet) {
-        super(workoutLoggerAppGUI, parent, workoutSet);
+    public ViewWorkoutsButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+        super(gui, parent, workoutSet);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ViewWorkoutsButton extends Button {
         // EFFECTS: opens view workout screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            workoutLoggerAppGUI.getCards().show(workoutLoggerAppGUI.getContainer(), "view workouts");
+            gui.getCards().show(gui.getContainer(), "view workouts");
         }
     }
 }
