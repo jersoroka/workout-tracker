@@ -6,6 +6,8 @@ import ui.buttons.*;
 import ui.buttons.Button;
 import ui.buttons.backbuttons.AddWorkoutBackButton;
 import ui.buttons.backbuttons.ViewWorkoutsBackButton;
+import ui.buttons.viewobjectbuttons.ViewWorkoutButton;
+import ui.buttons.viewobjectbuttons.ViewWorkoutsButton;
 
 import javax.swing.*;
 import java.awt.*;
