@@ -13,8 +13,8 @@ public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
-    public LoadButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
-        super(gui, parent, workoutSet);
+    public LoadButton(GUI gui, JComponent parent) {
+        super(gui, parent, gui.getWorkoutSet());
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ViewWorkout extends Screen {
     Workout workout = (Workout) object;
 
     public ViewWorkout(GUI gui, Object object) {
-        super(gui, object, "view workout");
+        super(gui, object);
         createWorkoutSummary();
         createExerciseButtons();
         createDeleteButton();
@@ -27,8 +27,8 @@ public class ViewWorkout extends Screen {
     @Override
     protected void initializePane() {
         super.initializePane();
-        gui.getContainer().add(this.getPane(), cardName);
-        pane.setLayout(new GridLayout(4, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
+        gui.getContainer().add(this.getPane(), "view workout");
+        pane.setLayout(new GridLayout(4, 0, HORIZONTAL_GAP, VERTICAL_GAP));
 
     }
 
@@ -69,7 +69,7 @@ public class ViewWorkout extends Screen {
         pane.add(scrollPane);
         if (exercises.size() != 0) {
             exercisesArea.setLayout(new GridLayout(exercises.size(), 0,
-                    gui.getHorizontalGap(), gui.getVerticalGap()));
+                    HORIZONTAL_GAP, VERTICAL_GAP));
             createExerciseButton(exercisesArea);
         }
     }

@@ -19,14 +19,14 @@ public class AddWorkout extends Screen {
     private GroupLayout layout;
 
     public AddWorkout(GUI gui) {
-        super(gui, gui.getWorkoutSet(), "add workout");
+        super(gui, gui.getWorkoutSet());
         createTextFields();
     }
 
     @Override
     protected void initializePane() {
         super.initializePane();
-        gui.getContainer().add(this.getPane(), cardName);
+        gui.getContainer().add(this.getPane(), "add workout");
         initializeGroupLayout();
     }
 

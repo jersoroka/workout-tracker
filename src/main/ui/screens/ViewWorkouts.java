@@ -12,14 +12,14 @@ import java.awt.*;
 public class ViewWorkouts extends Screen {
 
     public ViewWorkouts(GUI gui) {
-        super(gui, gui.getWorkoutSet(), "view workouts");
+        super(gui, gui.getWorkoutSet());
         createWorkoutsPane();
     }
 
     @Override
     protected void initializePane() {
         super.initializePane();
-        pane.setLayout(new GridLayout(1, 0, gui.getHorizontalGap(), gui.getVerticalGap()));
+        pane.setLayout(new GridLayout(1, 0, HORIZONTAL_GAP, VERTICAL_GAP));
     }
 
     // MODIFIES: this
@@ -37,7 +37,7 @@ public class ViewWorkouts extends Screen {
         WorkoutSet workoutSet = gui.getWorkoutSet();
 
         workoutsArea.setLayout(new GridLayout(workoutSet.size() + 1, 0,
-                gui.getHorizontalGap(), gui.getVerticalGap()));
+                HORIZONTAL_GAP, VERTICAL_GAP));
         pane.add(workoutsArea, BorderLayout.NORTH);
 
         for (Workout workout : workoutSet.getWorkouts()) {

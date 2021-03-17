@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 
 public class AddWorkoutButton extends Button {
 
-    public AddWorkoutButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
-        super(gui, parent, workoutSet);
+    public AddWorkoutButton(GUI gui, JComponent parent) {
+        super(gui, parent, gui.getWorkoutSet());
     }
 
     @Override
@@ -37,6 +37,7 @@ public class AddWorkoutButton extends Button {
         // EFFECTS: opens add workout screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
+            gui.createViewWorkoutsScreen();
             gui.getCards().show(gui.getContainer(), "add workout");
         }
     }

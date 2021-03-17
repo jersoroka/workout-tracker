@@ -10,7 +10,6 @@ public class Screen extends JFrame {
     protected JPanel pane;
     protected GUI gui;
     protected Object object;
-    protected String cardName;
 
     protected static final int WIDTH = 2000;
     protected static final int HEIGHT = 1600;
@@ -18,16 +17,15 @@ public class Screen extends JFrame {
     protected static final int VERTICAL_GAP = 10;
 
 
-    public Screen(GUI gui, Object object, String cardName) {
+    public Screen(GUI gui, Object object) {
         pane = new JPanel();
         this.gui = gui;
         this.object = object;
-        this.cardName = cardName;
         initializePane();
     }
 
     protected void initializePane() {
-        pane.setSize(gui.getScreenWidth(), gui.getScreenHeight());
+        pane.setSize(WIDTH, HEIGHT);
     }
 
     // MODIFIES: parent

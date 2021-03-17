@@ -9,6 +9,7 @@ import ui.buttons.BackButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
 import ui.screens.AddWorkout;
+import ui.screens.HomeScreen;
 import ui.screens.ViewWorkout;
 import ui.screens.ViewWorkouts;
 
@@ -58,12 +59,7 @@ public class GUI extends JFrame {
     // EFFECTS: draws the JFrame window where the workout logger app will operate
     //          and populates the save and load buttons
     private void createHomeScreen() {
-        JPanel homeScreen = new JPanel();
-        homeScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        homeScreen.setSize(WIDTH, HEIGHT);
-        createHomeScreenWorkoutButtons(homeScreen);
-        createPersistenceButtons(homeScreen);
-        container.add(homeScreen, "home");
+        new HomeScreen(this);
     }
 
     // MODIFIES: this
@@ -105,35 +101,10 @@ public class GUI extends JFrame {
         workoutSet.addWorkout(2021, 7, 1, "test");
     }
 
-    // MODIFIES: this
-    // EFFECTS: a helper method which declares and instantiates persistence buttons
-    private void createPersistenceButtons(JPanel parent) {
-        JPanel persistenceArea = new JPanel();
-        persistenceArea.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        parent.add(persistenceArea, BorderLayout.SOUTH);
-        Button saveButton = new SaveButton(this, persistenceArea, workoutSet);
-        Button loadButton = new LoadButton(this, persistenceArea, workoutSet);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: a helper method which declares and instantiates the buttons on the home screen
-    //          that correspond to workout options
-    private void createHomeScreenWorkoutButtons(JPanel parent) {
-        JPanel homeArea = new JPanel();
-        homeArea.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        parent.add(homeArea, BorderLayout.NORTH);
-        Button addWorkout = new AddWorkoutButton(this, homeArea, workoutSet);
-        Button viewWorkouts = new ViewWorkoutsButton(this, homeArea, workoutSet);
-    }
-
     // getters
 
     public CardLayout getCards() {
         return cards;
-    }
-
-    public JPanel getHomeScreen() {
-        return homeScreen;
     }
 
     public Container getContainer() {
@@ -142,22 +113,6 @@ public class GUI extends JFrame {
 
     public WorkoutSet getWorkoutSet() {
         return workoutSet;
-    }
-
-    public static int getScreenHeight() {
-        return HEIGHT;
-    }
-
-    public static int getScreenWidth() {
-        return WIDTH;
-    }
-
-    public static int getHorizontalGap() {
-        return HORIZONTAL_GAP;
-    }
-
-    public static int getVerticalGap() {
-        return VERTICAL_GAP;
     }
 
     public static void main(String[] args) {

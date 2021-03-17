@@ -13,8 +13,8 @@ public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
-    public SaveButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
-        super(gui, parent, workoutSet);
+    public SaveButton(GUI gui, JComponent parent) {
+        super(gui, parent, gui.getWorkoutSet());
     }
 
     @Override
