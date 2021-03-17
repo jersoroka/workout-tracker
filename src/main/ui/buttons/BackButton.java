@@ -43,9 +43,11 @@ public class BackButton extends Button {
 
     private class ClickHandler implements ActionListener {
 
-        // EFFECTS: returns to previous screen
+        // EFFECTS: returns to previous screen and plays a sound
         @Override
         public void actionPerformed(ActionEvent e) {
+            Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+            sound.run();
             gui.getCards().show(gui.getContainer(), card);
         }
     }

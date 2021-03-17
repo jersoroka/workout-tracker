@@ -39,23 +39,6 @@ public class GUI extends JFrame {
     // EFFECTS: creates the window where the user can add a workout
     private void createAddWorkoutScreen() {
         new AddWorkout(this, "add workout");
-//        JPanel addWorkoutScreen = new JPanel();
-//        addWorkoutScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-//        addWorkoutScreen.setSize(WIDTH, HEIGHT);
-//        createAddWorkoutScreenButtons(addWorkoutScreen);
-//        container.add(addWorkoutScreen, "add workout");
-    }
-
-    // MODIFIES: this
-    // EFFECTS: a helper method which declares and instantiates the back and submit button for the add workouts screen
-    private void createAddWorkoutScreenButtons(JPanel parent) {
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        parent.add(buttonPanel, BorderLayout.SOUTH);
-//        Button backButton = new AddWorkoutBackButton(this, buttonPanel, workoutSet);
-//        Button submitButton = new AddWorkoutSubmitButton(this, buttonPanel, workoutSet);
-        Button backButton = new BackButton(this, buttonPanel, workoutSet, "home");
-        Button submitButton = new AddWorkoutSubmitButton(this, buttonPanel, workoutSet);
     }
 
     // MODIFIES: this
