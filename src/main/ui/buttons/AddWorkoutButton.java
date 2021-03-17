@@ -34,10 +34,10 @@ public class AddWorkoutButton extends Button {
 
     private class AddWorkoutButtonClickHandler implements ActionListener {
 
-        // EFFECTS: opens home screen when clicked
+        // EFFECTS: opens add workout screen when clicked
         @Override
         public void actionPerformed(ActionEvent e) {
-            gui.getCards().show(gui.getContainer(), "home");
+            gui.getCards().show(gui.getContainer(), "add workout");
         }
     }
 

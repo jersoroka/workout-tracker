@@ -8,6 +8,7 @@ import ui.buttons.Button;
 import ui.buttons.BackButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
+import ui.screens.AddWorkout;
 import ui.screens.ViewWorkout;
 import ui.screens.ViewWorkouts;
 
@@ -37,11 +38,12 @@ public class GUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: creates the window where the user can add a workout
     private void createAddWorkoutScreen() {
-        JPanel addWorkoutScreen = new JPanel();
-        addWorkoutScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
-        addWorkoutScreen.setSize(WIDTH, HEIGHT);
-        createAddWorkoutScreenButtons(addWorkoutScreen);
-        container.add(addWorkoutScreen, "add workout");
+        new AddWorkout(this, "add workout");
+//        JPanel addWorkoutScreen = new JPanel();
+//        addWorkoutScreen.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
+//        addWorkoutScreen.setSize(WIDTH, HEIGHT);
+//        createAddWorkoutScreenButtons(addWorkoutScreen);
+//        container.add(addWorkoutScreen, "add workout");
     }
 
     // MODIFIES: this

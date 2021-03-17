@@ -44,4 +44,20 @@ public abstract class Button {
     public void addToParent() {
         parent.add(button);
     }
+
+    public JButton getButton() {
+        return button;
+    }
+
+    public WorkoutSet getWorkoutSet() {
+        return workoutSet;
+    }
+
+    public JComponent getParent() {
+        return parent;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
 }

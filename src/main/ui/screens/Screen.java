@@ -7,10 +7,16 @@ import ui.buttons.BackButton;
 import javax.swing.*;
 
 public class Screen extends JFrame {
-    JPanel pane;
-    GUI gui;
-    Object object;
-    String cardName;
+    protected JPanel pane;
+    protected GUI gui;
+    protected Object object;
+    protected String cardName;
+
+    protected static final int WIDTH = 2000;
+    protected static final int HEIGHT = 1600;
+    protected static final int HORIZONTAL_GAP = 0;
+    protected static final int VERTICAL_GAP = 10;
+
 
     public Screen(GUI gui, Object object, String cardName) {
         pane = new JPanel();
