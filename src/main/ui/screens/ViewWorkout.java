@@ -5,7 +5,7 @@ import model.Workout;
 import ui.GUI;
 import ui.buttons.DeleteWorkoutButton;
 import ui.buttons.additionalobjectbutton.EditExerciseButton;
-import ui.buttons.backbuttons.ViewWorkoutBackButton;
+import ui.buttons.BackButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -101,7 +101,7 @@ public class ViewWorkout extends JFrame {
     // MODIFIES: this
     // EFFECTS: adds a back button to the screen
     public void createBackButton() {
-        new ViewWorkoutBackButton(gui, pane, gui.getWorkoutSet());
+        new BackButton(gui, pane, gui.getWorkoutSet(), "view workouts");
 
     }
 

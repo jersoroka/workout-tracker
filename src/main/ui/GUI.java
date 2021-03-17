@@ -5,8 +5,7 @@ import model.Workout;
 import model.WorkoutSet;
 import ui.buttons.*;
 import ui.buttons.Button;
-import ui.buttons.backbuttons.AddWorkoutBackButton;
-import ui.buttons.backbuttons.ViewWorkoutsBackButton;
+import ui.buttons.BackButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
 import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
 import ui.screens.ViewWorkout;
@@ -50,7 +49,9 @@ public class GUI extends JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 0, HORIZONTAL_GAP, VERTICAL_GAP));
         parent.add(buttonPanel, BorderLayout.SOUTH);
-        Button backButton = new AddWorkoutBackButton(this, buttonPanel, workoutSet);
+//        Button backButton = new AddWorkoutBackButton(this, buttonPanel, workoutSet);
+//        Button submitButton = new AddWorkoutSubmitButton(this, buttonPanel, workoutSet);
+        Button backButton = new BackButton(this, buttonPanel, workoutSet, "home");
         Button submitButton = new AddWorkoutSubmitButton(this, buttonPanel, workoutSet);
     }
 
@@ -79,7 +80,8 @@ public class GUI extends JFrame {
         for (Workout workout : workoutSet.getWorkouts()) {
             new ViewWorkoutButton(this, workoutsArea, workoutSet, workout);
         }
-        new ViewWorkoutsBackButton(this, workoutsArea, workoutSet);
+//        new ViewWorkoutsBackButton(this, workoutsArea, workoutSet);
+        new BackButton(this, workoutsArea, workoutSet, "home");
     }
 
     // MODIFIES: this
