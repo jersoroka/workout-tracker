@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
 public class DeleteWorkoutButton extends AdditionalObjectButton {
 
 
-    public DeleteWorkoutButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Object object) {
-        super(gui, parent, workoutSet, object);
+    public DeleteWorkoutButton(GUI gui, JComponent parent, Object object) {
+        super(gui, parent, object);
     }
 
     @Override

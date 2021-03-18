@@ -10,8 +10,8 @@ public abstract class AdditionalObjectButton extends BasicButton {
     protected Object object;
 
 
-    public AdditionalObjectButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Object object) {
-        super(gui, parent, workoutSet);
+    public AdditionalObjectButton(GUI gui, JComponent parent, Object object) {
+        super(gui, parent);
         this.object = object;
         createButton(parent);
         addListener();

@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 
 public class ViewWorkoutButton extends AdditionalObjectButton {
 
-    public ViewWorkoutButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Workout workout) {
-        super(gui, parent, workoutSet, workout);
+    public ViewWorkoutButton(GUI gui, JComponent parent, Workout workout) {
+        super(gui, parent, workout);
     }
 
     @Override

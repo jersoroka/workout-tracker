@@ -37,7 +37,7 @@ public class Screen extends JFrame {
     }
 
     protected void createBackButton(String previousCard) {
-        new BackButton(gui, pane, gui.getWorkoutSet(), previousCard);
+        new BackButton(gui, pane, previousCard);
     }
 
     public JPanel getPane() {

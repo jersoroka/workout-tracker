@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
 public class BackButton extends Button {
     String card;
 
-    public BackButton(GUI gui, JComponent parent, WorkoutSet workoutSet, String card) {
-        super(gui, parent, workoutSet);
+    public BackButton(GUI gui, JComponent parent, String card) {
+        super(gui, parent);
         this.card = card;
 
 
@@ -25,7 +25,6 @@ public class BackButton extends Button {
     protected void createButton(JComponent parent) {
         button = new JButton(getLabel());
         button = customizeButton(button);
-        button.setFont(new Font("Dialog", Font.PLAIN, 18));
     }
 
     // EFFECTS: return back button label

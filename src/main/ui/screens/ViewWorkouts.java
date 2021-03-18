@@ -41,10 +41,10 @@ public class ViewWorkouts extends Screen {
         pane.add(workoutsArea, BorderLayout.NORTH);
 
         for (Workout workout : workoutSet.getWorkouts()) {
-            new ViewWorkoutButton(gui, workoutsArea, workoutSet, workout);
+            new ViewWorkoutButton(gui, workoutsArea, workout);
         }
 
-        new BackButton(gui, workoutsArea, workoutSet, "home");
+        new BackButton(gui, workoutsArea, "home");
     }
 
 

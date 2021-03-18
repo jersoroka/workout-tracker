@@ -14,7 +14,7 @@ public class SaveButton extends Button {
     private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
     public SaveButton(GUI gui, JComponent parent) {
-        super(gui, parent, gui.getWorkoutSet());
+        super(gui, parent);
     }
 
     @Override

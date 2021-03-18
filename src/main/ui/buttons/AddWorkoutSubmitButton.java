@@ -19,7 +19,7 @@ public class AddWorkoutSubmitButton extends Button {
 
     public AddWorkoutSubmitButton(GUI gui, JComponent parent, JEditorPane name, JEditorPane month, JEditorPane day,
                                   JEditorPane year) {
-        super(gui, parent, gui.getWorkoutSet());
+        super(gui, parent);
         this.name = name;
         this.month = month;
         this.day = day;

@@ -12,8 +12,8 @@ public abstract class Button {
     protected JComponent parent;
     protected GUI gui;
 
-    public Button(GUI gui, JComponent parent, WorkoutSet workoutSet) {
-        this.workoutSet = workoutSet;
+    public Button(GUI gui, JComponent parent) {
+        this.workoutSet = gui.getWorkoutSet();
         this.gui = gui;
         createButton(parent);
         this.parent = parent;

@@ -14,7 +14,7 @@ public class LoadButton extends Button {
     private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
     public LoadButton(GUI gui, JComponent parent) {
-        super(gui, parent, gui.getWorkoutSet());
+        super(gui, parent);
     }
 
     @Override

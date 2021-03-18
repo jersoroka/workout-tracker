@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class EditExerciseButton extends AdditionalObjectButton {
 
     public EditExerciseButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Object object) {
-        super(gui, parent, workoutSet, object);
+        super(gui, parent, object);
     }
 
     @Override

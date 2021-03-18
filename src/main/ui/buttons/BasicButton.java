@@ -4,6 +4,7 @@ import model.WorkoutSet;
 import ui.GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class BasicButton {
     protected GUI gui;
@@ -11,10 +12,10 @@ public abstract class BasicButton {
     protected WorkoutSet workoutSet;
     protected JButton button;
 
-    public BasicButton(GUI gui, JComponent parent, WorkoutSet workoutSet) {
+    public BasicButton(GUI gui, JComponent parent) {
         this.gui = gui;
         this.parent = parent;
-        this.workoutSet = workoutSet;
+        this.workoutSet = gui.getWorkoutSet();
     }
 
     // MODIFIES: this
@@ -23,6 +24,7 @@ public abstract class BasicButton {
         button.setBorderPainted(true);
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
+        button.setFont(new Font("Dialog", Font.PLAIN, 18));
         return button;
     }
 
@@ -43,5 +45,21 @@ public abstract class BasicButton {
     // EFFECTS:  adds the given button to the parent component
     public void addToParent() {
         parent.add(button);
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public JComponent getParent() {
+        return parent;
+    }
+
+    public WorkoutSet getWorkoutSet() {
+        return workoutSet;
+    }
+
+    public JButton getButton() {
+        return button;
     }
 }

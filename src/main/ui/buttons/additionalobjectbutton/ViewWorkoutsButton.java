@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ViewWorkoutsButton extends Button {
     public ViewWorkoutsButton(GUI gui, JComponent parent) {
-        super(gui, parent, gui.getWorkoutSet());
+        super(gui, parent);
     }
 
     @Override

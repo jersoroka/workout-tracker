@@ -56,7 +56,7 @@ public class AddWorkout extends Screen {
         JEditorPane dayEntry = entryField();
         JEditorPane yearLabel = textBox("Year: ");
         JEditorPane yearEntry = entryField();
-        JButton backButton = new BackButton(gui, pane, gui.getWorkoutSet(), "home").getButton();
+        JButton backButton = new BackButton(gui, pane, "home").getButton();
         JButton submitButton = new AddWorkoutSubmitButton(gui, pane, nameEntry, monthEntry, dayEntry,
                 yearEntry).getButton();
 
