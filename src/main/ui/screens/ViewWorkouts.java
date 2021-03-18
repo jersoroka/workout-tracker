@@ -3,8 +3,8 @@ package ui.screens;
 import model.Workout;
 import model.WorkoutSet;
 import ui.GUI;
-import ui.buttons.BackButton;
-import ui.buttons.ViewWorkoutButton;
+import ui.buttons.navigation.BackButton;
+import ui.buttons.navigation.ViewWorkoutButton;
 
 import javax.swing.*;
 import java.awt.*;

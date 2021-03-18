@@ -1,30 +1,31 @@
-package ui.buttons;
+package ui.buttons.editfield;
 
 import model.Workout;
 import ui.GUI;
+import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class that represents a button that allows the user to delete a workout
+
 public class DeleteWorkoutButton extends Button {
 
-
+    // MODIFIES: this
+    // EFFECTS: constructs a button that lets the user delete a workout
     public DeleteWorkoutButton(GUI gui, JComponent parent, Object object) {
         super(gui, parent, object);
     }
 
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
-    }
-
+    // EFFECTS: returns the delete workout label
     @Override
     protected String getLabel() {
         return "Delete Workout";
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a listener for this button
     @Override
     protected void addListener() {
         button.addActionListener(new DeleteWorkoutButton.ClickHandler());

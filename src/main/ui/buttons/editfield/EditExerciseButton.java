@@ -1,30 +1,32 @@
-package ui.buttons;
+package ui.buttons.editfield;
 
 import model.Exercise;
 import ui.GUI;
+import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class representing the edit exercise button
+
 public class EditExerciseButton extends Button {
 
+    // MODIFIES: this
+    // EFFECTS: creates edit exercise button
     public EditExerciseButton(GUI gui, JComponent parent, Object object) {
         super(gui, parent, object);
     }
 
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
-    }
-
+    // EFFECTS: returns edit label for a specific exercise
     @Override
     protected String getLabel() {
         Exercise exercise = (Exercise) this.object;
         return "Edit " + exercise.getName();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a listener for this button
     @Override
     protected void addListener() {
         button.addActionListener(new EditExerciseButton.ClickHandler());

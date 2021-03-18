@@ -1,8 +1,7 @@
 package ui.screens;
 
-import model.Workout;
 import ui.GUI;
-import ui.buttons.BackButton;
+import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;
 

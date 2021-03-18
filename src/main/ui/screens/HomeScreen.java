@@ -1,11 +1,11 @@
 package ui.screens;
 
 import ui.GUI;
-import ui.buttons.AddWorkoutButton;
+import ui.buttons.navigation.AddWorkoutButton;
 import ui.buttons.Button;
-import ui.buttons.LoadButton;
-import ui.buttons.SaveButton;
-import ui.buttons.ViewWorkoutsButton;
+import ui.buttons.persistence.LoadButton;
+import ui.buttons.persistence.SaveButton;
+import ui.buttons.navigation.ViewWorkoutsButton;
 
 import javax.swing.*;
 import java.awt.*;

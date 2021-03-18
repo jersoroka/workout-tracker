@@ -3,12 +3,12 @@ package ui.screens;
 import model.Exercise;
 import model.Workout;
 import ui.GUI;
-import ui.buttons.BackButton;
-import ui.buttons.DeleteWorkoutButton;
-import ui.buttons.AddExerciseButton;
-import ui.buttons.EditExerciseButton;
-import ui.buttons.EditExercisesButton;
-import ui.buttons.EditNameAndDateButton;
+import ui.buttons.navigation.BackButton;
+import ui.buttons.editfield.DeleteWorkoutButton;
+import ui.buttons.navigation.AddExerciseButton;
+import ui.buttons.editfield.EditExerciseButton;
+import ui.buttons.editfield.EditExercisesButton;
+import ui.buttons.editfield.EditNameAndDateButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;

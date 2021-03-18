@@ -1,21 +1,19 @@
-package ui.buttons;
+package ui.buttons.navigation;
 
 import ui.GUI;
+import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class that represents a button that takes the user to the add exercise screen
 public class AddExerciseButton extends Button {
 
+    // MODIFIES: this
+    // EFFECTS: creates an add exercise button that takes the user to the add exercise screen
     public AddExerciseButton(GUI gui, JComponent parent, Object object) {
         super(gui, parent, object);
-    }
-
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
     }
 
     // EFFECTS: returns add exercise label

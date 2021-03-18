@@ -1,8 +1,8 @@
 package ui.screens;
 
 import ui.GUI;
-import ui.buttons.AddWorkoutSubmitButton;
-import ui.buttons.BackButton;
+import ui.buttons.addobject.AddWorkoutSubmitButton;
+import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;

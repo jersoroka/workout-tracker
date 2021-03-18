@@ -6,6 +6,8 @@ import ui.GUI;
 import javax.swing.*;
 import java.awt.*;
 
+// abstract class representing a button
+
 public abstract class Button {
     protected JButton button;
     protected WorkoutSet workoutSet;
@@ -63,6 +65,12 @@ public abstract class Button {
     // EFFECTS:  adds the given button to the parent component
     public void addToParent() {
         parent.add(button);
+    }
+
+    // EFFECTS: plays an error sound
+    protected void playErrorSound() {
+        Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+        sound.run();
     }
 
     // getters

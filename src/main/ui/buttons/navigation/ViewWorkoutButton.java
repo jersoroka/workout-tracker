@@ -1,7 +1,8 @@
-package ui.buttons;
+package ui.buttons.navigation;
 
 import model.Workout;
 import ui.GUI;
+import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
