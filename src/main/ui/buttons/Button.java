@@ -13,10 +13,10 @@ public abstract class Button {
     protected GUI gui;
 
     public Button(GUI gui, JComponent parent) {
-        this.workoutSet = gui.getWorkoutSet();
         this.gui = gui;
-        createButton(parent);
         this.parent = parent;
+        this.workoutSet = gui.getWorkoutSet();
+        createButton(parent);
         addListener();
         addToParent();
     }
