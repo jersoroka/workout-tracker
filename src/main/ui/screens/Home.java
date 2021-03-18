@@ -10,9 +10,9 @@ import ui.buttons.navigation.ViewWorkoutsButton;
 import javax.swing.*;
 import java.awt.*;
 
-public class HomeScreen extends Screen {
+public class Home extends Screen {
 
-    public HomeScreen(GUI gui) {
+    public Home(GUI gui) {
         super(gui, gui.getWorkoutSet());
         createWorkoutButtons();
         createPersistenceButtons();

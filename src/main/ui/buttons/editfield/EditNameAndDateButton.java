@@ -1,5 +1,6 @@
 package ui.buttons.editfield;
 
+import model.Workout;
 import ui.GUI;
 import ui.buttons.Button;
 
@@ -35,8 +36,8 @@ public class EditNameAndDateButton extends Button {
         // EFFECTS: opens edit name and date screen
         @Override
         public void actionPerformed(ActionEvent e) {
-            //gui.createEditNameAndDateScreen((Workout) object);
-            //gui.getCards().show(gui.getContainer(), "edit name and date");
+            gui.createEditNameAndDateScreen((Workout) object);
+            gui.getCards().show(gui.getContainer(), "edit name and date");
         }
     }
 }

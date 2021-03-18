@@ -61,6 +61,22 @@ public class AddWorkoutSubmitButton extends Button {
         return "Submit";
     }
 
+    // EFFECTS: produces true if the date combination is valid and the name is non-zero length, false otherwise.
+    //          Produces a message dialog that informs the user of the error that they made.
+    protected boolean isValid() {
+        if (!dateValidation(year.getText(), month.getText(), day.getText())) {
+            JOptionPane.showMessageDialog(parent, "Invalid date combination.");
+            playErrorSound();
+            return false;
+        } else if (!nameValidation(name.getText())) {
+            JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
+            playErrorSound();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     // MODIFIES: this
     // EFFECTS: associates button with new ClickHandler
     @Override
@@ -71,7 +87,8 @@ public class AddWorkoutSubmitButton extends Button {
     private class SubmitButtonClickHandler implements ActionListener {
 
         // MODIFIES: this
-        // EFFECTS: adds workout if entries are valid and opens view workouts screen
+        // EFFECTS: adds workout if entries are valid and opens view workout screen
+        //          If entry combination is invalid a popup is created and sound is made
         @Override
         public void actionPerformed(ActionEvent e) {
             if (isValid()) {
@@ -81,22 +98,6 @@ public class AddWorkoutSubmitButton extends Button {
                 gui.createViewWorkoutsScreen();
                 new ViewWorkout(gui, workout);
                 gui.getCards().show(gui.getContainer(), "view workout");
-            }
-        }
-
-        // EFFECTS: produces true if the date combination is valid and the name is non-zero length, false otherwise.
-        //          Produces a message dialog that informs the user of the error that they made.
-        private boolean isValid() {
-            if (!dateValidation(year.getText(), month.getText(), day.getText())) {
-                JOptionPane.showMessageDialog(parent, "Invalid date combination.");
-                playErrorSound();
-                return false;
-            } else if (!nameValidation(name.getText())) {
-                JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
-                playErrorSound();
-                return false;
-            } else {
-                return true;
             }
         }
     }

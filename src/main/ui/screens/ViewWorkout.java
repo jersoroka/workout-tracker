@@ -61,7 +61,7 @@ public class ViewWorkout extends Screen {
         JButton editNameAndDateButton = new EditNameAndDateButton(gui, pane, workout).getButton();
         JButton editExercisesButton = new EditExercisesButton(gui, pane, workout).getButton();
         JButton deleteWorkoutButton = new DeleteWorkoutButton(gui, pane, workout).getButton();
-        JButton backButton = new BackButton(gui, pane, "home").getButton();
+        JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
 
         setHorizontalGroup(summary, label, addExerciseButton, editNameAndDateButton, editExercisesButton,
                 deleteWorkoutButton, backButton);

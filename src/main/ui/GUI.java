@@ -3,10 +3,7 @@ package ui;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutSet;
-import ui.screens.AddWorkout;
-import ui.screens.HomeScreen;
-import ui.screens.ViewWorkout;
-import ui.screens.ViewWorkouts;
+import ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +20,11 @@ public class GUI extends JFrame {
     private WorkoutSet workoutSet;
 
     public GUI() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            // use default look and feel if exception is thrown
+        }
         initializeCardLayout();
         initializeFields();
         createHomeScreen();
@@ -54,7 +56,13 @@ public class GUI extends JFrame {
     // EFFECTS: draws the JFrame window where the workout logger app will operate
     //          and populates the save and load buttons
     private void createHomeScreen() {
-        new HomeScreen(this);
+        new Home(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit a workouts name and date
+    public void createEditNameAndDateScreen(Workout workout) {
+        new EditNameAndDate(this, workout);
     }
 
     // MODIFIES: this
