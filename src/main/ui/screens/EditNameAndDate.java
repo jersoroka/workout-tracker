@@ -68,7 +68,7 @@ public class EditNameAndDate extends Screen {
         dayEntry.setText(String.valueOf(workout.getDate().getDay()));
         yearEntry.setText(String.valueOf(workout.getDate().getYear()));
 
-        JButton backButton = new BackButton(gui, pane, "home").getButton();
+        JButton backButton = new BackButton(gui, pane, "view workout").getButton();
         JButton submitButton = new EditNameAndDateSubmitButton(gui, pane, nameEntry, monthEntry, dayEntry,
                 yearEntry, workout).getButton();
 

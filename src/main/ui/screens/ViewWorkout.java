@@ -139,27 +139,27 @@ public class ViewWorkout extends Screen {
         }
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds buttons which each display an exercise done in a workout
-    private void createExerciseButtons() {
-        List<Exercise> exercises = workout.getExercises();
-        JPanel exercisesArea = new JPanel();
-        JScrollPane scrollPane = createScrollPane(exercisesArea);
-        pane.add(scrollPane);
-        if (exercises.size() != 0) {
-            exercisesArea.setLayout(new GridLayout(exercises.size(), 0,
-                    HORIZONTAL_GAP, VERTICAL_GAP));
-            createExerciseButton(exercisesArea);
-        }
-    }
+//    // MODIFIES: this
+//    // EFFECTS: adds buttons which each display an exercise done in a workout
+//    private void createExerciseButtons() {
+//        List<Exercise> exercises = workout.getExercises();
+//        JPanel exercisesArea = new JPanel();
+//        JScrollPane scrollPane = createScrollPane(exercisesArea);
+//        pane.add(scrollPane);
+//        if (exercises.size() != 0) {
+//            exercisesArea.setLayout(new GridLayout(exercises.size(), 0,
+//                    HORIZONTAL_GAP, VERTICAL_GAP));
+//            createExerciseButton(exercisesArea);
+//        }
+//    }
 
-    // MODIFIES: this
-    // EFFECTS: creates button corresponding to each exercise in exercises
-    private void createExerciseButton(JPanel parent) {
-        for (Exercise e : workout.getExercises()) {
-            new EditExerciseButton(gui, parent, e);
-        }
-    }
+//    // MODIFIES: this
+//    // EFFECTS: creates button corresponding to each exercise in exercises
+//    private void createExerciseButton(JPanel parent) {
+//        for (Exercise e : workout.getExercises()) {
+//            new EditExerciseButton(gui, parent, e);
+//        }
+//    }
 
     // EFFECTS: creates unmodifiable text box
     private JEditorPane label() {

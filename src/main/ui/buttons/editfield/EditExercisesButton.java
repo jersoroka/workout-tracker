@@ -1,5 +1,6 @@
 package ui.buttons.editfield;
 
+import model.Workout;
 import ui.GUI;
 import ui.buttons.Button;
 
@@ -35,8 +36,8 @@ public class EditExercisesButton extends Button {
         // EFFECTS: loads edit exercises screen
         @Override
         public void actionPerformed(ActionEvent e) {
-            //gui.createEditExercisesScreen((Workout) object);
-            //gui.getCards().show(gui.getContainer(), "edit exercises");
+            gui.createEditExercisesScreen((Workout) object);
+            gui.getCards().show(gui.getContainer(), "edit exercises");
         }
     }
 

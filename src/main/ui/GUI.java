@@ -44,6 +44,11 @@ public class GUI extends JFrame {
         new ViewWorkouts(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit exercises in a workout
+    public void createEditExercisesScreen(Workout workout) {
+        new EditExercises(this, workout);
+    }
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can view information about a specific workout
@@ -77,6 +82,36 @@ public class GUI extends JFrame {
     // EFFECTS: instantiates frame, button, label, and panel
     private void initializeFields() {
         workoutSet = new WorkoutSet();
+        createDefaultLegsWorkout();
+        createDefaultBackWorkout();
+        createEmptyTestWorkouts();
+    }
+
+    // EFFECTS: creates default back workout
+    private void createDefaultBackWorkout() {
+        workoutSet.addWorkout(2021, 2, 28, "back");
+        Workout backWorkout = workoutSet.getWorkout(1);
+        backWorkout.addExercise("rows");
+        Exercise rows = backWorkout.getExercise(0);
+        rows.addSet(10, 75, "fast reps");
+        rows.addSet(12, 85, "");
+    }
+
+    // EFFECTS: creates empty test workouts
+    private void createEmptyTestWorkouts() {
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
+        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
+        workoutSet.addWorkout(2021, 3, 14, "test");
+        workoutSet.addWorkout(2021, 7, 4, "test");
+        workoutSet.addWorkout(2021, 7, 1, "test");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates default leg workout
+    private void createDefaultLegsWorkout() {
         workoutSet.addWorkout(2021, 2, 27, "legs");
         Workout legsWorkout = workoutSet.getWorkout(0);
         legsWorkout.addExercise("front squats");
@@ -86,22 +121,6 @@ public class GUI extends JFrame {
         legsWorkout.addExercise("leg curls");
         Exercise legCurls = legsWorkout.getExercise(1);
         legCurls.addSet(20, 45, "");
-
-        workoutSet.addWorkout(2021, 2, 28, "back");
-        Workout backWorkout = workoutSet.getWorkout(1);
-        backWorkout.addExercise("rows");
-        Exercise rows = backWorkout.getExercise(0);
-        rows.addSet(10, 75, "fast reps");
-        rows.addSet(12, 85, "");
-
-        workoutSet.addWorkout(2021, 7, 4, "test");
-        workoutSet.addWorkout(2021, 7, 1, "test");
-        workoutSet.addWorkout(2021, 3, 14, "test");
-        workoutSet.addWorkout(2021, 7, 4, "test");
-        workoutSet.addWorkout(2021, 7, 1, "test");
-        workoutSet.addWorkout(2021, 3, 14, "test");
-        workoutSet.addWorkout(2021, 7, 4, "test");
-        workoutSet.addWorkout(2021, 7, 1, "test");
     }
 
     // getters

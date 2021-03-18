@@ -7,8 +7,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class that represents a button that directs the user to the add workout screen
+
 public class AddWorkoutButton extends Button {
 
+    // MODIFIES: this
+    // EFFECTS: constructs an add workout navigation button
     public AddWorkoutButton(GUI gui, JComponent parent) {
         super(gui, parent);
     }
