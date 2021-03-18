@@ -11,8 +11,8 @@ public class Screen extends JFrame {
     protected GUI gui;
     protected Object object;
 
-    protected static final int WIDTH = 2000;
-    protected static final int HEIGHT = 1600;
+    protected static final int WIDTH = 450;
+    protected static final int HEIGHT = 600;
     protected static final int HORIZONTAL_GAP = 0;
     protected static final int VERTICAL_GAP = 10;
 

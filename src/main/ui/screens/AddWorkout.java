@@ -12,17 +12,21 @@ import static javax.swing.GroupLayout.*;
 import static javax.swing.SwingConstants.*;
 
 public class AddWorkout extends Screen {
-    private static final int LABEL_WIDTH = WIDTH / 15;
-    private static final int ENTRY_WIDTH = WIDTH / 5;
-    private static final int TEXT_HEIGHT = HEIGHT / 50;
+    private static final int LABEL_WIDTH = WIDTH / 3;
+    private static final int ENTRY_WIDTH = WIDTH / 2;
+    private static final int TEXT_HEIGHT = HEIGHT / 21;
     private Font font = new Font("Dialog", Font.PLAIN, 16);
     private GroupLayout layout;
 
+    // MODIFIES: this
+    // EFFECTS: constructs screen for adding a workout
     public AddWorkout(GUI gui) {
         super(gui, gui.getWorkoutSet());
         createTextFields();
     }
 
+    // MODIFIES: this, gui
+    // EFFECTS: creates a window where the user can add a workout
     @Override
     protected void initializePane() {
         super.initializePane();
@@ -65,6 +69,8 @@ public class AddWorkout extends Screen {
         layout.linkSize(HORIZONTAL, backButton, submitButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: organizes vertical grouping in group layout
     private void setVerticalGroup(JEditorPane nameLabel, JEditorPane nameEntry, JEditorPane monthLabel,
                                   JEditorPane monthEntry, JEditorPane dayLabel, JEditorPane dayEntry,
                                   JEditorPane yearLabel, JEditorPane yearEntry, JButton backButton,
@@ -87,6 +93,8 @@ public class AddWorkout extends Screen {
                 .addComponent(backButton));
     }
 
+    // MODIFIES: this
+    // EFFECTS: organizes horizontal grouping in group layout
     private void setHorizontalGroup(JEditorPane nameLabel, JEditorPane nameEntry, JEditorPane monthLabel,
                                     JEditorPane monthEntry, JEditorPane dayLabel, JEditorPane dayEntry,
                                     JEditorPane yearLabel, JEditorPane yearEntry, JButton backButton,
@@ -134,11 +142,11 @@ public class AddWorkout extends Screen {
     private JEditorPane header() {
         JEditorPane header = new JEditorPane();
         header.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        header.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT * 2));
+        header.setPreferredSize(new Dimension(LABEL_WIDTH * 2, TEXT_HEIGHT * 2));
         header.setEditable(false);
         header.setFont(new Font("Dialog", Font.BOLD, 16));
         header.setText("Please enter details for the workout. "
-                + "\nEnter the month of the workout as a number.");
+                + "\nEnter the month as a number.");
         return header;
     }
 

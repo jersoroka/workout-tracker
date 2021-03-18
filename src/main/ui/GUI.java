@@ -3,11 +3,6 @@ package ui;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutSet;
-import ui.buttons.*;
-import ui.buttons.Button;
-import ui.buttons.BackButton;
-import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
-import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
 import ui.screens.AddWorkout;
 import ui.screens.HomeScreen;
 import ui.screens.ViewWorkout;
@@ -17,8 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI extends JFrame {
-    private static final int HEIGHT = 1600;
-    private static final int WIDTH = 2000;
+    private static final int HEIGHT = 450;
+    private static final int WIDTH = 600;
     private static final int HORIZONTAL_GAP = 0;
     private static final int VERTICAL_GAP = 10;
     private static GUI gui;
@@ -118,7 +113,7 @@ public class GUI extends JFrame {
     public static void main(String[] args) {
         gui = new GUI();
         gui.setTitle("Workout Logger App");
-        gui.setSize(800, 600);
+        gui.setSize(WIDTH, HEIGHT);
         gui.setResizable(false);
         gui.setVisible(true);
         gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

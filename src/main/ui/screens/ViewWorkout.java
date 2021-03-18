@@ -5,7 +5,6 @@ import model.Workout;
 import ui.GUI;
 import ui.buttons.DeleteWorkoutButton;
 import ui.buttons.additionalobjectbutton.EditExerciseButton;
-import ui.buttons.BackButton;
 
 import javax.swing.*;
 import java.awt.*;
