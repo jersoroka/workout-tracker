@@ -11,11 +11,26 @@ public abstract class Button {
     protected WorkoutSet workoutSet;
     protected JComponent parent;
     protected GUI gui;
+    protected Object object;
 
+    // MODIFIES: this
+    // EFFECTS: creates button
     public Button(GUI gui, JComponent parent) {
         this.gui = gui;
         this.parent = parent;
         this.workoutSet = gui.getWorkoutSet();
+        createButton(parent);
+        addListener();
+        addToParent();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates button and accepts an extra object argument
+    public Button(GUI gui, JComponent parent, Object object) {
+        this.gui = gui;
+        this.parent = parent;
+        this.workoutSet = gui.getWorkoutSet();
+        this.object = object;
         createButton(parent);
         addListener();
         addToParent();
@@ -32,7 +47,10 @@ public abstract class Button {
     }
 
     // EFFECTS: creates button with appropriate label
-    protected abstract void createButton(JComponent parent);
+    protected void createButton(JComponent parent) {
+        button = new JButton(getLabel());
+        button = customizeButton(button);
+    }
 
     // EFFECTS: Returns the string for the label
     protected abstract String getLabel();
@@ -46,6 +64,8 @@ public abstract class Button {
     public void addToParent() {
         parent.add(button);
     }
+
+    // getters
 
     public JButton getButton() {
         return button;

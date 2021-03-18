@@ -16,7 +16,6 @@ public class BackButton extends Button {
         super(gui, parent);
         this.card = card;
 
-
     }
 
     // MODIFIES: this, parent

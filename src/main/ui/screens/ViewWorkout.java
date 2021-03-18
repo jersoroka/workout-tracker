@@ -5,10 +5,10 @@ import model.Workout;
 import ui.GUI;
 import ui.buttons.BackButton;
 import ui.buttons.DeleteWorkoutButton;
-import ui.buttons.additionalobjectbutton.AddExerciseButton;
-import ui.buttons.additionalobjectbutton.EditExerciseButton;
-import ui.buttons.additionalobjectbutton.EditExercisesButton;
-import ui.buttons.additionalobjectbutton.EditNameAndDateButton;
+import ui.buttons.AddExerciseButton;
+import ui.buttons.EditExerciseButton;
+import ui.buttons.EditExercisesButton;
+import ui.buttons.EditNameAndDateButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -157,7 +157,7 @@ public class ViewWorkout extends Screen {
     // EFFECTS: creates button corresponding to each exercise in exercises
     private void createExerciseButton(JPanel parent) {
         for (Exercise e : workout.getExercises()) {
-            new EditExerciseButton(gui, parent, gui.getWorkoutSet(), e);
+            new EditExerciseButton(gui, parent, e);
         }
     }
 

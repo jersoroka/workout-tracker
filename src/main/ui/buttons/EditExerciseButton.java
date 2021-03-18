@@ -1,17 +1,22 @@
-package ui.buttons.additionalobjectbutton;
+package ui.buttons;
 
 import model.Exercise;
-import model.WorkoutSet;
 import ui.GUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditExerciseButton extends AdditionalObjectButton {
+public class EditExerciseButton extends Button {
 
-    public EditExerciseButton(GUI gui, JComponent parent, WorkoutSet workoutSet, Object object) {
+    public EditExerciseButton(GUI gui, JComponent parent, Object object) {
         super(gui, parent, object);
+    }
+
+    @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton(getLabel());
+        button = customizeButton(button);
     }
 
     @Override

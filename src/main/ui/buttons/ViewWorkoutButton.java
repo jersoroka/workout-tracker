@@ -7,11 +7,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DeleteWorkoutButton extends Button {
+public class ViewWorkoutButton extends Button {
 
-
-    public DeleteWorkoutButton(GUI gui, JComponent parent, Object object) {
-        super(gui, parent, object);
+    public ViewWorkoutButton(GUI gui, JComponent parent, Workout workout) {
+        super(gui, parent, workout);
     }
 
     @Override
@@ -22,23 +21,23 @@ public class DeleteWorkoutButton extends Button {
 
     @Override
     protected String getLabel() {
-        return "Delete Workout";
+        Workout workout = (Workout) this.object;
+        return workout.getName() + ": " + workout.getDate().formatToString();
     }
 
     @Override
     protected void addListener() {
-        button.addActionListener(new DeleteWorkoutButton.ClickHandler());
+        button.addActionListener(new ViewWorkoutButton.ClickHandler());
     }
 
     private class ClickHandler implements ActionListener {
 
-        // EFFECTS: deletes workout and re-opens view workouts screen
+        // EFFECTS: loads selected workout
         @Override
         public void actionPerformed(ActionEvent e) {
-            Workout workout = (Workout) object;
-            workoutSet.removeWorkout(workoutSet.indexOf(workout));
-            gui.createViewWorkoutsScreen();
-            gui.getCards().show(gui.getContainer(), "view workouts");
+            gui.createViewWorkoutScreen((Workout) object);
+            gui.getCards().show(gui.getContainer(), "view workout");
         }
     }
+
 }

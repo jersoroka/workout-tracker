@@ -5,7 +5,7 @@ import ui.buttons.AddWorkoutButton;
 import ui.buttons.Button;
 import ui.buttons.LoadButton;
 import ui.buttons.SaveButton;
-import ui.buttons.additionalobjectbutton.ViewWorkoutsButton;
+import ui.buttons.ViewWorkoutsButton;
 
 import javax.swing.*;
 import java.awt.*;

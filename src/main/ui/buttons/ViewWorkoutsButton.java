@@ -1,8 +1,6 @@
-package ui.buttons.additionalobjectbutton;
+package ui.buttons;
 
-import model.WorkoutSet;
 import ui.GUI;
-import ui.buttons.Button;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

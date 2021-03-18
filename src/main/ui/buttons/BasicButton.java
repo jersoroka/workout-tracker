@@ -11,11 +11,19 @@ public abstract class BasicButton {
     protected JComponent parent;
     protected WorkoutSet workoutSet;
     protected JButton button;
+    protected Object object;
 
     public BasicButton(GUI gui, JComponent parent) {
         this.gui = gui;
         this.parent = parent;
         this.workoutSet = gui.getWorkoutSet();
+    }
+
+    public BasicButton(GUI gui, JComponent parent, Object object) {
+        this.gui = gui;
+        this.parent = parent;
+        this.workoutSet = gui.getWorkoutSet();
+        this.object = object;
     }
 
     // MODIFIES: this

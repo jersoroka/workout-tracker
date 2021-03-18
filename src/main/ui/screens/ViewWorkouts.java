@@ -4,7 +4,7 @@ import model.Workout;
 import model.WorkoutSet;
 import ui.GUI;
 import ui.buttons.BackButton;
-import ui.buttons.additionalobjectbutton.ViewWorkoutButton;
+import ui.buttons.ViewWorkoutButton;
 
 import javax.swing.*;
 import java.awt.*;
