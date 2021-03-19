@@ -135,7 +135,7 @@ public class EditExercises extends Screen {
         return setComboBox;
     }
 
-    // EFFECTS: creates entry fields and buttons for each set in exercise
+    // EFFECTS: creates entry fields and buttons for each set in exercis
     private JPanel createSetSection(Exercise exercise) {
         JPanel pane = new JPanel();
         pane.setLayout(new GridLayout(exercise.getSets().size(), 0));
