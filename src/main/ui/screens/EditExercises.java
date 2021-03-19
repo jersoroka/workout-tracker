@@ -73,7 +73,8 @@ public class EditExercises extends Screen {
     // MODIFIES: this
     // EFFECTS: creates components for the tab and organizes them into the group layout
     private void createComponents(GroupLayout layout, JPanel parent, Exercise exercise) {
-        JEditorPane nameLabel = textBox("Name: ");
+        // TODO: add entry field for exercise name
+        JEditorPane nameLabel = textBox(exercise.getName());
         JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise).getButton();
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
         JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
