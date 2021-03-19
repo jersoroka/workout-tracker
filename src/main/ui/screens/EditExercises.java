@@ -8,9 +8,6 @@ import ui.buttons.navigation.BackButton;
 import ui.buttons.navigation.EditExerciseNameButton;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
@@ -18,10 +15,6 @@ import static javax.swing.GroupLayout.PREFERRED_SIZE;
 
 public class EditExercises extends Screen {
     private JTabbedPane tabbedPane;
-    private static final int LABEL_WIDTH = WIDTH / 3;
-    private static final int ENTRY_WIDTH = WIDTH / 2;
-    private static final int TEXT_HEIGHT = HEIGHT / 21;
-    private Font font = new Font("Dialog", Font.PLAIN, 18);
 
     public EditExercises(GUI gui, Object object) {
         super(gui, object);
@@ -40,7 +33,7 @@ public class EditExercises extends Screen {
         List<Exercise> exercises = ((Workout) object).getExercises();
 
         tabbedPane = new JTabbedPane();
-        for (Exercise exercise: exercises) {
+        for (Exercise exercise : exercises) {
             initializeExercisePane(exercise);
         }
     }
@@ -74,7 +67,8 @@ public class EditExercises extends Screen {
     // EFFECTS: creates components for the tab and organizes them into the group layout
     private void createComponents(GroupLayout layout, JPanel parent, Exercise exercise) {
         JEditorPane nameEntry = entryField();
-        JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise, nameEntry, (Workout) object).getButton();
+        JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise, nameEntry,
+                (Workout) object).getButton();
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
         JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
 
@@ -96,15 +90,6 @@ public class EditExercises extends Screen {
                         .addComponent(deleteExerciseButton)
                         .addComponent(backButton))
         );
-    }
-
-    // EFFECTS: creates user entry field
-    private JEditorPane entryField() {
-        JEditorPane field = new JEditorPane();
-        field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
-        field.setFont(font);
-        return field;
     }
 
 }

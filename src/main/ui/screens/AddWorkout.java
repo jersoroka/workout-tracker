@@ -11,6 +11,8 @@ import java.awt.*;
 import static javax.swing.GroupLayout.*;
 import static javax.swing.SwingConstants.*;
 
+// class representing a screen where a user can add a workout
+
 public class AddWorkout extends Screen {
     private static final int LABEL_WIDTH = WIDTH / 3;
     private static final int ENTRY_WIDTH = WIDTH / 2;
@@ -25,7 +27,7 @@ public class AddWorkout extends Screen {
         createTextFields();
     }
 
-    // MODIFIES: this, gui
+    // MODIFIES: this
     // EFFECTS: creates a window where the user can add a workout
     @Override
     protected void initializePane() {
@@ -115,27 +117,6 @@ public class AddWorkout extends Screen {
                                         .addComponent(yearEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)))
                         .addComponent(submitButton)
                         .addComponent(backButton)));
-    }
-
-
-    // EFFECTS: creates unmodifiable text box
-    private JEditorPane textBox(String entry) {
-        JEditorPane label = new JEditorPane();
-        label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        label.setEditable(false);
-        label.setText(entry);
-        label.setFont(new Font("Dialog", Font.BOLD, 16));
-        label.setPreferredSize(new Dimension(LABEL_WIDTH, TEXT_HEIGHT));
-        return label;
-    }
-
-    // EFFECTS: creates user entry field
-    private JEditorPane entryField() {
-        JEditorPane field = new JEditorPane();
-        field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
-        field.setFont(font);
-        return field;
     }
 
     // EFFECTS: creates header for the screen

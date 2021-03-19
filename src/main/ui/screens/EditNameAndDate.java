@@ -129,27 +129,6 @@ public class EditNameAndDate extends Screen {
                         .addComponent(backButton)));
     }
 
-
-    // EFFECTS: creates unmodifiable text box
-    private JEditorPane textBox(String entry) {
-        JEditorPane label = new JEditorPane();
-        label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        label.setEditable(false);
-        label.setText(entry);
-        label.setFont(new Font("Dialog", Font.BOLD, 16));
-        label.setPreferredSize(new Dimension(LABEL_WIDTH, TEXT_HEIGHT));
-        return label;
-    }
-
-    // EFFECTS: creates user entry field
-    private JEditorPane entryField() {
-        JEditorPane field = new JEditorPane();
-        field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
-        field.setFont(font);
-        return field;
-    }
-
     // EFFECTS: creates header for the screen
     private JEditorPane header() {
         JEditorPane header = new JEditorPane();
