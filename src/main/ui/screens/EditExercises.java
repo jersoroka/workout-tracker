@@ -21,7 +21,7 @@ public class EditExercises extends Screen {
     private static final int LABEL_WIDTH = WIDTH / 3;
     private static final int ENTRY_WIDTH = WIDTH / 2;
     private static final int TEXT_HEIGHT = HEIGHT / 21;
-    private Font font = new Font("Dialog", Font.PLAIN, 16);
+    private Font font = new Font("Dialog", Font.PLAIN, 18);
 
     public EditExercises(GUI gui, Object object) {
         super(gui, object);
@@ -73,16 +73,15 @@ public class EditExercises extends Screen {
     // MODIFIES: this
     // EFFECTS: creates components for the tab and organizes them into the group layout
     private void createComponents(GroupLayout layout, JPanel parent, Exercise exercise) {
-        // TODO: add entry field for exercise name
-        JEditorPane nameLabel = textBox(exercise.getName());
-        JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise).getButton();
+        JEditorPane nameEntry = entryField();
+        JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise, nameEntry, (Workout) object).getButton();
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
         JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
 
         layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                                .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                 .addComponent(editNameButton))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(deleteExerciseButton)
@@ -91,7 +90,7 @@ public class EditExercises extends Screen {
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                        .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                         .addComponent(editNameButton))
                 .addGroup(layout.createParallelGroup()
                         .addComponent(deleteExerciseButton)
@@ -99,15 +98,13 @@ public class EditExercises extends Screen {
         );
     }
 
-    // EFFECTS: creates unmodifiable text box
-    private JEditorPane textBox(String entry) {
-        JEditorPane label = new JEditorPane();
-        label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
-        label.setEditable(false);
-        label.setText(entry);
-        label.setFont(new Font("Dialog", Font.BOLD, 16));
-        label.setPreferredSize(new Dimension(LABEL_WIDTH, TEXT_HEIGHT));
-        return label;
+    // EFFECTS: creates user entry field
+    private JEditorPane entryField() {
+        JEditorPane field = new JEditorPane();
+        field.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+        field.setPreferredSize(new Dimension(ENTRY_WIDTH, TEXT_HEIGHT));
+        field.setFont(font);
+        return field;
     }
 
 }

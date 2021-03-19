@@ -41,7 +41,7 @@ public class AddWorkoutSubmitButton extends Button {
     }
 
     // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
-    private boolean nameValidation(String command) {
+    private boolean isNameValid(String command) {
         return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
     }
 
@@ -68,7 +68,7 @@ public class AddWorkoutSubmitButton extends Button {
             JOptionPane.showMessageDialog(parent, "Invalid date combination.");
             playErrorSound();
             return false;
-        } else if (!nameValidation(name.getText())) {
+        } else if (!isNameValid(name.getText())) {
             JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
             playErrorSound();
             return false;
