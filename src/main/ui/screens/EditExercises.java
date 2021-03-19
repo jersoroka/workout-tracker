@@ -13,13 +13,19 @@ import java.util.List;
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
 
+// class representing a screen where a user can edit the exercises of a workout
+
 public class EditExercises extends Screen {
     private JTabbedPane tabbedPane;
 
+    // MODIFIES: this
+    // EFFECTS: constructs a screen for editing exercises in a workout
     public EditExercises(GUI gui, Object object) {
         super(gui, object);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a tabbed screen and adds card to container
     @Override
     protected void initializePane() {
         super.initializePane();

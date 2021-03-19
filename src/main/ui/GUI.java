@@ -34,8 +34,14 @@ public class GUI extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: creates the window where the user can add a workout
-    private void createAddWorkoutScreen() {
+    public void createAddWorkoutScreen() {
         new AddWorkout(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can add an exercise to a workout
+    public void createAddExerciseScreen(Workout workout) {
+        new AddExercise(this, workout);
     }
 
     // MODIFIES: this

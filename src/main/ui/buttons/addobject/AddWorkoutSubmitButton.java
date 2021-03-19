@@ -64,10 +64,10 @@ public class AddWorkoutSubmitButton extends Button {
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new AddWorkoutSubmitButton.SubmitButtonClickHandler());
+        button.addActionListener(new AddWorkoutSubmitButton.ClickHandler());
     }
 
-    private class SubmitButtonClickHandler implements ActionListener {
+    private class ClickHandler implements ActionListener {
 
         // MODIFIES: this
         // EFFECTS: adds workout if entries are valid and opens view workout screen

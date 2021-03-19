@@ -40,7 +40,7 @@ public class Screen extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets up group layout
+    // EFFECTS: sets up and returns group layout
     protected GroupLayout initializeGroupLayout(JPanel parent) {
         GroupLayout layout = new GroupLayout(parent);
         parent.setLayout(layout);

@@ -1,5 +1,6 @@
 package ui.buttons.navigation;
 
+import model.Workout;
 import ui.GUI;
 import ui.buttons.Button;
 
@@ -34,8 +35,8 @@ public class AddExerciseButton extends Button {
         // EFFECTS: opens add exercise screen
         @Override
         public void actionPerformed(ActionEvent e) {
-            //gui.createEditExerciseScreen((Workout) object);
-            //gui.getCards().show(gui.getContainer(), "add exercise");
+            gui.createAddExerciseScreen((Workout) object);
+            gui.getCards().show(gui.getContainer(), "add exercise");
         }
     }
 }

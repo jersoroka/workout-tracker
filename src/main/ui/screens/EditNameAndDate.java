@@ -36,16 +36,7 @@ public class EditNameAndDate extends Screen {
     protected void initializePane() {
         super.initializePane();
         gui.getContainer().add(this.getPane(), "edit name and date");
-        initializeGroupLayout();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: sets up group layout
-    private void initializeGroupLayout() {
-        layout = new GroupLayout(pane);
-        pane.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        layout = initializeGroupLayout(pane);
     }
 
     // MODIFIES: this

@@ -68,12 +68,6 @@ public abstract class Button {
         parent.add(button);
     }
 
-    // EFFECTS: plays an error sound
-    protected void playErrorSound() {
-        Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
-        sound.run();
-    }
-
     // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
     protected boolean isNameValid(String command) {
         return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
@@ -92,8 +86,14 @@ public abstract class Button {
     // MODIFIES: this
     // EFFECTS: produces error sound and error popup displaying message
     protected void errorPopup(String message) {
-        JOptionPane.showMessageDialog(parent, message);
         playErrorSound();
+        JOptionPane.showMessageDialog(parent, message);
+    }
+
+    // EFFECTS: plays an error sound
+    protected void playErrorSound() {
+        Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
+        sound.run();
     }
 
     // getters
