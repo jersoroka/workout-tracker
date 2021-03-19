@@ -76,4 +76,9 @@ public class WorkoutSetTest {
         assertEquals(2, testWorkoutSet.size());
     }
 
+    @Test
+    void testGetWorkouts() {
+        assertEquals(1, testWorkoutSet.getWorkouts().size());
+    }
+
 }

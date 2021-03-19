@@ -30,6 +30,7 @@ public class ViewWorkoutsButton extends Button {
         button.addActionListener(new ViewWorkoutsButton.ViewWorkoutsButtonClickHandler());
     }
 
+    // class that represents a click handler
     private class ViewWorkoutsButtonClickHandler implements ActionListener {
 
         // EFFECTS: opens view workout screen when clicked

@@ -31,6 +31,7 @@ public class EditNameAndDateButton extends Button {
         button.addActionListener(new EditNameAndDateButton.ClickHandler());
     }
 
+    // class that represents a click handler
     private class ClickHandler implements ActionListener {
 
         // EFFECTS: opens edit name and date screen

@@ -9,18 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+// class that represents a button that is used to load a previously saved workout from file
+
 public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonReader jsonReader = new JsonReader(JSON_STORE);
 
+    // MODIFIES: this
+    // EFFECTS: constructs a button that loads a workout set from file
     public LoadButton(GUI gui, JComponent parent) {
         super(gui, parent);
-    }
-
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
     }
 
     // EFFECTS: returns load label
@@ -33,10 +31,11 @@ public class LoadButton extends Button {
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new LoadButton.LoadButtonClickHandler());
+        button.addActionListener(new LoadButton.ClickHandler());
     }
 
-    private class LoadButtonClickHandler implements ActionListener {
+    // class that represents a click handler
+    private class ClickHandler implements ActionListener {
 
         // EFFECTS: loads workouts
         @Override

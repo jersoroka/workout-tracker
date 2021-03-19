@@ -7,22 +7,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class that represents a back button
 
 public class BackButton extends Button {
     String card;
 
+    // MODIFIES: this
+    // EFFECTS: creates a back button that returns the user to the previous screen
     public BackButton(GUI gui, JComponent parent, String card) {
         super(gui, parent);
         this.card = card;
-
-    }
-
-    // MODIFIES: this, parent
-    // EFFECTS: creates new back button
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
     }
 
     // EFFECTS: return back button label
@@ -31,7 +25,6 @@ public class BackButton extends Button {
         return "Back";
     }
 
-
     // MODIFIES: this
     // EFFECTS: associates button with new ClickHandler
     @Override
@@ -39,6 +32,7 @@ public class BackButton extends Button {
         button.addActionListener(new BackButton.ClickHandler());
     }
 
+    // class that represents a click handler
     private class ClickHandler implements ActionListener {
 
         // EFFECTS: returns to previous screen and plays a sound

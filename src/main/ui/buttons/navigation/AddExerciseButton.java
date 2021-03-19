@@ -30,6 +30,7 @@ public class AddExerciseButton extends Button {
         button.addActionListener(new AddExerciseButton.ClickHandler());
     }
 
+    // class that represents a click handler
     private class ClickHandler implements ActionListener {
 
         // EFFECTS: opens add exercise screen

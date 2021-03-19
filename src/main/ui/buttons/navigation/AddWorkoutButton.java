@@ -17,12 +17,6 @@ public class AddWorkoutButton extends Button {
         super(gui, parent);
     }
 
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
-    }
-
     // EFFECTS: returns add workout label
     @Override
     protected String getLabel() {
@@ -33,10 +27,11 @@ public class AddWorkoutButton extends Button {
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new AddWorkoutButton.AddWorkoutButtonClickHandler());
+        button.addActionListener(new AddWorkoutButton.ClickHandler());
     }
 
-    private class AddWorkoutButtonClickHandler implements ActionListener {
+    // class that represents a click handler
+    private class ClickHandler implements ActionListener {
 
         // EFFECTS: opens add workout screen when clicked
         @Override

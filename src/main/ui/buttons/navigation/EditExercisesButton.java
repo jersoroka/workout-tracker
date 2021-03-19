@@ -31,6 +31,7 @@ public class EditExercisesButton extends Button {
         button.addActionListener(new EditExercisesButton.ClickHandler());
     }
 
+    // class that represents a click handler
     private class ClickHandler implements ActionListener {
 
         // EFFECTS: loads edit exercises screen

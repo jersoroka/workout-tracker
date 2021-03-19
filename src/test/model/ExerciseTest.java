@@ -66,6 +66,15 @@ public class ExerciseTest {
         assertEquals(0, testExercise.getSets().size());
     }
 
+
+    @Test
+    void testRemoveSetSetArgument() {
+        testExercise.addSet(12, 135, "");
+        Set set = testExercise.getSet(0);
+        testExercise.removeSet(set);
+        assertEquals(0, testExercise.getSets().size());
+    }
+
     @Test
     void testIndexOf() {
         testExercise.addSet(5, 225, "RPE 9");

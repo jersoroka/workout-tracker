@@ -30,6 +30,7 @@ public class AddSetButton extends Button {
         button.addActionListener(new AddSetButton.AddSetButtonClickHandler());
     }
 
+    // class that represents a click handler
     private class AddSetButtonClickHandler implements ActionListener {
 
         // EFFECTS: opens add set screen when clicked

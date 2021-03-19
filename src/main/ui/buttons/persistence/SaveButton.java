@@ -10,18 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
+// class representing a button that allows the user to save their workouts
+
 public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";
     private JsonWriter jsonWriter = new JsonWriter(JSON_STORE);
 
+    // MODIFIES: this
+    // EFFECTS: constructs a save button
     public SaveButton(GUI gui, JComponent parent) {
         super(gui, parent);
-    }
-
-    @Override
-    protected void createButton(JComponent parent) {
-        button = new JButton(getLabel());
-        button = customizeButton(button);
     }
 
     // EFFECTS: returns save label
@@ -34,11 +32,11 @@ public class SaveButton extends Button {
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new SaveToolClickHandler());
+        button.addActionListener(new ClickHandler());
     }
 
-
-    private class SaveToolClickHandler implements ActionListener {
+    // class that represents a click handler
+    private class ClickHandler implements ActionListener {
 
         // EFFECTS: saves workouts
         @Override

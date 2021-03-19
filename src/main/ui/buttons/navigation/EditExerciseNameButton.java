@@ -37,6 +37,7 @@ public class EditExerciseNameButton extends Button {
         button.addActionListener(new EditExerciseNameButton.ClickHandler());
     }
 
+    // class that represents a click handler
     private class ClickHandler implements ActionListener {
 
         // EFFECTS: if the name is non-zero length, changes the exercise name. Otherwise creates a pop-up
