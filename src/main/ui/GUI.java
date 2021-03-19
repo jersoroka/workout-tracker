@@ -1,6 +1,7 @@
 package ui;
 
 import model.Exercise;
+import model.Set;
 import model.Workout;
 import model.WorkoutSet;
 import ui.screens.*;
@@ -56,7 +57,6 @@ public class GUI extends JFrame {
         new ViewWorkout(this, workout);
     }
 
-
     // MODIFIES: this
     // EFFECTS: draws the JFrame window where the workout logger app will operate
     //          and populates the save and load buttons
@@ -68,6 +68,18 @@ public class GUI extends JFrame {
     // EFFECTS: creates the window where the user can edit a workouts name and date
     public void createEditNameAndDateScreen(Workout workout) {
         new EditNameAndDate(this, workout);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit a set
+    public void createEditSetScreen(Set set) {
+        new EditSet(this, set);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit an exercise name
+    public void createEditExerciseNameScreen(Exercise exercise) {
+        new EditExerciseName(this, exercise);
     }
 
     // MODIFIES: this

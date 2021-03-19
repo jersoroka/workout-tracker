@@ -34,6 +34,13 @@ public class Exercise implements Writable {
         sets.remove(index);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes the set from exercises
+    public void removeSet(Set set) {
+        sets.remove(set);
+    }
+
+
     // EFFECTS: returns the name of the exercise and list of sets completed as a string
     public String getExerciseInfo() {
         if (sets.size() == 0) {

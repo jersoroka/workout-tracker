@@ -6,14 +6,12 @@ import ui.GUI;
 import ui.buttons.navigation.BackButton;
 import ui.buttons.editfield.DeleteWorkoutButton;
 import ui.buttons.navigation.AddExerciseButton;
-import ui.buttons.editfield.EditExerciseButton;
-import ui.buttons.editfield.EditExercisesButton;
-import ui.buttons.editfield.EditNameAndDateButton;
+import ui.buttons.navigation.EditExercisesButton;
+import ui.buttons.navigation.EditNameAndDateButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.util.List;
 
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
