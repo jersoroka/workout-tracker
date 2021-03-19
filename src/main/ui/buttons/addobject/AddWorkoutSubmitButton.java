@@ -40,21 +40,6 @@ public class AddWorkoutSubmitButton extends Button {
         }
     }
 
-    // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
-    private boolean isNameValid(String command) {
-        return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
-    }
-
-    // EFFECTS: produces true if string does not contain only integers, false otherwise
-    public boolean isOnlyIntegers(String string) {
-        try {
-            Integer.parseInt(string);
-        } catch (NumberFormatException e) {
-            return true;
-        }
-        return false;
-    }
-
     // EFFECTS: returns submit label
     @Override
     protected String getLabel() {
@@ -65,12 +50,10 @@ public class AddWorkoutSubmitButton extends Button {
     //          Produces a message dialog that informs the user of the error that they made.
     protected boolean isValid() {
         if (!dateValidation(year.getText(), month.getText(), day.getText())) {
-            JOptionPane.showMessageDialog(parent, "Invalid date combination.");
-            playErrorSound();
+            errorPopup("Invalid date combination.");
             return false;
         } else if (!isNameValid(name.getText())) {
-            JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
-            playErrorSound();
+            errorPopup("Name must contain at least one character.");
             return false;
         } else {
             return true;

@@ -8,7 +8,6 @@ import ui.buttons.Button;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.Pattern;
 
 // class representing a button that changes the exercise name
 
@@ -31,11 +30,6 @@ public class EditExerciseNameButton extends Button {
         return "Submit New Name";
     }
 
-    // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
-    private boolean isNameValid(String command) {
-        return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
-    }
-
     // MODIFIES: this
     // EFFECTS: adds a listener for this button
     @Override
@@ -56,8 +50,7 @@ public class EditExerciseNameButton extends Button {
                 gui.createEditExercisesScreen(workout);
                 gui.getCards().show(gui.getContainer(), "edit exercises");
             } else {
-                JOptionPane.showMessageDialog(parent, "Name must contain at least one character.");
-                playErrorSound();
+                errorPopup("Name must contain at least one character.");
             }
         }
     }

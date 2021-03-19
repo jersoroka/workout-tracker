@@ -5,6 +5,7 @@ import ui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 // abstract class representing a button
 
@@ -71,6 +72,28 @@ public abstract class Button {
     protected void playErrorSound() {
         Runnable sound = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("win.sound.exclamation");
         sound.run();
+    }
+
+    // EFFECTS: produces true if the string contains at least one non-whitespace character, false otherwise
+    protected boolean isNameValid(String command) {
+        return Pattern.matches("(.*[A-Za-z0-9]+.*)+", command);
+    }
+
+    // EFFECTS: produces true if string does not contain only integers, false otherwise
+    protected boolean isOnlyIntegers(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return false;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: produces error sound and error popup displaying message
+    protected void errorPopup(String message) {
+        JOptionPane.showMessageDialog(parent, message);
+        playErrorSound();
     }
 
     // getters
