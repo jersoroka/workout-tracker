@@ -1,7 +1,7 @@
 package ui.screens;
 
 import ui.GUI;
-import ui.buttons.addobject.AddWorkoutSubmitButton;
+import ui.buttons.editfield.AddWorkoutSubmitButton;
 import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;

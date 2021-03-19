@@ -1,4 +1,4 @@
-package ui.buttons.addobject;
+package ui.buttons.editfield;
 
 import model.Date;
 import model.Workout;
@@ -9,35 +9,46 @@ import ui.screens.ViewWorkout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.Pattern;
 
-// class representing a button that pulls user entered workout field information and adds them to workoutSet if valid
+// class representing a button that edits a workout name and date
 
-public class AddWorkoutSubmitButton extends Button {
+public class EditNameAndDateSubmitButton extends Button {
+    Workout workout;
     JEditorPane name;
     JEditorPane month;
     JEditorPane day;
     JEditorPane year;
 
     // MODIFIES: this
-    // EFFECTS: creates submit button
-    public AddWorkoutSubmitButton(GUI gui, JComponent parent, JEditorPane name, JEditorPane month, JEditorPane day,
-                                  JEditorPane year) {
+    // EFFECTS: creates button that that takes entries, and if valid, makes changes
+    public EditNameAndDateSubmitButton(GUI gui, JComponent parent, JEditorPane name, JEditorPane month,
+                                       JEditorPane day, JEditorPane year, Workout workout) {
         super(gui, parent);
         this.name = name;
         this.month = month;
         this.day = day;
         this.year = year;
+        this.workout = workout;
     }
 
     // EFFECTS: produces true if combination of year, month, and day is valid, false otherwise
-    private boolean dateValidation(String year, String month, String day) {
+    public boolean isDateValid(String year, String month, String day) {
         if (isOnlyIntegers(year) | isOnlyIntegers(month) | isOnlyIntegers(day)) {
             return false;
         } else {
             Date date = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
             return date.isValidDate();
         }
+    }
+
+    // EFFECTS: produces true if string does not contain only integers, false otherwise
+    public boolean isOnlyIntegers(String string) {
+        try {
+            Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return false;
     }
 
     // EFFECTS: returns submit label
@@ -49,7 +60,7 @@ public class AddWorkoutSubmitButton extends Button {
     // EFFECTS: produces true if the date combination is valid and the name is non-zero length, false otherwise.
     //          Produces a message dialog that informs the user of the error that they made.
     protected boolean isValid() {
-        if (!dateValidation(year.getText(), month.getText(), day.getText())) {
+        if (!isDateValid(year.getText(), month.getText(), day.getText())) {
             errorPopup("Invalid date combination.");
             return false;
         } else if (!isNameValid(name.getText())) {
@@ -64,21 +75,23 @@ public class AddWorkoutSubmitButton extends Button {
     // EFFECTS: associates button with new ClickHandler
     @Override
     protected void addListener() {
-        button.addActionListener(new AddWorkoutSubmitButton.ClickHandler());
+        button.addActionListener(new EditNameAndDateSubmitButton.SubmitButtonClickHandler());
     }
 
-    private class ClickHandler implements ActionListener {
+    private class SubmitButtonClickHandler implements ActionListener {
 
         // MODIFIES: this
-        // EFFECTS: adds workout if entries are valid and opens view workout screen
+        // EFFECTS: edits workout if entries are valid and opens view workout screen
         //          If entry combination is invalid a popup is created and sound is made
-        @Override
         public void actionPerformed(ActionEvent e) {
             if (isValid()) {
-                Workout workout = new Workout(new Date(Integer.parseInt(year.getText()),
-                        Integer.parseInt(month.getText()), Integer.parseInt(day.getText())), name.getText());
-                workoutSet.addWorkout(workout);
+                workout.getDate().setYear(Integer.parseInt(year.getText()));
+                workout.getDate().setMonth(Integer.parseInt(month.getText()));
+                workout.getDate().setDay(Integer.parseInt(day.getText()));
+                workout.setName(name.getText());
+
                 gui.createViewWorkoutsScreen();
+                gui.createViewWorkoutScreen(workout);
                 new ViewWorkout(gui, workout);
                 gui.getCards().show(gui.getContainer(), "view workout");
             }

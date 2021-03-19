@@ -2,8 +2,7 @@ package ui.screens;
 
 import model.Workout;
 import ui.GUI;
-import ui.buttons.addobject.AddWorkoutSubmitButton;
-import ui.buttons.addobject.EditNameAndDateSubmitButton;
+import ui.buttons.editfield.EditNameAndDateSubmitButton;
 import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;

@@ -8,11 +8,11 @@ import ui.screens.*;
 import javax.swing.*;
 import java.awt.*;
 
+// class representing the graphical user interface for a workout logger
+
 public class GUI extends JFrame {
     private static final int HEIGHT = 450;
     private static final int WIDTH = 600;
-    private static final int HORIZONTAL_GAP = 0;
-    private static final int VERTICAL_GAP = 10;
     private static GUI gui;
 
     private CardLayout cards;
@@ -20,11 +20,7 @@ public class GUI extends JFrame {
     private WorkoutSet workoutSet;
 
     public GUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            // use default look and feel if exception is thrown
-        }
+        initializeLookAndFeel();
         initializeCardLayout();
         initializeFields();
         createHomeScreen();
@@ -33,46 +29,19 @@ public class GUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates the window where the user can add a workout
-    public void createAddWorkoutScreen() {
-        new AddWorkout(this);
-    }
+    // EFFECTS: initializes the look and feel of the GUI
+    private void initializeLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            // use default look and feel if exception is thrown
+        }
 
-    // MODIFIES: this
-    // EFFECTS: creates the window where the user can add an exercise to a workout
-    public void createAddExerciseScreen(Workout workout) {
-        new AddExercise(this, workout);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates the window where the user can view previous workouts
-    public void createViewWorkoutsScreen() {
-        new ViewWorkouts(this);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates the window where the user can edit exercises in a workout
-    public void createEditExercisesScreen(Workout workout) {
-        new EditExercises(this, workout);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates the window where the user can view information about a specific workout
-    public void createViewWorkoutScreen(Workout workout) {
-        new ViewWorkout(this, workout);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: draws the JFrame window where the workout logger app will operate
-    //          and populates the save and load buttons
-    private void createHomeScreen() {
-        new Home(this);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates the window where the user can edit a workouts name and date
-    public void createEditNameAndDateScreen(Workout workout) {
-        new EditNameAndDate(this, workout);
+        setTitle("Workout Logger App");
+        setSize(WIDTH, HEIGHT);
+        setResizable(false);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     // MODIFIES: this
@@ -84,12 +53,26 @@ public class GUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: instantiates frame, button, label, and panel
+    // EFFECTS: instantiates frame, button, label, panel, and default workouts
     private void initializeFields() {
         workoutSet = new WorkoutSet();
         createDefaultLegsWorkout();
         createDefaultBackWorkout();
         createEmptyTestWorkouts();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates default leg workout
+    private void createDefaultLegsWorkout() {
+        workoutSet.addWorkout(2021, 2, 27, "legs");
+        Workout legsWorkout = workoutSet.getWorkout(0);
+        legsWorkout.addExercise("front squats");
+        Exercise frontSquats = legsWorkout.getExercise(0);
+        frontSquats.addSet(10, 135, "warmup");
+        frontSquats.addSet(10, 155, "");
+        legsWorkout.addExercise("leg curls");
+        Exercise legCurls = legsWorkout.getExercise(1);
+        legCurls.addSet(20, 45, "");
     }
 
     // EFFECTS: creates default back workout
@@ -115,17 +98,46 @@ public class GUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates default leg workout
-    private void createDefaultLegsWorkout() {
-        workoutSet.addWorkout(2021, 2, 27, "legs");
-        Workout legsWorkout = workoutSet.getWorkout(0);
-        legsWorkout.addExercise("front squats");
-        Exercise frontSquats = legsWorkout.getExercise(0);
-        frontSquats.addSet(10, 135, "warmup");
-        frontSquats.addSet(10, 155, "");
-        legsWorkout.addExercise("leg curls");
-        Exercise legCurls = legsWorkout.getExercise(1);
-        legCurls.addSet(20, 45, "");
+    // EFFECTS: draws the JFrame window where the workout logger app will operate
+    //          and populates the save and load buttons
+    private void createHomeScreen() {
+        new Home(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can add a workout
+    public void createAddWorkoutScreen() {
+        new AddWorkout(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can view previous workouts
+    public void createViewWorkoutsScreen() {
+        new ViewWorkouts(this);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can add an exercise to a workout
+    public void createAddExerciseScreen(Workout workout) {
+        new AddExercise(this, workout);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit exercises in a workout
+    public void createEditExercisesScreen(Workout workout) {
+        new EditExercises(this, workout);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can view information about a specific workout
+    public void createViewWorkoutScreen(Workout workout) {
+        new ViewWorkout(this, workout);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates the window where the user can edit a workouts name and date
+    public void createEditNameAndDateScreen(Workout workout) {
+        new EditNameAndDate(this, workout);
     }
 
     // getters
@@ -142,12 +154,13 @@ public class GUI extends JFrame {
         return workoutSet;
     }
 
+    // setters
+
+    public void setWorkoutSet(WorkoutSet workoutSet) {
+        this.workoutSet = workoutSet;
+    }
+
     public static void main(String[] args) {
-        gui = new GUI();
-        gui.setTitle("Workout Logger App");
-        gui.setSize(WIDTH, HEIGHT);
-        gui.setResizable(false);
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        new GUI();
     }
 }

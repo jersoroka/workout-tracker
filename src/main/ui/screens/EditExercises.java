@@ -3,7 +3,7 @@ package ui.screens;
 import model.Exercise;
 import model.Workout;
 import ui.GUI;
-import ui.buttons.editfield.DeleteExerciseButton;
+import ui.buttons.deletefield.DeleteExerciseButton;
 import ui.buttons.navigation.BackButton;
 import ui.buttons.navigation.EditExerciseNameButton;
 

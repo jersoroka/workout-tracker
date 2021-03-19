@@ -50,8 +50,9 @@ public class LoadButton extends Button {
     // code based on https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void loadWorkoutSet() {
         try {
-            workoutSet = jsonReader.read();
+            gui.setWorkoutSet(jsonReader.read());
             System.out.println("Loaded from " + JSON_STORE);
+            gui.createViewWorkoutsScreen();
         } catch (IOException e) {
             System.out.println(("Unable to read from file: " + JSON_STORE));
         }

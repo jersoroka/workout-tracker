@@ -1,4 +1,4 @@
-package ui.buttons.addobject;
+package ui.buttons.editfield;
 
 import model.Workout;
 import ui.GUI;

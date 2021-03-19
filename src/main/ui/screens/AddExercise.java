@@ -2,7 +2,7 @@ package ui.screens;
 
 import model.Workout;
 import ui.GUI;
-import ui.buttons.addobject.AddExerciseSubmitButton;
+import ui.buttons.editfield.AddExerciseSubmitButton;
 import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;

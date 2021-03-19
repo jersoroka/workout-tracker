@@ -1,4 +1,4 @@
-package ui.buttons.editfield;
+package ui.buttons.deletefield;
 
 import model.Workout;
 import ui.GUI;

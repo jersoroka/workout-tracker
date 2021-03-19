@@ -4,7 +4,7 @@ import model.Exercise;
 import model.Workout;
 import ui.GUI;
 import ui.buttons.navigation.BackButton;
-import ui.buttons.editfield.DeleteWorkoutButton;
+import ui.buttons.deletefield.DeleteWorkoutButton;
 import ui.buttons.navigation.AddExerciseButton;
 import ui.buttons.navigation.EditExercisesButton;
 import ui.buttons.navigation.EditNameAndDateButton;
