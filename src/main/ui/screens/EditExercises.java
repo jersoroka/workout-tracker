@@ -1,23 +1,17 @@
 package ui.screens;
 
 import model.Exercise;
-import model.Set;
 import model.Workout;
 import ui.GUI;
 import ui.buttons.editfield.DeleteExerciseButton;
-import ui.buttons.editfield.DeleteSetButton;
-import ui.buttons.navigation.AddSetButton;
 import ui.buttons.navigation.BackButton;
 import ui.buttons.navigation.EditExerciseNameButton;
-import ui.buttons.navigation.EditSetButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import static javax.swing.GroupLayout.DEFAULT_SIZE;
 import static javax.swing.GroupLayout.PREFERRED_SIZE;
@@ -81,10 +75,6 @@ public class EditExercises extends Screen {
     private void createComponents(GroupLayout layout, JPanel parent, Exercise exercise) {
         JEditorPane nameLabel = textBox("Name: ");
         JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise).getButton();
-        // TODO: make this a combo box instead
-        JComboBox setComboBox = createSetComboBox(exercise);
-        //JPanel sets = createSetSection(exercise);
-        JButton addSetButton = new AddSetButton(gui, parent, exercise).getButton();
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
         JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
 
@@ -93,9 +83,7 @@ public class EditExercises extends Screen {
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                                 .addComponent(editNameButton))
-                        .addComponent(setComboBox)
                         .addGroup(layout.createSequentialGroup()
-                                .addComponent(addSetButton)
                                 .addComponent(deleteExerciseButton)
                                 .addComponent(backButton))
                 ));
@@ -104,9 +92,7 @@ public class EditExercises extends Screen {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(nameLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
                         .addComponent(editNameButton))
-                .addComponent(setComboBox)
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(addSetButton)
                         .addComponent(deleteExerciseButton)
                         .addComponent(backButton))
         );
@@ -123,59 +109,4 @@ public class EditExercises extends Screen {
         return label;
     }
 
-    // EFFECTS: creates combo box containing every set in exercise
-    private JComboBox createSetComboBox(Exercise exercise) {
-        List<String> setNames = new ArrayList<>();
-        for (int i = 1; i == exercise.getSets().size(); i++) {
-            setNames.add("Set " + i);
-        }
-        JComboBox setComboBox = new JComboBox();
-        setComboBox.addItem("Test Set");
-        setComboBox.addItem("Test Set 2");
-        return setComboBox;
-    }
-
-    // EFFECTS: creates entry fields and buttons for each set in exercis
-    private JPanel createSetSection(Exercise exercise) {
-        JPanel pane = new JPanel();
-        pane.setLayout(new GridLayout(exercise.getSets().size(), 0));
-
-        for (int i = 0; i < exercise.getSets().size(); i++) {
-            JPanel setPane = new JPanel();
-            Set set = exercise.getSet(i);
-            JEditorPane setLabel = textBox("Set " + i);
-            JButton editSetButton = new EditSetButton(gui, setPane, set).getButton();
-            JButton deleteSetButton = new DeleteSetButton(gui, setPane, set, exercise, (Workout) object).getButton();
-
-            GroupLayout setLayout = initializeGroupLayout(setPane);
-            setHorizontalGroupSet(setLabel, editSetButton, deleteSetButton, setLayout);
-            setVerticalGroupSet(setLabel, editSetButton, deleteSetButton, setLayout);
-
-            setPane.setLayout(setLayout);
-            pane.add(setPane);
-        }
-
-        return pane;
-    }
-
-    // MODIFIES: setLayout
-    // EFFECTS: organizes vertical group layout for a set
-    private void setVerticalGroupSet(JEditorPane setLabel, JButton editSetButton, JButton deleteSetButton,
-                                     GroupLayout setLayout) {
-        setLayout.setVerticalGroup(setLayout.createSequentialGroup()
-                .addGroup(setLayout.createParallelGroup()
-                        .addComponent(setLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                        .addComponent(editSetButton)
-                        .addComponent(deleteSetButton)));
-    }
-
-    // MODIFIES: setLayout
-    // EFFECTS: organizes horizontal group layout for a set
-    private void setHorizontalGroupSet(JEditorPane setLabel, JButton editSetButton, JButton deleteSetButton,
-                                       GroupLayout setLayout) {
-        setLayout.setHorizontalGroup(setLayout.createSequentialGroup()
-                .addComponent(setLabel, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                .addComponent(editSetButton)
-                .addComponent(deleteSetButton));
-    }
 }
