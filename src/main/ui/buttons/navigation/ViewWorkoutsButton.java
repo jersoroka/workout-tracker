@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // class that represents a button that takes the user to a screen showing all their workouts
+
 public class ViewWorkoutsButton extends Button {
 
     // MODIFIES: this
