@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
+// abstract class representing an empty window
+
 public class Screen extends JFrame {
     protected JPanel pane;
     protected GUI gui;
@@ -22,6 +24,8 @@ public class Screen extends JFrame {
     protected Font font = new Font("Dialog", Font.PLAIN, 18);
 
 
+    // MODIFIES: this
+    // EFFECTS: creates an empty screen
     public Screen(GUI gui, Object object) {
         pane = new JPanel();
         this.gui = gui;
@@ -29,8 +33,20 @@ public class Screen extends JFrame {
         initializePane();
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets size of pane to WIDTH and HEIGHT
     protected void initializePane() {
         pane.setSize(WIDTH, HEIGHT);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets up group layout
+    protected GroupLayout initializeGroupLayout(JPanel parent) {
+        GroupLayout layout = new GroupLayout(parent);
+        parent.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        return layout;
     }
 
     // MODIFIES: parent

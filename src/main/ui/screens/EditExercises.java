@@ -54,16 +54,6 @@ public class EditExercises extends Screen {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets up group layout
-    private GroupLayout initializeGroupLayout(JPanel parent) {
-        GroupLayout layout = new GroupLayout(parent);
-        parent.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-        return layout;
-    }
-
-    // MODIFIES: this
     // EFFECTS: creates components for the tab and organizes them into the group layout
     private void createComponents(GroupLayout layout, JPanel parent, Exercise exercise) {
         JEditorPane nameEntry = entryField();
@@ -72,6 +62,27 @@ public class EditExercises extends Screen {
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
         JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
 
+        setHorizontalGroup(layout, nameEntry, editNameButton, deleteExerciseButton, backButton);
+        setVerticalGroup(layout, nameEntry, editNameButton, deleteExerciseButton, backButton);
+    }
+
+    // MODIFIES: layout
+    // EFFECTS: organizes components into vertical groups in layout
+    private void setVerticalGroup(GroupLayout layout, JEditorPane nameEntry, JButton editNameButton,
+                                  JButton deleteExerciseButton, JButton backButton) {
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
+                        .addComponent(editNameButton))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(deleteExerciseButton)
+                        .addComponent(backButton)));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: organizes components into horizontal groups in layout
+    private void setHorizontalGroup(GroupLayout layout, JEditorPane nameEntry, JButton editNameButton,
+                                    JButton deleteExerciseButton, JButton backButton) {
         layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -79,17 +90,7 @@ public class EditExercises extends Screen {
                                 .addComponent(editNameButton))
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(deleteExerciseButton)
-                                .addComponent(backButton))
-                ));
-
-        layout.setVerticalGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(nameEntry, PREFERRED_SIZE, DEFAULT_SIZE, PREFERRED_SIZE)
-                        .addComponent(editNameButton))
-                .addGroup(layout.createParallelGroup()
-                        .addComponent(deleteExerciseButton)
-                        .addComponent(backButton))
-        );
+                                .addComponent(backButton))));
     }
 
 }
