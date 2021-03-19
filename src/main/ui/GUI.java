@@ -70,12 +70,6 @@ public class GUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates the window where the user can edit an exercise name
-    public void createEditExerciseNameScreen(Exercise exercise) {
-        new EditExerciseName(this, exercise);
-    }
-
-    // MODIFIES: this
     // EFFECTS: draws the JFrame window which holds all the interfaces for the workout logger app
     private void initializeCardLayout() {
         container = getContentPane();
