@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// class representing a button that allows the user to add an exercise to a workout
+
 public class AddExerciseSubmitButton extends Button {
     JEditorPane name;
 
@@ -30,6 +32,7 @@ public class AddExerciseSubmitButton extends Button {
         button.addActionListener(new AddExerciseSubmitButton.ClickHandler());
     }
 
+    // class representing a click handler
     private class ClickHandler implements ActionListener {
 
         // MODIFIES: this

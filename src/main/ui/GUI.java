@@ -13,7 +13,6 @@ import java.awt.*;
 public class GUI extends JFrame {
     private static final int HEIGHT = 450;
     private static final int WIDTH = 600;
-    private static GUI gui;
 
     private CardLayout cards;
     private Container container;

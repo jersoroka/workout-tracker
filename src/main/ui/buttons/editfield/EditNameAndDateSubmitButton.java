@@ -78,6 +78,7 @@ public class EditNameAndDateSubmitButton extends Button {
         button.addActionListener(new EditNameAndDateSubmitButton.SubmitButtonClickHandler());
     }
 
+    // class representing a click handler
     private class SubmitButtonClickHandler implements ActionListener {
 
         // MODIFIES: this

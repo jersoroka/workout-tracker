@@ -31,8 +31,10 @@ public class DeleteWorkoutButton extends Button {
         button.addActionListener(new DeleteWorkoutButton.ClickHandler());
     }
 
+    // class representing a click handler
     private class ClickHandler implements ActionListener {
 
+        // MODIFIES: this
         // EFFECTS: deletes workout and re-opens view workouts screen
         @Override
         public void actionPerformed(ActionEvent e) {

@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// class representing a button that pulls user entered workout field information and adds them to workoutSet if valid
+// class representing a button that that allows the user to create a new workout
 
 public class AddWorkoutSubmitButton extends Button {
     JEditorPane name;
@@ -28,7 +28,6 @@ public class AddWorkoutSubmitButton extends Button {
         this.day = day;
         this.year = year;
     }
-
 
     // EFFECTS: produces true if combination of year, month, and day is valid, false otherwise
     public boolean isDateValid(String year, String month, String day) {
@@ -77,6 +76,7 @@ public class AddWorkoutSubmitButton extends Button {
         button.addActionListener(new AddWorkoutSubmitButton.ClickHandler());
     }
 
+    // class representing a click handler
     private class ClickHandler implements ActionListener {
 
         // MODIFIES: this
