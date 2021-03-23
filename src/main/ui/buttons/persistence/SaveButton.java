@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
 // class representing a button that allows the user to save their workouts
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
 
 public class SaveButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";

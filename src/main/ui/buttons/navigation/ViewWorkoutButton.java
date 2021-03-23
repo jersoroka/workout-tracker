@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // class representing a button that brings a user to the screen that views a specific workout
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
 
 public class ViewWorkoutButton extends Button {
 

@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 // class that represents a button that is used to load a previously saved workout from file
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
 
 public class LoadButton extends Button {
     private static final String JSON_STORE = "./data/workoutSet.json";

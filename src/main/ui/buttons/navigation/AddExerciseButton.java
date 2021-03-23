@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // class that represents a button that takes the user to the add exercise screen
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
+
 public class AddExerciseButton extends Button {
 
     // MODIFIES: this

@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 // class representing a button that allows the user to add an exercise to a workout
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
 
 public class AddExerciseSubmitButton extends Button {
     JEditorPane name;

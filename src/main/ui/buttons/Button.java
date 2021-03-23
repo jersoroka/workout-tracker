@@ -8,6 +8,8 @@ import java.awt.*;
 import java.util.regex.Pattern;
 
 // abstract class representing a button
+// buttons developed using https://github.students.cs.ubc.ca/CPSC210/SimpleDrawingPlayer-Complete.git
+// as template
 
 public abstract class Button {
     protected JButton button;
