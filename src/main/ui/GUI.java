@@ -88,12 +88,6 @@ public class GUI extends JFrame {
     private void createEmptyTestWorkouts() {
         workoutSet.addWorkout(2021, 7, 4, "test");
         workoutSet.addWorkout(2021, 7, 1, "test");
-        workoutSet.addWorkout(2021, 3, 14, "test");
-        workoutSet.addWorkout(2021, 7, 4, "test");
-        workoutSet.addWorkout(2021, 7, 1, "test");
-        workoutSet.addWorkout(2021, 3, 14, "test");
-        workoutSet.addWorkout(2021, 7, 4, "test");
-        workoutSet.addWorkout(2021, 7, 1, "test");
     }
 
     // MODIFIES: this

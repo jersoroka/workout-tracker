@@ -58,6 +58,7 @@ public class SaveButton extends Button {
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
+        JOptionPane.showMessageDialog(parent, "Saved workout logger to " + JSON_STORE);
     }
 
 }

@@ -57,5 +57,6 @@ public class LoadButton extends Button {
         } catch (IOException e) {
             System.out.println(("Unable to read from file: " + JSON_STORE));
         }
+        JOptionPane.showMessageDialog(parent, "File successfully loaded.");
     }
 }
