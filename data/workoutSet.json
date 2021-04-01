@@ -27,7 +27,7 @@
                     "weight": 45,
                     "comment": ""
                 }],
-                "name": "leg curls"
+                "name": "leg extensions"
             }
         ],
         "name": "legs"
@@ -72,5 +72,17 @@
         },
         "exercises": [],
         "name": "test"
+    },
+    {
+        "date": {
+            "month": 3,
+            "year": 2021,
+            "day": 30
+        },
+        "exercises": [{
+            "sets": [],
+            "name": "Deadlifts"
+        }],
+        "name": "Legs\t"
     }
 ]}
