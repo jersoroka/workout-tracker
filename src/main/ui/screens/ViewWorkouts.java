@@ -9,13 +9,19 @@ import ui.buttons.navigation.ViewWorkoutButton;
 import javax.swing.*;
 import java.awt.*;
 
+// class representing a screen which has buttons corresponding to each workout in workout set
+
 public class ViewWorkouts extends Screen {
 
+    // MODIFIES: this
+    // EFFECTS: creates a screen to view workouts
     public ViewWorkouts(GUI gui) {
         super(gui, gui.getWorkoutSet());
         createWorkoutsPane();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the pane layout
     @Override
     protected void initializePane() {
         super.initializePane();
