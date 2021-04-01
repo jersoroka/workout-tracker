@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.EmptyStringException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -21,11 +22,15 @@ public class Workout implements Writable {
         exercises = new ArrayList<>();
     }
 
-    // REQUIRES: name has non-zero length
     // MODIFIES: this
     // EFFECTS: adds an exercise with name to an empty list of sets to exercises
     public void addExercise(String name) {
-        Exercise exercise = new Exercise(name);
+        Exercise exercise = null;
+        try {
+            exercise = new Exercise(name);
+        } catch (EmptyStringException e) {
+            System.out.println("Exercise could not be added. Name must have non-zero length.");
+        }
         exercises.add(exercise);
     }
 

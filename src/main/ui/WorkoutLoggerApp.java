@@ -1,6 +1,9 @@
 package ui;
 
 import model.*;
+import model.exceptions.InvalidIndexException;
+import model.exceptions.NegativeValueException;
+import model.exceptions.ObjectDoesNotExistException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -370,9 +373,19 @@ public class WorkoutLoggerApp {
         if (isOnlyIntegers(command)) {
             int intCommand = Integer.parseInt(command);
             if ((0 <= intCommand) & (intCommand < exercise.size())) {
-                editSet(exercise.getSet(intCommand), exercise);
+                try {
+                    editSet(exercise.getSet(intCommand), exercise);
+                } catch (InvalidIndexException e) {
+                    // exception will not be thrown
+                }
+
             } else if ((exercise.size() <= intCommand) & (intCommand < exercise.size() * 2)) {
-                removeSet(exercise.getSet(intCommand - exercise.size()), exercise);
+                try {
+                    removeSet(exercise.getSet(intCommand - exercise.size()), exercise);
+                } catch (InvalidIndexException e) {
+                    // exception will not be thrown
+                }
+
             } else if (intCommand == (exercise.size() * 2)) {
                 addSet(exercise, workout);
             } else if (intCommand == (exercise.size() * 2 + 1)) {
@@ -394,14 +407,18 @@ public class WorkoutLoggerApp {
 
             System.out.println("How many reps were performed? Enter 0 if not applicable.");
             String reps = input.next();
-            if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)
-                    | (Integer.parseInt(reps) < 0) | (Integer.parseInt(weight) < 0)) {
+
+            if (!isOnlyIntegers(weight) | !isOnlyIntegers(reps)) {
                 System.out.println("Please enter only non-negative integers");
             } else {
                 System.out.println("Enter a comment. Leave this field blank if there are no comments");
                 String comment = input.useDelimiter("\\n").next();
 
-                exercise.addSet(Integer.parseInt(reps), Integer.parseInt(weight), comment);
+                try {
+                    exercise.addSet(Integer.parseInt(reps), Integer.parseInt(weight), comment);
+                } catch (NegativeValueException e) {
+                    System.out.println("Please enter only non-negative integers");
+                }
                 System.out.println("Added new set to " + workout.getName());
                 keepGoing = false;
             }
@@ -432,7 +449,11 @@ public class WorkoutLoggerApp {
         String command;
 
         while (true) {
-            System.out.println("\nSet " + (exercise.indexOf(set) + 1) + ": " + set.getSetInfo());
+            try {
+                System.out.println("\nSet " + (exercise.indexOf(set) + 1) + ": " + set.getSetInfo());
+            } catch (ObjectDoesNotExistException e) {
+                // exception will not be thrown
+            }
             editSetPrompts();
             displayExitAndBackPrompts();
             command = input.next();
@@ -451,8 +472,18 @@ public class WorkoutLoggerApp {
     // MODIFIES: this
     // EFFECTS: removes workout from workouts
     private void removeSet(Set set, Exercise exercise) {
-        int index = exercise.indexOf(set);
-        exercise.removeSet(index);
+        int index = 0;
+        try {
+            index = exercise.indexOf(set);
+        } catch (ObjectDoesNotExistException e) {
+            // exception will not be thrown
+        }
+
+        try {
+            exercise.removeSet(index);
+        } catch (InvalidIndexException e) {
+            // exception will not be thrown
+        }
         System.out.println("\nSet successfully removed");
     }
 
