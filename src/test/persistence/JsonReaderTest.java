@@ -4,6 +4,7 @@ import model.Exercise;
 import model.Set;
 import model.Workout;
 import model.WorkoutSet;
+import model.exceptions.InvalidIndexException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -57,6 +58,8 @@ public class JsonReaderTest extends JsonTest{
             checkExercise("overhead press", 2, overheadPress);
         } catch (IOException e) {
             fail("Couldn't read from file");
+        } catch (InvalidIndexException e) {
+            fail("InvalidIndexException should not be thrown.");
         }
     }
 }

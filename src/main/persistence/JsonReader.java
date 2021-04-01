@@ -4,6 +4,7 @@ import model.Date;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutSet;
+import model.exceptions.NegativeValueException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -107,7 +108,11 @@ public class JsonReader {
         int reps = set.getInt("reps");
         int weight = set.getInt("weight");
         String comment = set.getString("comment");
-        exercise.addSet(reps, weight, comment);
+        try {
+            exercise.addSet(reps, weight, comment);
+        } catch (NegativeValueException e) {
+            System.out.println("Caught negative value exception.");
+        }
     }
 
 }

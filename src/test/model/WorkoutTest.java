@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.NegativeValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,11 @@ class WorkoutTest {
         testWorkout.removeExercise(0);
         assertEquals(1, testWorkout.size());
         assertEquals("Front squats: no sets completed", testWorkout.getExercise(0).getExerciseInfo());
-        testWorkout.getExercise(0).addSet(10, 225, "");
+        try {
+            testWorkout.getExercise(0).addSet(10, 225, "");
+        } catch (NegativeValueException e) {
+            fail("NegativeValueException should not be thrown.");
+        }
 
         testWorkout.addExercise("Deadlifts");
         testWorkout.removeExercise(0);

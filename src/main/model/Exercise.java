@@ -40,7 +40,7 @@ public class Exercise implements Writable {
     // EFFECTS: removes the set located at index in this.sets.
     //          If index < 0 or index >= sets.size(), throws InvalidIndexException.
     public void removeSet(int index) throws InvalidIndexException {
-        if (index < 0 | index > sets.size()) {
+        if (index < 0 | index >= sets.size()) {
             throw new InvalidIndexException();
         }
         sets.remove(index);
@@ -85,7 +85,7 @@ public class Exercise implements Writable {
     // EFFECTS: returns the set at the index.
     //          If index < 0 or index >= sets.size(), throws InvalidIndexException.
     public Set getSet(int index) throws InvalidIndexException {
-        if (index < 0 | index > sets.size()) {
+        if (index < 0 | index >= sets.size()) {
             throw new InvalidIndexException();
         }
         return this.sets.get(index);

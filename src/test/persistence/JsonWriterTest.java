@@ -3,6 +3,7 @@ package persistence;
 import model.Exercise;
 import model.Workout;
 import model.WorkoutSet;
+import model.exceptions.InvalidIndexException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -74,7 +75,9 @@ public class JsonWriterTest extends JsonTest{
             checkSet(12,85,"", rows.getSet(1));
 
         } catch (IOException e) {
-            fail("Exception should not have been thrown");
+            fail("Exception should not have been thrown.");
+        } catch (InvalidIndexException e) {
+            fail("InvalidIndexException should not have been thrown.");
         }
     }
 
