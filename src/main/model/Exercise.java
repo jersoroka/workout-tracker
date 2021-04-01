@@ -1,5 +1,9 @@
 package model;
 
+import model.exceptions.EmptyStringException;
+import model.exceptions.InvalidIndexException;
+import model.exceptions.NegativeValueException;
+import model.exceptions.ObjectDoesNotExistException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -12,25 +16,33 @@ public class Exercise implements Writable {
     private String name;
     private List<Set> sets;
 
-    // REQUIRES: name has a non-zero length
-    // EFFECTS: this.name is set to name and an empty list of sets is made
-    public Exercise(String name) {
+    // EFFECTS: this.name is set to name and an empty list of sets is made.
+    //          Throws EmptyStringException if name is an empty string.
+    public Exercise(String name) throws EmptyStringException {
+        if (name.length() == 0) {
+            throw new EmptyStringException();
+        }
         this.name = name;
         sets = new ArrayList<>();
     }
 
-    // REQUIRES: reps >= 0 and weight >= 0
     // MODIFIES: this
-    // EFFECTS: adds a set to this.sets
-    public void addSet(int reps, int weight, String comment) {
+    // EFFECTS: adds a set to this.sets. If reps or weight are less than 0, throws NegativeValueException.
+    public void addSet(int reps, int weight, String comment) throws NegativeValueException {
+        if (reps < 0 | weight < 0) {
+            throw new NegativeValueException();
+        }
         Set set = new Set(reps, weight, comment);
         this.sets.add(set);
     }
 
-    // REQUIRES: 0 <= index < sets.size()
     // MODIFIES: this
-    // EFFECTS: removes the set located at index in this.sets
-    public void removeSet(int index) {
+    // EFFECTS: removes the set located at index in this.sets.
+    //          If index < 0 or index >= sets.size(), throws InvalidIndexException.
+    public void removeSet(int index) throws InvalidIndexException {
+        if (index < 0 | index > sets.size()) {
+            throw new InvalidIndexException();
+        }
         sets.remove(index);
     }
 
@@ -57,21 +69,25 @@ public class Exercise implements Writable {
         }
     }
 
-    // REQUIRES: set must be in this.exercise.sets
-    // EFFECTS: returns the index of the set
-    public int indexOf(Set set) {
+    // EFFECTS: returns the index of the set. If set is not found in sets, throws ObjectDoesNotExistException.
+    public int indexOf(Set set) throws ObjectDoesNotExistException {
+        if (!sets.contains(set)) {
+            throw new ObjectDoesNotExistException();
+        }
         return sets.indexOf(set);
     }
-
 
     // EFFECTS: returns the number of sets in this.sets
     public int size() {
         return this.sets.size();
     }
 
-    // REQUIRES: 0 <= index < sets.size()
-    // EFFECTS: returns the set at the index
-    public Set getSet(int index) {
+    // EFFECTS: returns the set at the index.
+    //          If index < 0 or index >= sets.size(), throws InvalidIndexException.
+    public Set getSet(int index) throws InvalidIndexException {
+        if (index < 0 | index > sets.size()) {
+            throw new InvalidIndexException();
+        }
         return this.sets.get(index);
     }
 
