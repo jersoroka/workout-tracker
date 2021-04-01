@@ -39,3 +39,14 @@ I want to make a project that aligns with my interests and is something useful.
 - As a user, I want to be able to modify the weight, reps, and comment of a set in an exercise in a workout in my workout journal
 - As a user, I want to be able to save my workouts to a file
 - As a user, I want to be able to load my workouts from a file
+
+## Phase 4: Task 2
+
+I refactored the Exercise class to be robust. The methods within this class that needed to be changed were:
+- Exercise(String name)
+- addSet(int reps, int weight, String comment)
+- removeSet(int index)
+- indexOf(Set set)
+- getSet(int index)
+
+Tests for the refactored methods are found in the ExerciseTest class.
