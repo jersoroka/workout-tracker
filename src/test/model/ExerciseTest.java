@@ -1,16 +1,24 @@
 package model;
 
+import model.exceptions.EmptyStringException;
+import model.exceptions.InvalidIndexException;
+import model.exceptions.NegativeValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ExerciseTest {
     private Exercise testExercise;
 
     @BeforeEach
     void runBefore() {
-        testExercise = new Exercise("Chest");
+        try {
+            testExercise = new Exercise("Chest");
+        } catch (EmptyStringException e) {
+            fail("EmptyStringException should not be thrown.");
+        }
     }
 
     @Test
@@ -20,31 +28,67 @@ public class ExerciseTest {
 
     @Test
     void testGetExerciseInfoOneSet() {
-        testExercise.addSet(10, 135, "moves fast");
-        assertEquals(testExercise.getName() + ": \nSet 1: " + testExercise.getSet(0).getSetInfo(),
-                testExercise.getExerciseInfo());
+        try {
+            testExercise.addSet(10, 135, "moves fast");
+            assertEquals(testExercise.getName() + ": \nSet 1: " + testExercise.getSet(0).getSetInfo(),
+                    testExercise.getExerciseInfo());
+        } catch (NegativeValueException | InvalidIndexException e) {
+            fail("Exception should not be thrown.");
+        }
     }
 
     @Test
     void testGetExerciseInfoManySets() {
-        testExercise.addSet(10, 135, "moves fast");
-        testExercise.addSet(12, 185, "");
-        testExercise.addSet(8, 225, "moves slow");
-        assertEquals(testExercise.getName() + ": \nSet 1: " + testExercise.getSet(0).getSetInfo() +
-                        "\nSet 2: " + testExercise.getSet(1).getSetInfo() +
-                        "\nSet 3: " + testExercise.getSet(2).getSetInfo(),
-                testExercise.getExerciseInfo());
-
+        try {
+            testExercise.addSet(10, 135, "moves fast");
+            testExercise.addSet(12, 185, "");
+            testExercise.addSet(8, 225, "moves slow");
+            assertEquals(testExercise.getName() + ": \nSet 1: " + testExercise.getSet(0).getSetInfo() +
+                            "\nSet 2: " + testExercise.getSet(1).getSetInfo() +
+                            "\nSet 3: " + testExercise.getSet(2).getSetInfo(),
+                    testExercise.getExerciseInfo());
+        } catch (NegativeValueException | InvalidIndexException e) {
+            fail("Exception should not be thrown.");
+        }
     }
 
     @Test
     void testAddSets() {
-        testExercise.addSet(10, 225, "");
-        assertEquals(1, testExercise.getSets().size());
-        assertEquals("weight: 225, reps: 10, comment: none", testExercise.getSet(0).getSetInfo());
-        testExercise.addSet(10, 315, "heavy");
-        assertEquals(2, testExercise.getSets().size());
-        assertEquals("weight: 315, reps: 10, comment: heavy", testExercise.getSet(1).getSetInfo());
+        try {
+            testExercise.addSet(10, 225, "");
+            assertEquals(1, testExercise.getSets().size());
+            assertEquals("weight: 225, reps: 10, comment: none", testExercise.getSet(0).getSetInfo());
+            testExercise.addSet(10, 315, "heavy");
+            assertEquals(2, testExercise.getSets().size());
+            assertEquals("weight: 315, reps: 10, comment: heavy", testExercise.getSet(1).getSetInfo());
+        } catch (NegativeValueException | InvalidIndexException e) {
+            fail("Exception should not be thrown.");
+        }
+    }
+
+    @Test
+    void testAddSetsThrowNegativeValueException() {
+        try {
+            testExercise.addSet(-10, 225, "");
+            fail("NegativeValueException should be thrown.");
+        } catch (NegativeValueException e) {
+            // expected
+        }
+
+        try {
+            testExercise.addSet(10, -225, "");
+            fail("NegativeValueException should be thrown.");
+        } catch (NegativeValueException e) {
+            // expected
+        }
+
+        try {
+            testExercise.addSet(-10, -225, "");
+            fail("NegativeValueException should be thrown.");
+        } catch (NegativeValueException e) {
+            // expected
+        }
+        assertEquals(0, testExercise.getSets().size());
     }
 
     @Test
