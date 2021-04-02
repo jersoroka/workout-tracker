@@ -10,14 +10,19 @@ import ui.buttons.navigation.ViewWorkoutsButton;
 import javax.swing.*;
 import java.awt.*;
 
+// class representing the home screen
 public class Home extends Screen {
 
+    // MODIFIES: this
+    // EFFECTS: makes a home screen
     public Home(GUI gui) {
         super(gui, gui.getWorkoutSet());
         createWorkoutButtons();
         createPersistenceButtons();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a new card to this and initializes the layout
     @Override
     protected void initializePane() {
         super.initializePane();

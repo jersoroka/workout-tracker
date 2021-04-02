@@ -1,13 +1,12 @@
 package ui.screens;
 
 import ui.GUI;
-import ui.buttons.navigation.BackButton;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
-// abstract class representing an empty window
+// class representing an empty window
 
 public class Screen extends JFrame {
     protected JPanel pane;

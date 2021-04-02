@@ -22,6 +22,7 @@ public class AddExerciseSubmitButton extends Button {
         this.name = name;
     }
 
+    // EFFECTS: returns Add Exercise label
     @Override
     protected String getLabel() {
         return "Add Exercise";

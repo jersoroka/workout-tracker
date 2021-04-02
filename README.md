@@ -56,4 +56,5 @@ Tests for the refactored methods are found in the ExerciseTest class.
 If I had more time on the project, I would:
 - Make the Date, Set, Workout, and WorkoutSet classes in model robust
 - Make a GroupLayoutScreen super class for AddExercise, AddWorkout, and ViewWorkout and move initialization method into this class
+- Make a new Button subtype called ValidationButton which contains entry validation methods from AddExerciseSubmitButton, AddWorkoutSubmitButton, and EditNameAndDateSubmitButton
 

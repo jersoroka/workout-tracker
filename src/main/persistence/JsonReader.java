@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 public class JsonReader {
     private String source;
 
+    // MODIFIES: this
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
