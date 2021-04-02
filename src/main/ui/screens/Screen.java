@@ -57,10 +57,6 @@ public class Screen extends JFrame {
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
-    protected void createBackButton(String previousCard) {
-        new BackButton(gui, pane, previousCard);
-    }
-
     // EFFECTS: creates unmodifiable text box
     protected JEditorPane textBox(String entry) {
         JEditorPane label = new JEditorPane();

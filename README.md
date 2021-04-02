@@ -50,3 +50,10 @@ I refactored the Exercise class to be robust. The methods within this class that
 - getSet(int index)
 
 Tests for the refactored methods are found in the ExerciseTest class.
+
+## Phase 4: Task 3
+
+If I had more time on the project, I would:
+- Make the Date, Set, Workout, and WorkoutSet classes in model robust
+- Make a GroupLayoutScreen super class for AddExercise, AddWorkout, and ViewWorkout and move initialization method into this class
+
