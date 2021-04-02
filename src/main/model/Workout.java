@@ -25,13 +25,12 @@ public class Workout implements Writable {
     // MODIFIES: this
     // EFFECTS: adds an exercise with name to an empty list of sets to exercises
     public void addExercise(String name) {
-        Exercise exercise = null;
         try {
-            exercise = new Exercise(name);
+            Exercise exercise = new Exercise(name);
+            exercises.add(exercise);
         } catch (EmptyStringException e) {
             System.out.println("Exercise could not be added. Name must have non-zero length.");
         }
-        exercises.add(exercise);
     }
 
     // REQUIRES: 0 <= index < exercises.size()

@@ -1,5 +1,6 @@
 package model;
 
+import model.exceptions.EmptyStringException;
 import model.exceptions.NegativeValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,12 @@ class WorkoutTest {
         testWorkout.addExercise("Push ups");
         assertEquals("Push ups: no sets completed", testWorkout.getExercise(3).getExerciseInfo());
         assertEquals(4, testWorkout.size());
+    }
+
+    @Test
+    void testAddExerciseCannotAddExercise() {
+        testWorkout.addExercise("");
+        assertEquals(2, testWorkout.size());
     }
 
     @Test
