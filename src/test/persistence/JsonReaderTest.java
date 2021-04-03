@@ -62,4 +62,27 @@ public class JsonReaderTest extends JsonTest{
             fail("InvalidIndexException should not be thrown.");
         }
     }
+
+    @Test
+        // code attributed to JsonSerializationDemo
+    void testReaderInvalidSetInWorkoutSet() {
+        JsonReader reader = new JsonReader("./data/testReaderInvalidWorkoutSet.json");
+        try {
+            WorkoutSet workoutSet = reader.read();
+
+            Workout testWorkout = workoutSet.getWorkout(0);
+            checkWorkout("chest", 2021, 2, 27, 2, testWorkout);
+
+            Exercise benchPress = testWorkout.getExercise(0);
+            checkExercise("bench press", 2, benchPress);
+            checkSet(10, 135, "medium speed", benchPress.getSet(0));
+            checkSet(12,115,"burnout", benchPress.getSet(1));
+            Exercise overheadPress = testWorkout.getExercise(1);
+            checkExercise("overhead press", 2, overheadPress);
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        } catch (InvalidIndexException e) {
+            fail("InvalidIndexException should not be thrown.");
+        }
+    }
 }
