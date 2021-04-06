@@ -55,6 +55,10 @@ Tests for the refactored methods are found in the ExerciseTest class.
 
 If I had more time on the project, I would:
 - Make the Date, Set, Workout, and WorkoutSet classes in model robust
-- Make a GroupLayoutScreen super class for AddExercise, AddWorkout, and ViewWorkout and move initialization method into this class
-- Make a new Button subtype called ValidationButton which contains entry validation methods from AddExerciseSubmitButton, AddWorkoutSubmitButton, and EditNameAndDateSubmitButton
+- Make a GroupLayoutScreen super class for AddExercise, AddWorkout, and ViewWorkout and move initialization method into this class to reduce duplication
+- Make a new Button subtype called ValidationButton which contains entry validation methods from AddExerciseSubmitButton, AddWorkoutSubmitButton, and EditNameAndDateSubmitButton to reduce duplication
+- Remove console application (WorkoutLoggerApp and Main)
+- Introduce an EditButton class that extends Button and is extended by deletefield and editfield package classes which includes a method that is used to refresh the cards to decrease code duplication.
+- Refactor Button to not have a dependency on WorkoutSet as this can be accessed through GUI
+- Make the navigation buttons a single class as they vary only in their label and what screen they bring the user
 

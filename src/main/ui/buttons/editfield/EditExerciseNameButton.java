@@ -1,4 +1,4 @@
-package ui.buttons.navigation;
+package ui.buttons.editfield;
 
 import model.Exercise;
 import model.Workout;

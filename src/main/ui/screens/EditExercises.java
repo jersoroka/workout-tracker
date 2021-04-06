@@ -5,7 +5,7 @@ import model.Workout;
 import ui.GUI;
 import ui.buttons.deletefield.DeleteExerciseButton;
 import ui.buttons.navigation.BackButton;
-import ui.buttons.navigation.EditExerciseNameButton;
+import ui.buttons.editfield.EditExerciseNameButton;
 
 import javax.swing.*;
 import java.util.List;
@@ -66,7 +66,7 @@ public class EditExercises extends Screen {
         JButton editNameButton = new EditExerciseNameButton(gui, pane, exercise, nameEntry,
                 (Workout) object).getButton();
         JButton deleteExerciseButton = new DeleteExerciseButton(gui, parent, object, exercise).getButton();
-        JButton backButton = new BackButton(gui, pane, "view workouts").getButton();
+        JButton backButton = new BackButton(gui, pane, "view workout").getButton();
 
         setHorizontalGroup(layout, nameEntry, editNameButton, deleteExerciseButton, backButton);
         setVerticalGroup(layout, nameEntry, editNameButton, deleteExerciseButton, backButton);
