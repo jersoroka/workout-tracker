@@ -49,7 +49,7 @@ public class DeleteExerciseButton extends Button {
             gui.createViewWorkoutScreen(workout);
             gui.createEditExercisesScreen(workout);
 
-            gui.getCards().show(gui.getContainer(), "edit exercises");
+            gui.getCards().show(gui.getContainer(), "view workouts");
         }
     }
 }

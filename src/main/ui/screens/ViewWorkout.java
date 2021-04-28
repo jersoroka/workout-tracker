@@ -130,8 +130,9 @@ public class ViewWorkout extends Screen {
             return "No exercises completed.";
         } else {
             StringBuilder exerciseInfo = new StringBuilder();
+            exerciseInfo.append("Exercises:\n\n");
             for (Exercise e : workout.getExercises()) {
-                exerciseInfo.append(e.getExerciseInfo()).append("\n\n ");
+                exerciseInfo.append(e.getExerciseInfoNoSets()).append("\n\n ");
             }
             return String.valueOf(exerciseInfo);
         }

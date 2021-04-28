@@ -39,8 +39,13 @@ public class EditExercisesButton extends Button {
         // EFFECTS: loads edit exercises screen
         @Override
         public void actionPerformed(ActionEvent e) {
-            gui.createEditExercisesScreen((Workout) object);
-            gui.getCards().show(gui.getContainer(), "edit exercises");
+            Workout workout = (Workout) object;
+            if (workout.size() > 0) {
+                gui.createEditExercisesScreen((Workout) object);
+                gui.getCards().show(gui.getContainer(), "edit exercises");
+            } else {
+                errorPopup("No exercises recorded.");
+            }
         }
     }
 

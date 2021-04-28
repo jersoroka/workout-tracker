@@ -1,88 +1,137 @@
 {"workouts": [
     {
         "date": {
-            "month": 2,
-            "year": 2021,
-            "day": 27
-        },
-        "exercises": [
-            {
-                "sets": [
-                    {
-                        "reps": 10,
-                        "weight": 135,
-                        "comment": "warmup"
-                    },
-                    {
-                        "reps": 10,
-                        "weight": 155,
-                        "comment": ""
-                    }
-                ],
-                "name": "front squats"
-            },
-            {
-                "sets": [{
-                    "reps": 20,
-                    "weight": 45,
-                    "comment": ""
-                }],
-                "name": "leg extensions"
-            }
-        ],
-        "name": "legs"
-    },
-    {
-        "date": {
-            "month": 2,
-            "year": 2021,
-            "day": 28
-        },
-        "exercises": [{
-            "sets": [
-                {
-                    "reps": 10,
-                    "weight": 75,
-                    "comment": "fast reps"
-                },
-                {
-                    "reps": 12,
-                    "weight": 85,
-                    "comment": ""
-                }
-            ],
-            "name": "rows"
-        }],
-        "name": "back"
-    },
-    {
-        "date": {
-            "month": 7,
-            "year": 2021,
-            "day": 4
-        },
-        "exercises": [],
-        "name": "test"
-    },
-    {
-        "date": {
-            "month": 7,
+            "month": 4,
             "year": 2021,
             "day": 1
         },
         "exercises": [],
-        "name": "test"
+        "name": "arms"
     },
     {
         "date": {
-            "month": 3,
+            "month": 4,
             "year": 2021,
-            "day": 30
+            "day": 2
         },
-        "exercises": [{
-            "sets": [],
-            "name": "Deadlifts"
-        }],
-        "name": "Legs\t"
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 3
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 4
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 5
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 6
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 7
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 8
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 9
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 10
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 11
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 12
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 13
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 14
+        },
+        "exercises": [],
+        "name": "arms"
+    },
+    {
+        "date": {
+            "month": 4,
+            "year": 2021,
+            "day": 15
+        },
+        "exercises": [],
+        "name": "arms"
     }
 ]}

@@ -69,6 +69,11 @@ public class Exercise implements Writable {
         }
     }
 
+    // EFFECTS: returns the name of the exercise and list of sets completed as a string
+    public String getExerciseInfoNoSets() {
+        return this.name;
+    }
+
     // EFFECTS: returns the index of the set. If set is not found in sets, throws ObjectDoesNotExistException.
     public int indexOf(Set set) throws ObjectDoesNotExistException {
         if (!sets.contains(set)) {
