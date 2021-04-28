@@ -40,6 +40,8 @@ I want to make a project that aligns with my interests and is something useful.
 - As a user, I want to be able to save my workouts to a file
 - As a user, I want to be able to load my workouts from a file
 
+Note that the user stories involving sets were not implemented in the GUI but were implemented in the console program.
+
 ## Phase 4: Task 2
 
 I refactored the Exercise class to be robust. The methods within this class that needed to be changed were:
